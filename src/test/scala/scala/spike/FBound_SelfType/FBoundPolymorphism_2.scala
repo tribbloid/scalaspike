@@ -1,30 +1,10 @@
+package scala.spike.FBound_SelfType
+
 import org.scalatest.{BeforeAndAfterAll, FunSuite}
 
 import scala.reflect._
 
-/**
-  * Created by peng on 05/03/16.
-  */
-
-class FBoundPolymorphismSuite extends FunSuite with BeforeAndAfterAll {
-
-  abstract class FBound[+T <: FBound[T]: ClassTag] {
-
-    def respond: List[T]
-  }
-
-  class FBoundImpl(val s: String) extends FBound[FBoundImpl] {
-
-    override def respond: List[FBoundImpl] = List(new FBoundImpl(this.s + "s"))
-  }
-
-  test("1") {
-
-    assert(new FBoundImpl("s").respond.head.s == "ss")
-  }
-}
-
-class FBoundPolymorphismSuite2 extends FunSuite with BeforeAndAfterAll {
+class FBoundPolymorphism_2 extends FunSuite with BeforeAndAfterAll {
 
   trait FBound[+T <: FBound[T]] {
 
@@ -44,7 +24,8 @@ class FBoundPolymorphismSuite2 extends FunSuite with BeforeAndAfterAll {
 
     override val ctg: ClassTag[_ <: FBoundSubImpl2] = classTag[FBoundSubImpl2]
 
-    override def respond: List[FBoundSubImpl2] = List(new FBoundSubImpl2(this.s + "b"))
+    override def respond: List[FBoundSubImpl2] =
+      List(new FBoundSubImpl2(this.s + "b"))
   }
 
   test("1") {

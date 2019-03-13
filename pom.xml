@@ -7,11 +7,12 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.7</java.version>
-        <scala.version>2.10.5</scala.version>
-        <scala.binary.version>2.10</scala.binary.version>
-        <hadoop.version>2.6.0</hadoop.version>
-        <spark.binary.version>1.4.1</spark.binary.version>
+        <java.version>1.8</java.version>
+        <scala.version>2.11.11</scala.version>
+        <scala.binary.version>2.11</scala.binary.version>
+        <hadoop.version>2.7.5</hadoop.version>
+      <spark.version>2.2.3</spark.version>
+        <spark.binary.version>2.2</spark.binary.version>
         <PermGen>512m</PermGen>
         <MaxPermGen>2g</MaxPermGen>
         <failsafe.version>2.18</failsafe.version>
@@ -22,6 +23,26 @@
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
+
+      <dependency>
+        <groupId>org.scala-lang</groupId>
+        <artifactId>scala-compiler</artifactId>
+        <version>${scala.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.scala-lang</groupId>
+        <artifactId>scala-library</artifactId>
+        <version>${scala.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.scala-lang</groupId>
+        <artifactId>scala-reflect</artifactId>
+        <version>${scala.version}</version>
+        <scope>provided</scope>
+      </dependency>
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
