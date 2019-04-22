@@ -11,8 +11,6 @@ object Example1 {
 
     type DD <: Domain
     type GG <: StaticGraph[DD]
-
-    final type Builder = Example1.Builder[DD, GG]
   }
 
   trait DSL[I <: Impl] {

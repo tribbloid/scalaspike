@@ -2,13 +2,13 @@ package scala.spike.RefinedType
 
 object Example1 {
 
-  val threeD = Dim(3)
-  val fourD = Dim(3)
+  val `2d` = Dim(2)
+  val `3d` = Dim(3)
 
   trait SU_n[D <: Dim] {
 
     def plus(v1: Quaternion, v2: Quaternion)(
-        implicit ev: D <:< threeD.type
+        implicit ev: D <:< `2d`.type
     ): Quaternion = Quaternion(v1.w * v2.w)
   }
 
@@ -18,12 +18,13 @@ object Example1 {
 
   val alsoThreeD = Dim(3)
 
-  object SU_3 extends SU_n[alsoThreeD.type] {}
-  object SU_4 extends SU_n[fourD.type] {}
+  object SU_2 extends SU_n[alsoThreeD.type] {}
+  object SU_3 extends SU_n[`3d`.type] {}
 
   //TODO: how to fix it?
-  val v3 = SU_3.plus(Quaternion(1), Quaternion(2))
-
-  //this will trigger an error
-  val v4 = SU_4.plus(Quaternion(1), Quaternion(2))
+  {
+//    val v2 = SU_2.plus(Quaternion(1), Quaternion(2))
+//
+//    val v3 = SU_3.plus(Quaternion(1), Quaternion(2))
+  }
 }

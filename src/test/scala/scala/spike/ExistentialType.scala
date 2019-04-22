@@ -73,8 +73,8 @@ object ExistentialType {
 
   val l1: SomeList = List(yy, yy) // compiles fine
 
-  val l2: SomeList = List(yy2, yy2) // does not compile
-  val l3: SomeList = List(yy, yy2) // does not compile
+//  val l2: SomeList = List(yy2, yy2) // does not compile
+//  val l3: SomeList = List(yy, yy2) // does not compile
 
 //  val l2: SomeList = List("hello")
 //  val l2: SomeList = List(123) // does not compile
