@@ -1,6 +1,6 @@
-package scala.spike.Override
+package scala.spike.Overriding
 
-object InnerClassOverrideAbstractType {
+object InnerClassOverridingAbstractType {
 
   trait AALike
 

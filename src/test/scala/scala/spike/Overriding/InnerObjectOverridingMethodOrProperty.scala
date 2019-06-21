@@ -1,6 +1,6 @@
-package scala.spike.Override
+package scala.spike.Overriding
 
-object InnerObjectOverrideMethodOrProperty {
+object InnerObjectOverridingMethodOrProperty {
 
   trait AALike
 

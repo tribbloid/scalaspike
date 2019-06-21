@@ -1,30 +1,75 @@
 package scala.spike.RefinedType
 
+import org.scalatest.FunSpec
+import shapeless.Witness
+import shapeless.Witness._
+
+import scala.spike.RefinedType.Example1._
+
 object Example1 {
 
-  val `2d` = Dim(2)
-  val `3d` = Dim(3)
+//  val cache
+//
+//  def wit(v: Int) =
 
-  trait SU_n[D <: Dim] {
+  val two: Lt[Int] = Witness(2)
+  val three: Lt[Int] = Witness(3)
 
-    def plus(v1: Quaternion, v2: Quaternion)(
-        implicit ev: D <:< `2d`.type
-    ): Quaternion = Quaternion(v1.w * v2.w)
+  val alsoTwo: Lt[Int] = Witness(2)
+
+  assert(two.getClass.isAssignableFrom(alsoTwo.getClass))
+
+  // SU means 'special unitary group'
+
+  class ComplexVector[D <: Lt[Int]](
+      val vs: List[(Double, Double)]
+  )(
+      implicit ev: Aux[D]
+  ) {
+
+    {
+      val d = vs.size
+      assert(ev.value.value == d)
+    }
+
+    def +(v2: ComplexVector[D])(
+        implicit ev2: D <:< two.type
+    ): ComplexVector[D] = {
+      val newVs = this.vs.zip(v2.vs).map {
+        case (t1, t2) =>
+          (t1._1 + t2._1) -> (t1._2 + t2._2)
+      }
+      new ComplexVector[D](newVs)
+    }
   }
 
-  case class Quaternion(w: Int) {}
+  type Quaternion = ComplexVector[two.type]
 
-  case class Dim(d: Int) {}
+}
 
-  val alsoThreeD = Dim(3)
+class Example1 extends FunSpec {
 
-  object SU_2 extends SU_n[alsoThreeD.type] {}
-  object SU_3 extends SU_n[`3d`.type] {}
+  it("2d") {
 
-  //TODO: how to fix it?
-  {
-//    val v2 = SU_2.plus(Quaternion(1), Quaternion(2))
-//
-//    val v3 = SU_3.plus(Quaternion(1), Quaternion(2))
+    val q = new Quaternion(List(1.0 -> 2.0, 3.0 -> 4.0))
+    val q2 = new ComplexVector[alsoTwo.type](List(3.0 -> 4.0, 1.0 -> 2.0))
+
+    q + q
+
+    //TODO: how to make it work?
+    //    q + q2
+    //
+    //    q2 + q2
+  }
+
+  it("3d") {
+
+    val vec =
+      new ComplexVector[three.type](List(1.0 -> 2.0, 3.0 -> 4.0, 5.0 -> 6.0))
+
+    // This will break
+    //  {
+    //    val v3 = SU_3.plus(vec, vec)
+    //  }
   }
 }
