@@ -1,7 +1,7 @@
-package scala.spike
+package com.tribbloids.spike.scala_spike
 
 import scala.language.{existentials, reflectiveCalls}
-import scala.spike.ExistentialType._
+import ExistentialType._
 
 /**
   * Created by peng on 31/03/16.
@@ -68,7 +68,7 @@ object ExistentialType {
     val x: T = "hello"
   }
 
-  val yy: scala.spike.ExistentialType.X.T = X.x
+  val yy: ExistentialType.X.T = X.x
   val yy2: X.T = X.x
 
   val l1: SomeList = List(yy, yy) // compiles fine

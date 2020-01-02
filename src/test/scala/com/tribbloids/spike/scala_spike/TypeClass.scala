@@ -1,4 +1,4 @@
-package scala.spike
+package com.tribbloids.spike.scala_spike
 
 object TypeClass {
 

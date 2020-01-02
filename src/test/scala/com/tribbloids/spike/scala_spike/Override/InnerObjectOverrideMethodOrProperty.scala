@@ -1,4 +1,4 @@
-package scala.spike.Override
+package com.tribbloids.spike.scala_spike.Override
 
 object InnerObjectOverrideMethodOrProperty {
 

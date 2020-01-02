@@ -1,4 +1,4 @@
-package scala.spike.RefinedType
+package com.tribbloids.spike.scala_spike.RefinedType
 
 object Example1 {
 

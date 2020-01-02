@@ -1,4 +1,4 @@
-package scala.spike.FBound_SelfType
+package com.tribbloids.spike.scala_spike.FBound_SelfType
 
 import org.scalatest.{BeforeAndAfterAll, FunSuite}
 

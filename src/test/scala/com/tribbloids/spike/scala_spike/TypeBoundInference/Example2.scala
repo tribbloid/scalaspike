@@ -1,4 +1,4 @@
-package scala.spike.TypeBoundInference
+package com.tribbloids.spike.scala_spike.TypeBoundInference
 
 object Example2 {
 
