@@ -1,9 +1,5 @@
 package com.tribbloids.spike.scala_spike.reflection
 
-import com.tribbloids.spike.scala_spike.reflection.TypeTag2Manifest.{
-  example,
-  toManifest
-}
 import org.scalatest.FunSpec
 
 import scala.reflect.{ClassTag, ManifestFactory}
@@ -13,9 +9,11 @@ object TypeTag2Manifest {
   import org.apache.spark.sql.catalyst.ScalaReflection.universe._
 
   def toManifest[T: TypeTag]: Manifest[T] = {
-    val t = typeTag[T]
-    val mirror = t.mirror
+    val tt = typeTag[T]
+    val mirror = tt.mirror
     def toManifestRec(t: Type): Manifest[_] = {
+
+      t.finalResultType
       val clazz = ClassTag[T](mirror.runtimeClass(t)).runtimeClass
       if (t.typeArgs.length == 1) {
         val arg = toManifestRec(t.typeArgs.head)
@@ -27,7 +25,7 @@ object TypeTag2Manifest {
         ManifestFactory.classType(clazz)
       }
     }
-    toManifestRec(t.tpe).asInstanceOf[Manifest[T]]
+    toManifestRec(tt.tpe).asInstanceOf[Manifest[T]]
   }
 
   class Example {
@@ -40,8 +38,8 @@ object TypeTag2Manifest {
 
 class TypeTag2Manifest extends FunSpec {
 
-  import org.apache.spark.sql.catalyst.ScalaReflection.universe._
   import TypeTag2Manifest._
+  import org.apache.spark.sql.catalyst.ScalaReflection.universe._
 
   it("can convert") {
 
