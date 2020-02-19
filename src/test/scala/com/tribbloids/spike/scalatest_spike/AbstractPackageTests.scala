@@ -25,3 +25,8 @@ trait AbstractPackageTests {
     }
   }
 }
+
+object AbstractPackageTests {
+
+  val clz = classOf[facet1.Suite1]
+}
