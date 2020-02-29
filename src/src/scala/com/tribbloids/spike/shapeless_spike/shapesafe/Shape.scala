@@ -18,4 +18,9 @@ object Shape {
   case object ShapeNil extends Shape
 
   case class :*:[L <: Dim, R <: Shape](left: L, right: R)
+
+  trait Can_*[L <: Shape, R <: Shape] {
+
+    type Out <: Shape
+  }
 }
