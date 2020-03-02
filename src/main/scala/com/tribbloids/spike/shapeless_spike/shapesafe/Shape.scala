@@ -7,17 +7,9 @@ trait Shape extends Product with Serializable {
 
 object Shape {
 
-  trait Dim extends Product with Serializable
-
-  case object Unknown extends Dim
-
-  case object `1` extends Dim
-  case object `2` extends Dim
-  case object `3` extends Dim
-
   case object ShapeNil extends Shape
 
-  case class :*:[L <: Dim, R <: Shape](left: L, right: R)
+  case class :*:[L <: Axis, R <: Shape](left: L, right: R)
 
   trait Can_*[L <: Shape, R <: Shape] {
 

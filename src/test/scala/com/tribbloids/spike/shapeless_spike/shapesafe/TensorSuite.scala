@@ -4,8 +4,8 @@ import org.scalatest.FunSpec
 
 class TensorSuite extends FunSpec {
 
-  it("can generate random") {
-
-    val tt = Tensor.rand(2)
-  }
+//  it("can generate random") {
+//
+//    val tt = Tensor.rand(2)
+//  }
 }

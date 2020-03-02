@@ -71,9 +71,7 @@ class RDDCachingVSLazyComputing extends FunSpec {
         }
       }
     }
-
   }
-
 }
 
 object RDDCachingVSLazyComputing {

@@ -1,7 +1,7 @@
 package com.tribbloids.spike.shapeless_spike.shapesafe
 
 import com.tribbloids.spike.shapeless_spike.shapesafe.Shape.Can_*
-import shapeless.Witness.Aux
+import shapeless.Witness
 import shapeless.syntax.SingletonOps
 
 case class Tensor[S <: Shape]() {
@@ -14,15 +14,14 @@ case class Tensor[S <: Shape]() {
 
 object Tensor {
 
-  def rand(v: Int): Tensor[Shape] = {
-
-    import shapeless.syntax.singleton._
-
-    val vv: Aux[SingletonOps#T] = v.witness
-
-    val vvv: SingletonOps#T = vv.value
-
-    ???
-
-  }
+//  def rand(v: Int): Tensor[Shape] = {
+//
+//    import shapeless.syntax.singleton._
+//
+//    val vv: Witness.Aux[SingletonOps#T] = v.witness
+//
+//    val vvv: SingletonOps#T = vv.value
+//
+//    ???
+//  }
 }
