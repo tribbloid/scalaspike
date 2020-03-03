@@ -6,44 +6,52 @@ trait Axis extends Serializable
 
 case object UnknownAxis extends Axis
 
-//case object `1` extends Axis
-//case object `2` extends Axis
-//case object `3` extends Axis
+trait KnownAxis[W <: Witness.Lt[Int]] extends Axis {
 
-case class KnownAxis1[S <: Int](s: S) extends Axis {
+  def n: Int
 
-  val w: Witness.Lt[S] = Witness(s) // useless, runtime only
-
-//  type V = w.T
+  def ++(that: KnownAxis[W]): Unit = {}
 }
 
-case class KnownAxis2[S <: Int, W <: Witness.Lt[S]](s: S) extends Axis {
+object KnownAxis {
 
-  val w: Witness.Lt[S] = Witness(s)
+  val w1 = Witness(1)
+  val w2 = Witness(2)
+
+  case class K1(n: Witness.`1`.T) extends KnownAxis[w1.type]
+  case class K2(n: Witness.`2`.T) extends KnownAxis[w2.type]
+
+//  K2(2) ++ K1(1) // doesn't compile
+
+  K2(2) ++ K2(2)
+
+  // more complex
+
+//  case class KN[S <: Int, W <: Witness.Aux[Int]](n: S)(implicit ev: S => W) extends KnownAxis[W]
+
+//  val arch = Seq(w1.value, w2.value)
+
+  case class KN[W <: Witness.Lt[Int]](n: W#T) extends KnownAxis[W]
+
+  KN(1)
 }
 
-object Axis {
+//object Axis {
 
-  val _1 = KnownAxis1(1)
-
-  val _2 = KnownAxis2(2)
-
-  print(_1.w)
-
-  print(_2.w)
-
-  def main(args: Array[String]): Unit = {}
-
-//  val w: Lt[Int] = Witness(1)
-
-//  def getSingleton[W <: Witness.Aux[Int]](v: Int): KnownAxis1[W] = {
+//  val ii = Witness.`1`
 //
-//    val ww = v.witness
+//  val _1 = KnownAxis(1)
 //
-//    val vvv = ww.value
+//  val _2 = KnownAxis(2)
 //
-//    val result = new KnownAxis1[W](ww)
+//  val also2 = KnownAxis(2)
 //
-//    result
-//  }
-}
+////  print(_1.w)
+////
+////  print(_2.w)
+//
+//  _1 + _2 // this should break compilation
+//
+//  _2 + also2
+//}
+// use Witness as a type parameter
