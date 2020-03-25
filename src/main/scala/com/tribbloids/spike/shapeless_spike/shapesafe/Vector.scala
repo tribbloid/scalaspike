@@ -25,16 +25,19 @@ object Vector {
 
     Vector.zeros(Witness(2)) <*> values(2.0, 3.0)
 
-    Vector.zeros(Witness(3)) <*> values(2.0, 3.0) // breaks as expected
+//    Vector.zeros(Witness(3)) <*> values(2.0, 3.0) // breaks as expected
   }
 
   // ...
 
   object Attempt2 {
-    type HInts = Int :: HInts
 
-    def values[T <: Product](v: T)(implicit aux: Generic.Aux[T, HInts]) = {
-      ???
-    }
+    import shapeless.::
+
+//    type HInts = Int :: HInts
+//
+//    def values[T <: Product](v: T)(implicit aux: Generic.Aux[T, HInts]) = {
+//      ???
+//    }
   }
 }
