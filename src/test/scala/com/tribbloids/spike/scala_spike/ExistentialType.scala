@@ -19,8 +19,7 @@ class ExistentialType {
     override val vv: LinearTimeGraph[MLDomain] = null
   }
 
-  trait AnyBuilder[D <: Domain]
-      extends Builder[D, G forSome { type G <: StaticGraph[D] }]
+  trait AnyBuilder[D <: Domain] extends Builder[D, G forSome { type G <: StaticGraph[D] }]
   object BuilderImpl2 extends AnyBuilder[MLDomain] {
     override val vv: RDDGraph[MLDomain] = null
   }
