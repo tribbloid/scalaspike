@@ -8,6 +8,7 @@
 gradlew*
 **/gradle/*
 **/.gradle/*
+**/build
 
 # sbt specific
 .cache/
