@@ -2,8 +2,6 @@ package lectures.part4implicits
 
 import java.util.Date
 
-import lectures.part4implicits.JSONSerialization.JSONNumber
-
 /**
   * Created by Daniel.
   */
@@ -53,20 +51,24 @@ object JSONSerialization extends App {
         }
       }
      */
-    def stringify: String = values.map {
-      case (key, value) => "\"" + key + "\":" + value.stringify
-    }
-      .mkString("{", ",", "}")
+    def stringify: String =
+      values
+        .map {
+          case (key, value) => "\"" + key + "\":" + value.stringify
+        }
+        .mkString("{", ",", "}")
 
   }
 
-  val data = JSONObject(Map(
-    "user" -> JSONString("Daniel"),
-    "posts" -> JSONArray(List(
-      JSONString("Scala Rocks!"),
-      JSONNumber(453)
+  val data = JSONObject(
+    Map(
+      "user" -> JSONString("Daniel"),
+      "posts" -> JSONArray(
+        List(
+          JSONString("Scala Rocks!"),
+          JSONNumber(453)
+        ))
     ))
-  ))
 
   println(data.stringify)
 
@@ -102,34 +104,41 @@ object JSONSerialization extends App {
 
   // custom data types
   implicit object UserConverter extends JSONConverter[User] {
-    def convert(user: User): JSONValue = JSONObject(Map(
-      "name" -> JSONString(user.name),
-      "age" -> JSONNumber(user.age),
-      "email" -> JSONString(user.email)
-    ))
+    def convert(user: User): JSONValue =
+      JSONObject(
+        Map(
+          "name" -> JSONString(user.name),
+          "age" -> JSONNumber(user.age),
+          "email" -> JSONString(user.email)
+        ))
   }
 
   implicit object PostConverter extends JSONConverter[Post] {
-    def convert(post: Post): JSONValue = JSONObject(Map(
-      "content" -> JSONString(post.content),
-      "created:" -> JSONString(post.createdAt.toString)
-    ))
+    def convert(post: Post): JSONValue =
+      JSONObject(
+        Map(
+          "content" -> JSONString(post.content),
+          "created:" -> JSONString(post.createdAt.toString)
+        ))
   }
 
   implicit object FeedConverter extends JSONConverter[Feed] {
-    def convert(feed: Feed): JSONValue = JSONObject(Map(
-      "user" -> feed.user.toJSON,
-      "posts" -> JSONArray(feed.posts.map(_.toJSON))
-    ))
+    def convert(feed: Feed): JSONValue =
+      JSONObject(
+        Map(
+          "user" -> feed.user.toJSON,
+          "posts" -> JSONArray(feed.posts.map(_.toJSON))
+        ))
   }
 
   // call stringify on result
   val now = new Date(System.currentTimeMillis())
   val john = User("John", 34, "john@rockthejvm.com")
-  val feed = Feed(john, List(
-    Post("hello", now),
-    Post("look at this cute puppy", now)
-  ))
+  val feed = Feed(john,
+                  List(
+                    Post("hello", now),
+                    Post("look at this cute puppy", now)
+                  ))
 
   println(feed.toJSON.stringify)
 
