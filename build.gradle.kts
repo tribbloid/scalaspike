@@ -1,23 +1,20 @@
 plugins {
     idea
-//    kotlin("jvm") version "1.3.71"
-//    id("de.fayard.refreshVersions") version "0.8.7"
     base
-    kotlin("jvm") version "1.3.70" apply false
-    id("java")
-    id("scala")
+    kotlin("jvm") version "1.3.70"
+    id("com.github.maiflai.scalatest").version("0.26")
 }
 
-//val scalaV: String by project
-
-val ext = SpikeExt(this)
-
 allprojects {
+
     apply(plugin = "java")
     apply(plugin = "scala")
 
+    apply(plugin = "idea")
+
+    val vv = this.versions()
+
     group = "com.tribbloids.scalaspike"
-//    artifact = "scalaspike"
     version = "1.0.0-SNAPSHOT"
 
     repositories {
@@ -28,20 +25,27 @@ allprojects {
 
     dependencies {
 
-        implementation("org.scala-lang:scala-compiler:${ext.scalaV}")
-        implementation( "org.scala-lang:scala-library:${ext.scalaV}")
-        implementation( "org.scala-lang:scala-reflect:${ext.scalaV}")
+        implementation("org.scala-lang:scala-compiler:${vv.scalaV}")
+        implementation("org.scala-lang:scala-library:${vv.scalaV}")
+        implementation("org.scala-lang:scala-reflect:${vv.scalaV}")
 
-//        testImplementation( "junit:junit:4.12")
-//        testImplementation( "org.scalatest:scalatest_${scalaBinaryV}:3.0.8")
-//
-//        implementation( "com.chuusai:shapeless_${scalaBinaryV}:2.3.3")
+        testImplementation("junit:junit:4.12")
+        testImplementation("org.scalatest:scalatest_${vv.scalaBinaryV}:3.0.8")
+        testRuntimeOnly("org.pegdown:pegdown:1.4.2")
+
+    }
+
+    idea.module {
+        excludeDirs.add(file("warehouse"))
+        excludeDirs.add(file("latex"))
+        isDownloadJavadoc = true
+        isDownloadSources = true
     }
 }
 
-idea.module {
-    excludeDirs.add(file("warehouse"))
-    excludeDirs.add(file("gradle"))
-    isDownloadJavadoc = true
-    isDownloadSources = true
+idea {
+    module {
+
+        excludeDirs.add(file("gradle"))
+    }
 }

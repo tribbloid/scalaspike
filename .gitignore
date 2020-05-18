@@ -5,8 +5,6 @@
 *.versionsBackup
 
 # gradle
-gradlew*
-**/gradle/*
 **/.gradle/*
 **/build
 
