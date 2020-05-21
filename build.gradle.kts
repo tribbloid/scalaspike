@@ -11,6 +11,7 @@ allprojects {
     apply(plugin = "scala")
 
     apply(plugin = "idea")
+    apply(plugin = "com.github.maiflai.scalatest")
 
     val vv = this.versions()
 

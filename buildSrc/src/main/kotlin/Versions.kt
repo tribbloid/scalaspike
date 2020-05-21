@@ -4,10 +4,10 @@ class Versions(self: Project) {
 
     val scalaV: String = self.properties.get("scalaVersion").toString()
 
-    protected val scalaVparts = scalaV.split('.')
+    protected val scalaVParts = scalaV.split('.')
 
-    val scalaBinaryV: String = scalaVparts.subList(0, 2).joinToString(".")
-    val scalaMinorV: String = scalaVparts[2]
+    val scalaBinaryV: String = scalaVParts.subList(0, 2).joinToString(".")
+    val scalaMinorV: String = scalaVParts[2]
 
     val sparkV: String = self.properties.get("sparkVersion").toString()
 

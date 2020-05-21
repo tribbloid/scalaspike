@@ -3,6 +3,7 @@
 
 include(
         "common",
+        "lecture",
         "spark"
 )
 
