@@ -9,6 +9,7 @@ object DelayedInferClassTag {
   trait SS {
 
     type TT <: Any
+
     def ctg(implicit tag: ClassTag[TT]): ClassTag[TT] = implicitly[ClassTag[TT]]
 
     val fakeCtg: ClassTag[None.type] = implicitly[ClassTag[None.type]]
@@ -29,13 +30,14 @@ object DelayedInferClassTag {
 
     override final type TT = String
   }
+
 }
 
 class DelayedInferClassTag extends FunSpec {
 
   import DelayedInferClassTag._
 
-  it("") {
+  it("1") {
 
     val sub1 = new Sub1()
     println(sub1.fakeCtg)

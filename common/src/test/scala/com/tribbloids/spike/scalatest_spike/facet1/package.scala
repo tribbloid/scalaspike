@@ -2,7 +2,7 @@ package com.tribbloids.spike.scalatest_spike
 
 import org.scalatest.FunSpec
 
-package object facet1 extends FunSpec with AbstractPackageTests {
+package object facet1 extends AbstractPackageTests {
   override val name: String = "facet 1"
 
   class Suite3 extends FunSpec {
@@ -13,6 +13,5 @@ package object facet1 extends FunSpec with AbstractPackageTests {
     }
   }
 
-
-  it("test 6") {}
+  //  it("test 6") {}
 }

@@ -2,6 +2,7 @@ package com.tribbloids.spike.scalatest_spike
 
 import org.scalatest.FunSpec
 
+// TODO: this pattern DOES NOT work
 trait AbstractPackageTests {
 
   val name: String
@@ -24,9 +25,10 @@ trait AbstractPackageTests {
       it("test 4") {}
     }
   }
+
 }
 
 object AbstractPackageTests {
 
-  val clz = classOf[facet1.Suite1]
+  val clz: Class[_root_.com.tribbloids.spike.scalatest_spike.facet1.Suite1] = classOf[facet1.Suite1]
 }
