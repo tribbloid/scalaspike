@@ -26,6 +26,14 @@ allprojects {
         maven("https://dl.bintray.com/kotlin/kotlin-dev")
     }
 
+    configurations.all {
+        resolutionStrategy.dependencySubstitution {
+            substitute(module("com.chuusai:shapeless_${vs.scalaBinaryV}")).apply {
+                with(module("com.chuusai:shapeless_${vs.scalaBinaryV}:2.3.3"))
+            }
+        }
+    }
+
     dependencies {
 
         implementation("org.scala-lang:scala-compiler:${vs.scalaV}")
@@ -53,6 +61,11 @@ allprojects {
         isDownloadSources = true
     }
 
+    // see https://stackoverflow.com/questions/44266687/how-to-print-out-all-dependencies-in-a-gradle-multi-project-build
+    task("dependencyTree") {
+
+        dependsOn("dependencies")
+    }
 
     tasks {
 
@@ -84,6 +97,7 @@ allprojects {
 ////            ScalaTestPlugin.setMODE("append")
 //        }
 //    }
+
 
 }
 

@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
 FWDIR="$(
-  cd "$(dirname "$0")"/..
+  cd "$(dirname "$0")"/.. || exit
   pwd
 )"
 DATE=$(date --iso-8601=second)
 
 mkdir -p ${FWDIR}/logs
 
-${FWDIR}/gradlew -q dependencies "${@}" >${FWDIR}/logs/dependencyTree_"$DATE".txt
+${FWDIR}/gradlew -q dependencyTree "${@}" >${FWDIR}/logs/dependencyTree_"$DATE".out
 
 ${FWDIR}/gradlew clean build -x test "${@}"
