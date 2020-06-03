@@ -37,6 +37,8 @@ class OpsExample extends BaseSpec {
 
   it("Witness.Lt[Nat] should be interoperable with Witness.Lt[Int]") {
 
+    implicitly[Require[Nat._3 == W.`3`.T]]
+
     val v1 = Vec.apply[Nat._3]()
     val v2 = Vec.apply[W.`3`.T]()
     val v3 = Vec[W.`9`.T]
