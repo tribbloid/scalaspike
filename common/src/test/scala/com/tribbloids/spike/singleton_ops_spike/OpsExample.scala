@@ -1,11 +1,13 @@
 package com.tribbloids.spike.singleton_ops_spike
 
 import com.tribbloids.spike.BaseSpec
-import shapeless.Nat
+import shapeless.{Nat, Witness}
+import shapeless.test.illTyped
+import singleton.ops.{*, +, ==, >, Require, SafeInt}
 
 class OpsExample extends BaseSpec {
 
-  import singleton.ops._
+  import singleton.ops.W
 
   class Vec[L] {
     def doubleSize = new Vec[W.`2`.T * L]
@@ -29,10 +31,15 @@ class OpsExample extends BaseSpec {
 
     Vec.dot_*(v1, v2)
 
-    //    MyVec.mustBeEqual(myVec, myVec3) // fails, as required
+    illTyped {
+      "MyVec.mustBeEqual(myVec, myVec3)"
+    }
+
+    illTyped {
+      "MyVec[W.`-1`.T]"
+    }
 
     //    val myVec: MyVec[W.`10`.T] = MyVec[W.`4`.T + W.`1`.T].doubleSize  // implicit cast disabled, too slow for the compiler
-    //    val myBadVec = MyVec[W.`-1`.T] //fails compilation, as required
   }
 
   it("Witness.Lt[Nat] should be interoperable with Witness.Lt[Int]") {
@@ -45,6 +52,70 @@ class OpsExample extends BaseSpec {
 
     Vec.dot_*(v1, v2)
 
-    //    Vec.dot_*(v1, v3) // fails, as required
+    illTyped {
+      "Vec.dot_*(v1, v3)"
+    }
+  }
+
+  it("value can be summoned from result type") {
+
+    type T1 = W.`3`.T
+
+    val v1 = implicitly[Witness.Aux[T1]]
+    assert(v1.value == 3)
+
+    type T2 = T1 + W.`4`.T
+
+    val v2 = implicitly[T2]
+    assert(v2.value == 7)
+  }
+
+  describe("conversion can accelerate compile-time computations") {
+
+    it("1") {
+      type Big = Nat._3
+
+      type Small = Witness.`3`.T
+
+      type R = Require[Big == Small]
+
+      implicitly[R]
+    }
+
+    it("2") {
+
+      val nat = Nat(3)
+
+      type Big = nat.N
+
+      type Small = Witness.`3`.T
+
+      type Sum = Witness.`6`.T
+      type NotSum = Witness.`7`.T
+
+      implicitly[Require[Big + Small == Sum]]
+
+      illTyped {
+        "implicitly[Require[Big + Small == NotSum]]"
+      }
+    }
+
+    it("3") {
+
+      val nat = Nat(100)
+
+      type Big = nat.N
+
+      type Small = Witness.`3`.T
+
+      type Sum = Witness.`103`.T
+      type NotSum = Witness.`105`.T
+
+      implicitly[Require[Big + Small == Sum]]
+
+      illTyped {
+        "implicitly[Require[Big + Small == NotSum]]"
+      }
+    }
   }
 }

@@ -1,4 +1,4 @@
-package com.tribbloids.spike.scala_spike.annotation
+package com.tribbloids.spike.scala_spike.Annotation
 
 import org.scalatest.FunSpec
 
