@@ -3,6 +3,7 @@ package com.tribbloids.spike.singleton_ops_spike
 import com.tribbloids.spike.BaseSpec
 import shapeless.ops.hlist
 import shapeless.{HList, Nat}
+import singleton.ops.impl.OpInt
 import singleton.ops.{SafeInt, ToInt}
 
 class OpsFastCompile extends BaseSpec {
@@ -29,7 +30,27 @@ class OpsFastCompile extends BaseSpec {
     val op2 = getOps(filled)
   }
 
-  // a singletonOps bug triggered a stackoverflow on this one
+  // TODO triggers StackOverFlow
+//  it("summon Nat => ToInt") {
+//
+//    type FastInt[N] = OpInt[ToInt[N]]
+//
+//    val op1 = implicitly[FastInt[big.nat.N]]
+//
+//    def getOps[D <: HList, T <: Nat](v: D)(
+//        implicit
+//        ofLength: hlist.Length.Aux[D, T],
+//        asInt: FastInt[T]
+//    ): FastInt[T] = {
+//      asInt
+//    }
+//
+//    val filled = HList.fill[Double](100)(0.0)
+//
+//    val op2 = getOps(filled)
+//  }
+
+  // TODO triggers StackOverFlow
 //  it("summon Nat => SafeInt") {
 //
 //    val op1 = implicitly[SafeInt[big.nat.N]]

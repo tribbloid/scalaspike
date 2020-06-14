@@ -40,31 +40,32 @@ class WitnessSuite extends BaseSpec {
         type Lit
       }
 
+      class Some(val w: Witness.Lt[Int]) extends MayHaveWitness {
+
+        type Lit = w.T
+      }
+
+      object None extends MayHaveWitness {
+
+        type Lit = Nothing
+      }
+
       trait MayHaveWitness_Implicits0 {
 
-        class Some(val w: Witness.Lt[Int]) extends MayHaveWitness {
-
-          type Lit = w.T
-        }
-
-        object None extends MayHaveWitness {
-
-          type Lit = Nothing
-        }
-
-        implicit def fromNonLit(v: Int): None.type = None
+        implicit def fromNonLit(v: Integer): None.type = None
       }
 
       object MayHaveWitness extends MayHaveWitness_Implicits0 {
 
-        implicit def fromLit[T](literal: T)(implicit proof: T => Witness.Lt[Int]): MayHaveWitness.Some =
-          new Some(literal)
+        //TODO: oops. doesn't work
+//        implicit def fromLit[T <: Integer with Singleton](literal: T): Some =
+//          new Some(Witness(literal.intValue()))
       }
 
-      val v1: MayHaveWitness = 3
+      val v1: MayHaveWitness = new Integer(3)
       println(v1.getClass)
 
-      val v2: MayHaveWitness = Random.nextInt(3)
+      val v2: MayHaveWitness = new Integer(Random.nextInt(3))
       println(v2.getClass)
     }
 
