@@ -1,10 +1,10 @@
-package com.tribbloids.spike.scala_spike.RefinedType
+package com.tribbloids.spike.shapeless_spike.RefinedType
 
 import org.scalatest.FunSpec
 import shapeless.Witness
 import shapeless.Witness._
 
-import com.tribbloids.spike.scala_spike.RefinedType.Example1._
+import com.tribbloids.spike.shapeless_spike.RefinedType.Example1._
 
 //TODO: already have shapeless spike for this
 object Example1 {
