@@ -1,4 +1,4 @@
-package com.tribbloids.spike.scala_spike.Reflection
+package com.tribbloids.spike
 
 import java.io.Serializable
 
@@ -7,8 +7,10 @@ trait ScalaReflection extends Serializable {
   /** The universe we work in (runtime or macro) */
   val universe: scala.reflect.api.Universe
 
+  import universe._
+
   /** The mirror used to access types in the universe */
-  def mirror: universe.Mirror
+  def mirror: Mirror
 
 }
 

@@ -1,39 +1,65 @@
 package com.tribbloids.spike.scala_spike.Reflection
 
-import com.tribbloids.spike.BaseSpec
-import com.tribbloids.spike.scala_spike.Reflection.ScalaReflection.universe
+import com.tribbloids.spike.{BaseSpec, DebugUtils}
 
 class ReflectionUniverseSuite extends BaseSpec {
 
-  import ScalaReflection._
+  import com.tribbloids.spike.ScalaReflection._
   import ReflectionUniverseSuite._
+  import DebugUtils._
 
-  it("reify") {
+  describe("reify") {
 
     val str = "String"
 
-    {
-      val tt = Typed(str)
-      val rr = universe.reify(tt)
-      println(rr)
-      println(tt.ttag)
+    it("inferred type") {
+
+      {
+        val tt = Typed(str)
+        val rr = universe.reify(tt)
+
+        printEval(tt.inferredTTag)
+        printEval(rr)
+      }
+
+      {
+        val tt = Typed[str.type](str)
+        val rr = universe.reify(tt)
+        printEval(tt.inferredTTag)
+        printEval(rr)
+      }
     }
 
-    {
-      val tt = Typed[str.type](str)
+    it("inferred singleton type") {
+
+      val tt = Typed(str)
       val rr = universe.reify(tt)
-      println(rr)
-      println(tt.ttag)
+      printEval(tt.refinedTTag)
+      printEval(rr)
+
     }
   }
+
 }
 
 object ReflectionUniverseSuite {
 
-  import ScalaReflection.universe.TypeTag
+  import com.tribbloids.spike.ScalaReflection.universe._
 
-  case class Typed[T: TypeTag](v: T) {
+  case class Typed[T <: AnyRef: TypeTag](v: T) {
 
-    def ttag: universe.TypeTag[T] = implicitly[TypeTag[T]]
+    def inferredTTag: TypeTag[T] = implicitly[TypeTag[T]]
+
+    def refinedTTag: TypeTag[v.type] = implicitly[TypeTag[v.type]]
+  }
+
+  case class SelfTyped(v: String) {
+
+    type This = this.type
+
+    class Container[T >: this.type](v: T = SelfTyped.this) {
+
+      type This = T
+    }
   }
 }
