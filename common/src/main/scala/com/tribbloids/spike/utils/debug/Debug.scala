@@ -1,23 +1,22 @@
-package com.tribbloids.spike
+package com.tribbloids.spike.utils.debug
 
-object DebugUtils {
+object Debug {
 
-  import ScalaReflection.universe
-//  def cartesianProductSet[T](xss: Seq[Set[T]]): Set[List[T]] = xss match {
-//    case Nil => Set(Nil)
-//    case h :: t =>
-//      for (xh <- h;
-//           xt <- cartesianProductSet(t))
-//        yield xh :: xt
-//  }
-//
-//  def cartesianProductList[T](xss: Seq[Seq[T]]): Seq[List[T]] = xss match {
-//    case Nil => List(Nil)
-//    case h :: t =>
-//      for (xh <- h;
-//           xt <- cartesianProductList(t))
-//        yield xh :: xt
-//  }
+  //  def cartesianProductSet[T](xss: Seq[Set[T]]): Set[List[T]] = xss match {
+  //    case Nil => Set(Nil)
+  //    case h :: t =>
+  //      for (xh <- h;
+  //           xt <- cartesianProductSet(t))
+  //        yield xh :: xt
+  //  }
+  //
+  //  def cartesianProductList[T](xss: Seq[Seq[T]]): Seq[List[T]] = xss match {
+  //    case Nil => List(Nil)
+  //    case h :: t =>
+  //      for (xh <- h;
+  //           xt <- cartesianProductList(t))
+  //        yield xh :: xt
+  //  }
 
   private lazy val LZYCOMPUTE = "$lzycompute"
   private lazy val INIT = "<init>"
@@ -58,12 +57,12 @@ object DebugUtils {
     effectiveElements
   }
 
-  case class Caller(
+  case class CallStackRef(
       depth: Int = 0,
       exclude: Seq[Class[_]] = Nil
   ) {
 
-    lazy val breakpointInfo: Array[StackTraceElement] = {
+    val breakpointInfo: Array[StackTraceElement] = {
       val bp = getBreakpointInfo()
       val filteredIndex = bp.toSeq.indexWhere(
         { element =>
@@ -94,41 +93,4 @@ object DebugUtils {
     text.split('\n').filter(_.nonEmpty).map(str + _).mkString("\n")
   }
 
-  def eval[T: universe.TypeTag](fn: => T): EvalData[T] = {
-
-    val caller = Caller(exclude = Seq(this.getClass))
-    caller.breakpointInfo
-
-    val v = fn
-
-    EvalData(
-      v,
-      implicitly[universe.TypeTag[T]],
-      v.getClass,
-      caller
-    )
-  }
-
-  def printEval[T: universe.TypeTag](fn: => T): Unit = {
-
-    val data = eval(fn)
-
-    println(data)
-  }
-
-  case class EvalData[T](
-      value: T,
-      inferredType: universe.TypeTag[T],
-      runtimeType: Class[_],
-      caller: Caller
-  ) {
-
-    override def toString: String = {
-      s"""${value}
-         | : ${inferredType.tpe}
-         | @ ${runtimeType.getCanonicalName}
-         |\tat ${caller.showStr}
-         """.stripMargin
-    }
-  }
 }

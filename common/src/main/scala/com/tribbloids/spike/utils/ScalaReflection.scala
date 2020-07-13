@@ -1,4 +1,4 @@
-package com.tribbloids.spike
+package com.tribbloids.spike.utils
 
 import java.io.Serializable
 

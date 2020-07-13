@@ -18,7 +18,7 @@ class LazyCollections extends FunSpec {
   }
 
   def render(vs: TraversableOnce[_]): Unit = {
-    vs.foreach(_ => Unit)
+    vs.foreach(_ => ())
   }
 
   run("Iterator") { log =>

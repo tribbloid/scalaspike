@@ -68,6 +68,8 @@ class OpsExample extends BaseSpec {
 
     val v2 = implicitly[T2]
     assert(v2.value == 7)
+    assert(v2.isLiteral)
+    assert(v2.valueWide == 7)
   }
 
   describe("conversion can accelerate compile-time computations") {

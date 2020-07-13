@@ -1,12 +1,12 @@
 package com.tribbloids.spike.scala_spike.Reflection
 
-import com.tribbloids.spike.{BaseSpec, DebugUtils}
+import com.tribbloids.spike.BaseSpec
+import com.tribbloids.spike.utils.debug.print_@
 
 class ReflectionUniverseSuite extends BaseSpec {
 
-  import com.tribbloids.spike.ScalaReflection._
+  import com.tribbloids.spike.utils.ScalaReflection._
   import ReflectionUniverseSuite._
-  import DebugUtils._
 
   describe("reify") {
 
@@ -18,15 +18,15 @@ class ReflectionUniverseSuite extends BaseSpec {
         val tt = Typed(str)
         val rr = universe.reify(tt)
 
-        printEval(tt.inferredTTag)
-        printEval(rr)
+        print_@(tt.inferredTTag)
+        print_@(rr)
       }
 
       {
         val tt = Typed[str.type](str)
         val rr = universe.reify(tt)
-        printEval(tt.inferredTTag)
-        printEval(rr)
+        print_@(tt.inferredTTag)
+        print_@(rr)
       }
     }
 
@@ -34,8 +34,8 @@ class ReflectionUniverseSuite extends BaseSpec {
 
       val tt = Typed(str)
       val rr = universe.reify(tt)
-      printEval(tt.refinedTTag)
-      printEval(rr)
+      print_@(tt.refinedTTag)
+      print_@(rr)
 
     }
   }
@@ -44,7 +44,7 @@ class ReflectionUniverseSuite extends BaseSpec {
 
 object ReflectionUniverseSuite {
 
-  import com.tribbloids.spike.ScalaReflection.universe._
+  import com.tribbloids.spike.utils.ScalaReflection.universe._
 
   case class Typed[T <: AnyRef: TypeTag](v: T) {
 

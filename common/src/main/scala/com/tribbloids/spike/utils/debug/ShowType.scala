@@ -1,10 +1,8 @@
-package com.tribbloids.spike
+package com.tribbloids.spike.utils.debug
 
-import ScalaReflection._
+import com.tribbloids.spike.utils.ScalaReflection.universe._
 
-case class TypeView(tpe: universe.Type) {
-
-  import universe._
+case class ShowType(tpe: Type) {
 
   lazy val baseTypes: List[Type] = {
 
@@ -23,4 +21,11 @@ case class TypeView(tpe: universe.Type) {
        |${baseTypes.map(v => "\t- " + v).mkString("\n")}
        """.trim.stripMargin
   }
+}
+
+object ShowType {
+
+  def apply[T](implicit ttag: TypeTag[T]): ShowType = ShowType(ttag.tpe)
+
+  def infer[T: TypeTag](v: T): ShowType = apply[T]
 }

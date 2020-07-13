@@ -9,6 +9,7 @@ logs/**
 # gradle
 **/.gradle/*
 **/build
+**/out
 
 # sbt specific
 .cache/

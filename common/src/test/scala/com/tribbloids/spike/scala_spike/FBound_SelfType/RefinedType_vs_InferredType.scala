@@ -1,39 +1,36 @@
 package com.tribbloids.spike.scala_spike.FBound_SelfType
 
-import com.tribbloids.spike.ScalaReflection.universe
+import com.tribbloids.spike.BaseSpec
 import com.tribbloids.spike.scala_spike.FBound_SelfType.RefinedType_vs_InferredType.{ParamTyped, Typed}
-import com.tribbloids.spike.{BaseSpec, DebugUtils, TypeView}
+import com.tribbloids.spike.utils.TypeTag
+import com.tribbloids.spike.utils.debug.{print_@, ShowType}
 
 class RefinedType_vs_InferredType extends BaseSpec {
-
-  import DebugUtils._
 
   it("can extract both refined & inferred type") {
 
     val v = Typed()
 
-    printEval(TypeView(v.refinedTTag.tpe))
-    printEval(TypeView(v.refinedSuperTTag.tpe))
-    printEval(TypeView(v.inferredTTag.tpe))
+    print_@(ShowType(v.refinedTTag))
+    print_@(ShowType(v.refinedSuperTTag))
+    print_@(ShowType(v.inferredTTag))
   }
 
   it("... even if parameterised") {
 
     val v = ParamTyped[String, Int]()
 
-    printEval(TypeView(v.refinedTTag.tpe))
-    printEval(TypeView(v.refinedSuperTTag.tpe))
-    printEval(TypeView(v.inferredTTag.tpe))
+    print_@(ShowType(v.refinedTTag))
+    print_@(ShowType(v.refinedSuperTTag))
+    print_@(ShowType(v.inferredTTag))
   }
 }
 
 object RefinedType_vs_InferredType {
 
-  import com.tribbloids.spike.ScalaReflection.universe._
-
   trait TTagInfo {
 
-    def inferredTTag[E >: this.type](implicit ev: TypeTag[E]): universe.TypeTag[E] = implicitly[TypeTag[E]]
+    def inferredTTag[E >: this.type](implicit ev: TypeTag[E]): TypeTag[E] = implicitly[TypeTag[E]]
 
     def refinedSuperTTag: TypeTag[this.type] = implicitly[TypeTag[this.type]]
   }

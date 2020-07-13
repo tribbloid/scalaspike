@@ -1,8 +1,8 @@
 plugins {
-    idea
     base
-    kotlin("jvm") version "1.3.70"
-    id("com.github.maiflai.scalatest").version("0.26")
+    java
+    scala
+    idea
 }
 
 val jUnitV = "5.6.2"
@@ -10,9 +10,10 @@ val jUnitPlatformV = "1.6.0" // TODO: useless
 
 allprojects {
 
+    apply(plugin = "base")
     apply(plugin = "java")
+    apply(plugin = "java-library")
     apply(plugin = "scala")
-
     apply(plugin = "idea")
 
     val vs = this.versions()
@@ -23,7 +24,7 @@ allprojects {
     repositories {
         mavenCentral()
         jcenter()
-        maven("https://dl.bintray.com/kotlin/kotlin-dev")
+//        maven("https://dl.bintray.com/kotlin/kotlin-dev")
     }
 
     configurations.all {
@@ -54,13 +55,6 @@ allprojects {
 
     }
 
-    idea.module {
-        excludeDirs.add(file("warehouse"))
-        excludeDirs.add(file("latex"))
-        isDownloadJavadoc = true
-        isDownloadSources = true
-    }
-
     // see https://stackoverflow.com/questions/44266687/how-to-print-out-all-dependencies-in-a-gradle-multi-project-build
     task("dependencyTree") {
 
@@ -69,7 +63,65 @@ allprojects {
 
     tasks {
 
+
+        val jvmTarget = JavaVersion.VERSION_1_8.toString()
+
+//        scala {
+//            this.zincVersion
+//        }
+
+        withType<ScalaCompile> {
+
+            configureEach {
+
+                targetCompatibility = jvmTarget
+
+                scalaCompileOptions.apply {
+
+//                    isForce = true
+                    loggingLevel = "verbose"
+
+                    additionalParameters = listOf(
+                            "-encoding", "utf8",
+                            "-unchecked",
+                            "-deprecation",
+                            "-feature",
+//                            "-Xfatal-warnings",
+
+                            "-Xlint:poly-implicit-overload",
+                            "-Xlint:option-implicit",
+
+                            "-Xlog-implicits",
+                            "-Xlog-implicit-conversions"
+
+                            ,
+                            "-Yissue-debug"
+
+                            // the following only works on scala 2.13
+//                        ,
+//                        "-Xlint:implicit-not-found",
+//                        "-Xlint:implicit-recursion"
+                    )
+
+                    forkOptions.apply {
+
+                        memoryInitialSize = "1g"
+                        memoryMaximumSize = "4g"
+
+                        // this may be over the top but the test code in macro & core frequently run implicit search on church encoded Nat type
+                        jvmArgs = listOf(
+                                "-Xss256m"
+                        )
+                    }
+                }
+            }
+        }
+
+
         test {
+
+            minHeapSize = "1024m"
+            maxHeapSize = "4096m"
 
             useJUnitPlatform {
                 includeEngines("scalatest")
@@ -77,33 +129,35 @@ allprojects {
                     events("passed", "skipped", "failed")
                 }
             }
+
+            testLogging {
+//                events = setOf(org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED, org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED, org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED, org.gradle.api.tasks.testing.logging.TestLogEvent.STANDARD_OUT)
+//                exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+                showExceptions = true
+                showCauses = true
+                showStackTraces = true
+            }
         }
     }
 
-    // scalatest plugin
-//    apply(plugin = "com.github.maiflai.scalatest")
-//
-//    tasks {
-//
-//        test {
-//
-//            val configMap = extensions.getByName("configMap")
-//            configMap.closureOf<MutableMap<String, Any?>> {
-//                this["W"] = null
-//
-//                println(this)
-//            }
-//
-////            ScalaTestPlugin.setMODE("append")
-//        }
-//    }
+    idea {
+
+        targetVersion = "2020"
 
 
-}
+        module {
 
-idea {
-    module {
+            // apache spark
+            excludeDirs.add(file("warehouse"))
+            excludeDirs.add(file("latex"))
 
-        excludeDirs.add(file("gradle"))
+            // gradle log
+            excludeDirs.add(file("logs"))
+            excludeDirs.add(file("gradle"))
+
+            isDownloadJavadoc = true
+            isDownloadSources = true
+        }
     }
 }
+
