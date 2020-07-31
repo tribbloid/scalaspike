@@ -1,8 +1,9 @@
 package com.tribbloids.spike.singleton_ops_spike
 
 import com.tribbloids.spike.BaseSpec
-import com.tribbloids.spike.utils.InferType
-import com.tribbloids.spike.utils.debug.{print_@, ShowType}
+import graph.commons.util.WideTyped
+import graph.commons.util.debug.print_@
+import graph.commons.util.viz.VizType
 import shapeless.Witness
 import singleton.ops.{==, Require}
 import singleton.twoface.TwoFace
@@ -17,17 +18,17 @@ class TwoFaceExample extends BaseSpec {
 
     val v1 = TwoFace.Int.apply(3)
 
-    print_@(ShowType.infer(v1))
+    print_@(VizType.infer(v1))
     assert(v1.isLiteral)
 
     val v2 = TwoFace.Int.apply(4)
 
-    print_@(ShowType.infer(v2))
+    print_@(VizType.infer(v2))
     assert(v2.isLiteral)
 
     val v3 = v1 + v2
 
-    print_@(ShowType.infer(v3))
+    print_@(VizType.infer(v3))
     assert(v3.isLiteral)
 
     implicitly[Require[v3.Out == Witness.`7`.T]]
@@ -38,7 +39,7 @@ class TwoFaceExample extends BaseSpec {
 
     val v1 = TwoFace.Int.apply(3)
 
-    print_@(ShowType.infer(v1))
+    print_@(VizType.infer(v1))
     assert(v1.isLiteral)
 
     val v2 = {
@@ -49,12 +50,12 @@ class TwoFaceExample extends BaseSpec {
 
     }
 
-    print_@(ShowType.infer(v2))
+    print_@(VizType.infer(v2))
     assert(!v2.isLiteral)
 
     val v3 = v1 + v2
 
-    print_@(ShowType.infer(v3))
+    print_@(VizType.infer(v3))
     assert(!v3.isLiteral)
 
 //    implicitly[Require[v3.Out == Witness.`7`.T]] TODO: can it be made to work?
@@ -65,17 +66,17 @@ class TwoFaceExample extends BaseSpec {
 
     val v1: TwoFaceAny.Int[Int] = TwoFace.Int(Random.nextInt(5))
 
-    print_@(ShowType.infer(v1))
+    print_@(VizType.infer(v1))
     assert(!v1.isLiteral)
 
     val v2 = Random.nextInt(6): TwoFaceAny.Int[_]
 
-    print_@(ShowType.infer(v2))
+    print_@(VizType.infer(v2))
     assert(!v2.isLiteral)
 
     val v3 = v1 + v2
 
-    print_@(ShowType.infer(v3))
+    print_@(VizType.infer(v3))
     assert(!v3.isLiteral)
   }
 
@@ -87,12 +88,12 @@ class TwoFaceExample extends BaseSpec {
 
     val v3 = v1 + v2
 
-//    print_@(ShowType.apply[v3.type])
+//    print_@(VizType.apply[v3.type])
 
-    val t1 = InferType(v1)
-    val t2 = InferType(v2)
-    val t3 = InferType(v3)
-    print_@(ShowType.apply[t3.TT])
+    val t1 = WideTyped(v1)
+    val t2 = WideTyped(v2)
+    val t3 = WideTyped(v3)
+    print_@(VizType.apply[t3.Wide])
 
 //    type K = AcceptNonLiteral[t1.TT + t2.TT] // NO it cannot
 //    val k = implicitly[K]

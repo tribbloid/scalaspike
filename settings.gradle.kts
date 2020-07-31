@@ -2,9 +2,10 @@
 
 
 include(
-        "common",
-        "lecture",
-        "spark"
+        ":graph-commons",
+        ":common",
+        ":lecture",
+        ":spark"
 )
 
 

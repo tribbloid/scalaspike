@@ -1,8 +1,8 @@
-package com.tribbloids.spike.scala_spike
+package com.tribbloids.spike.scala_spike.Implicit
 
 import scala.language.implicitConversions
 
-object Implicits {
+object Simple {
 
   case class Src(ss: String) {
 

@@ -1,7 +1,8 @@
 package com.tribbloids.spike.shapeless_spike
 
 import com.tribbloids.spike.BaseSpec
-import com.tribbloids.spike.utils.debug.{print_@, ShowType}
+import graph.commons.util.debug.print_@
+import graph.commons.util.viz.VizType
 import shapeless.Witness
 
 import scala.language.implicitConversions
@@ -18,13 +19,13 @@ class WitnessSuite extends BaseSpec {
     it("of literal Int") {
 
       val w0: Witness.Lt[Int] = 3
-      print_@(ShowType.infer(w0).toString) // TODO: how to get typetag of w0.T ?
+      print_@(VizType.infer(w0).toString) // TODO: how to get typetag of w0.T ?
 
       val w1: Witness.Lt[Int] = randN1
-      print_@(ShowType.infer(w1).toString)
+      print_@(VizType.infer(w1).toString)
 
       val w2: Witness.Lt[Int] = randN2
-      print_@(ShowType.infer(w2).toString)
+      print_@(VizType.infer(w2).toString)
 
       assertDoesNotCompile(
         """

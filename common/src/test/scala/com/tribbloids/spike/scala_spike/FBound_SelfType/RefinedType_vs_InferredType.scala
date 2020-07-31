@@ -2,8 +2,9 @@ package com.tribbloids.spike.scala_spike.FBound_SelfType
 
 import com.tribbloids.spike.BaseSpec
 import com.tribbloids.spike.scala_spike.FBound_SelfType.RefinedType_vs_InferredType.{ParamTyped, Typed}
-import com.tribbloids.spike.utils.TypeTag
-import com.tribbloids.spike.utils.debug.{print_@, ShowType}
+import graph.commons.util.TypeTag
+import graph.commons.util.debug.print_@
+import graph.commons.util.viz.VizType
 
 class RefinedType_vs_InferredType extends BaseSpec {
 
@@ -11,18 +12,18 @@ class RefinedType_vs_InferredType extends BaseSpec {
 
     val v = Typed()
 
-    print_@(ShowType(v.refinedTTag))
-    print_@(ShowType(v.refinedSuperTTag))
-    print_@(ShowType(v.inferredTTag))
+    print_@(VizType(v.refinedTTag))
+    print_@(VizType(v.refinedSuperTTag))
+    print_@(VizType(v.inferredTTag))
   }
 
   it("... even if parameterised") {
 
     val v = ParamTyped[String, Int]()
 
-    print_@(ShowType(v.refinedTTag))
-    print_@(ShowType(v.refinedSuperTTag))
-    print_@(ShowType(v.inferredTTag))
+    print_@(VizType(v.refinedTTag))
+    print_@(VizType(v.refinedSuperTTag))
+    print_@(VizType(v.inferredTTag))
   }
 }
 

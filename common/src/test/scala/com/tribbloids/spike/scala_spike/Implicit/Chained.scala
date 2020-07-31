@@ -1,4 +1,4 @@
-package com.tribbloids.spike.scala_spike.InferImplicit
+package com.tribbloids.spike.scala_spike.Implicit
 
 import scala.reflect.ClassTag
 

@@ -1,12 +1,13 @@
 package com.tribbloids.spike.scala_spike.Reflection
 
 import com.tribbloids.spike.BaseSpec
-import com.tribbloids.spike.utils.debug.print_@
+import graph.commons.util.debug.print_@
+import graph.commons.util.{ScalaReflection, TypeTag}
 
 class ReflectionUniverseSuite extends BaseSpec {
 
-  import com.tribbloids.spike.utils.ScalaReflection._
   import ReflectionUniverseSuite._
+  import ScalaReflection._
 
   describe("reify") {
 
@@ -43,8 +44,6 @@ class ReflectionUniverseSuite extends BaseSpec {
 }
 
 object ReflectionUniverseSuite {
-
-  import com.tribbloids.spike.utils.ScalaReflection.universe._
 
   case class Typed[T <: AnyRef: TypeTag](v: T) {
 
