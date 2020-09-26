@@ -3,9 +3,11 @@
 
 include(
         ":graph-commons",
+        ":common:testcommon",
         ":common",
         ":lecture",
-        ":spark"
+        ":spark",
+        ":lms"
 )
 
 

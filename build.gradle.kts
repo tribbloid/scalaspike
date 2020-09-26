@@ -22,6 +22,7 @@ allprojects {
     version = "1.0.0-SNAPSHOT"
 
     repositories {
+        mavenLocal()
         mavenCentral()
         jcenter()
 //        maven("https://dl.bintray.com/kotlin/kotlin-dev")
