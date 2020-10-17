@@ -99,21 +99,6 @@ class ReverseGrad_NoCPS extends FunSpec {
 
   it("simple") {
 
-//    val f1 = {
-//      x: Num =>
-//        (x + Num(3.0)) _
-//    }
-//
-//    val f2 = {
-//      x: Num =>
-//        (x + Num(4.0)) _
-//    }
-//
-//    val f = f1.apply {
-//      r: Num =>
-//        r + f2.apply)
-//    })
-
     val fn = { x: Num =>
       val result = (x + 3) * (x + 4)
       result
