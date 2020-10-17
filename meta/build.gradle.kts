@@ -18,3 +18,23 @@ dependencies {
     testImplementation(project(":common:testcommon"))
     implementation(project(":common"))
 }
+
+tasks {
+
+    withType<ScalaCompile> {
+
+        configureEach {
+
+            scalaCompileOptions.apply {
+
+                val existing: MutableList<String> = additionalParameters ?: mutableListOf()
+
+                additionalParameters = existing.plus(
+                        listOf(
+                                "-P:continuations:enable"
+                        )
+                )
+            }
+        }
+    }
+}

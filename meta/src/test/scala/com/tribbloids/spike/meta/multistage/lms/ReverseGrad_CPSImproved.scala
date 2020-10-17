@@ -12,20 +12,16 @@ object ReverseGrad_CPSImproved {
       var d: Double = 0.0
   ) {
 
-    def +(that: Num): Num = {
-      val impl: (Num => Unit) => Unit = { (cont: Num => Unit) =>
-        val y = Num(x + that.x)
+    def +(that: Num) = shift { (cont: Num => Unit) =>
+      val y = Num(x + that.x)
 
-        cont(y)
+      cont(y)
 
-        this.d += y.d
-        that.d += y.d
-      }
-
-      shift(impl)
+      this.d += y.d
+      that.d += y.d
     }
 
-    def *(that: Num): Num = shift { (cont: Num => Unit) =>
+    def *(that: Num) = shift { (cont: Num => Unit) =>
       val y = Num(x * that.x)
 
       cont(y)
@@ -55,7 +51,6 @@ class ReverseGrad_CPSImproved extends BaseSpec {
 
   it("simple") {
 
-    // CPS
     val fn = { x: Num =>
       (x + 3) * (x + 4)
     }
