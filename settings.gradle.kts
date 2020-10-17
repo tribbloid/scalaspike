@@ -7,7 +7,7 @@ include(
         ":common",
         ":lecture",
         ":spark",
-        ":lms"
+        ":meta"
 )
 
 

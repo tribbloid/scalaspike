@@ -82,26 +82,28 @@ allprojects {
 //                    isForce = true
                     loggingLevel = "verbose"
 
-                    additionalParameters = listOf(
-                            "-encoding", "utf8",
-                            "-unchecked",
-                            "-deprecation",
-                            "-feature",
+                    val existing: MutableList<String> = additionalParameters ?: mutableListOf()
+
+                    additionalParameters = existing.plus(
+                            listOf(
+                                    "-encoding", "utf8",
+                                    "-unchecked",
+                                    "-deprecation",
+                                    "-feature",
 //                            "-Xfatal-warnings",
 
-                            "-Xlint:poly-implicit-overload",
-                            "-Xlint:option-implicit",
+                                    "-Xlint:poly-implicit-overload",
+                                    "-Xlint:option-implicit",
 
-                            "-Xlog-implicits",
-                            "-Xlog-implicit-conversions"
+                                    "-Xlog-implicits",
+                                    "-Xlog-implicit-conversions",
+                                    "-Yissue-debug"
 
-                            ,
-                            "-Yissue-debug"
-
-                            // the following only works on scala 2.13
+                                    // the following only works on scala 2.13
 //                        ,
 //                        "-Xlint:implicit-not-found",
 //                        "-Xlint:implicit-recursion"
+                            )
                     )
 
                     forkOptions.apply {
