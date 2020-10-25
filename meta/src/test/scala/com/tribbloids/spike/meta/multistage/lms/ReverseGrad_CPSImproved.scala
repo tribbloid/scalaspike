@@ -3,9 +3,10 @@ package com.tribbloids.spike.meta.multistage.lms
 import com.tribbloids.spike.BaseSpec
 
 import scala.language.implicitConversions
-import scala.util.continuations._
 
 object ReverseGrad_CPSImproved {
+
+  import scala.util.continuations._
 
   case class Num(
       x: Double,
@@ -48,15 +49,58 @@ object ReverseGrad_CPSImproved {
 class ReverseGrad_CPSImproved extends BaseSpec {
 
   import ReverseGrad_CPSImproved._
+  import scala.util.continuations._
 
   it("simple") {
 
-    val fn = { x: Num =>
-      (x + 3) * (x + 4)
+    val fn: Num => Num @cps[Unit] = { x: Num =>
+      val result = (x + 3) * (x + 4)
+
+      result
     }
 
     val gg = grad(fn)(3)
 
     println(gg)
+  }
+
+  it("benchmark") {
+
+    for (i <- 1 to 8) {
+
+      val n = Math.pow(2, i).toInt
+
+//      var fn: Num => Num @cps[Unit] = { x: Num =>
+//        x + 1
+//      }
+//
+//      for (j <- 2 to n) {
+//
+//        fn = fn.andThen { x =>
+//          val result = x * (x + j)
+//          result
+//        }
+//      }
+
+//      val fn = { x: Num =>
+//        val result = (2 to n).foldLeft(x + 1) { (half, j) =>
+//          half * (x + j)
+//        }
+//
+//        result
+//      }
+
+      def fn(base: Int = 1)(x: Num): Num @cps[Unit] = {
+
+        if (base >= n) x + base
+        else (x + base) * fn (base + 1)(x)
+      }
+
+      val nanoFrom = System.nanoTime()
+      val gg = grad(fn())(3)
+      val nanoTo = System.nanoTime()
+
+      println(s"diff = $gg,\t time = ${nanoTo - nanoFrom}")
+    }
   }
 }

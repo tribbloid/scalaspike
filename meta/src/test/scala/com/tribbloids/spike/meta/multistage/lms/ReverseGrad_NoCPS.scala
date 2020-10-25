@@ -7,17 +7,12 @@ import scala.language.implicitConversions
 
 object ReverseGrad_NoCPS {
 
-//  case class Shift[O](
-//      fn: (O => Unit) => Unit
-//  ) {}
-
   trait Shift[O] {
 
     def forward: O
 
-    def reverse(cont: O => Unit): Unit
+    def reverse(cont: O => Unit = _ => {}): Unit
 
-    def reverse(): Unit = reverse(_ => {})
   }
 
   object Shift {
@@ -107,5 +102,29 @@ class ReverseGrad_NoCPS extends FunSpec {
     val gg = grad(fn)(3)
 
     println(gg)
+  }
+
+  it("benchmark") {
+
+    for (i <- 1 to 8) {
+
+      val n = Math.pow(2, i).toInt
+
+      val fn = { x: Num =>
+        var result: Shift[Num] = x + 1
+
+        for (j <- 2 to n) {
+          result = result * (x + j)
+        }
+
+        result
+      }
+
+      val nanoFrom = System.nanoTime()
+      val gg = grad(fn)(3)
+      val nanoTo = System.nanoTime()
+
+      println(s"n = $n,\t diff = $gg,\t time = ${nanoTo - nanoFrom}")
+    }
   }
 }
