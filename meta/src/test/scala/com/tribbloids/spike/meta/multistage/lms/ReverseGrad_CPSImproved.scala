@@ -66,9 +66,7 @@ class ReverseGrad_CPSImproved extends BaseSpec {
 
   it("benchmark") {
 
-    for (i <- 1 to 8) {
-
-      val n = Math.pow(2, i).toInt
+    for (n <- 1 to Math.pow(2, 8).toInt) {
 
 //      var fn: Num => Num @cps[Unit] = { x: Num =>
 //        x + 1
@@ -100,7 +98,7 @@ class ReverseGrad_CPSImproved extends BaseSpec {
       val gg = grad(fn())(3)
       val nanoTo = System.nanoTime()
 
-      println(s"diff = $gg,\t time = ${nanoTo - nanoFrom}")
+      println(s"rank = $n, diff = $gg,\t time = ${nanoTo - nanoFrom}")
     }
   }
 }
