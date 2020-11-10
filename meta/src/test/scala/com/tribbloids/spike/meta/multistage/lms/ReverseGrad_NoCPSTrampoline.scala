@@ -1,11 +1,10 @@
 package com.tribbloids.spike.meta.multistage.lms
 
-import com.tribbloids.spike.meta.multistage.lms.ReverseGrad_NoCPS.Num.NumShiftFunctions
 import org.scalatest.FunSpec
 
 import scala.language.implicitConversions
 
-object ReverseGrad_NoCPS {
+object ReverseGrad_NoCPSTrampoline {
 
   trait Shift[O] {
 
@@ -88,9 +87,9 @@ object ReverseGrad_NoCPS {
   }
 }
 
-class ReverseGrad_NoCPS extends FunSpec {
+class ReverseGrad_NoCPSTrampoline extends FunSpec {
 
-  import ReverseGrad_NoCPS._
+  import ReverseGrad_NoCPSTrampoline._
 
   it("simple") {
 
