@@ -1,11 +1,10 @@
 package com.tribbloids.spike.meta.multistage.lms
 
-import com.tribbloids.spike.meta.multistage.lms.ReverseGrad_NoCPS.Num.NumShiftFunctions
 import org.scalatest.FunSpec
 
 import scala.language.implicitConversions
 
-object ReverseGrad_NoCPS {
+object ReverseGrad_Raw {
 
   trait Shift[O] {
 
@@ -38,41 +37,6 @@ object ReverseGrad_NoCPS {
   object Num {
 
     implicit def fromX(x: Double): Num = Num(x)
-
-    implicit class NumShiftFunctions(val ll: Shift[Num]) {
-
-      case class +(rr: Shift[Num]) extends Shift[Num] {
-
-        override lazy val forward: Num = Num(ll.forward.x + rr.forward.x)
-
-        override def reverse(cont: Num => Unit): Unit = {
-
-          cont(forward)
-
-          ll.forward.d += forward.d
-          rr.forward.d += forward.d
-
-          ll.reverse()
-          rr.reverse()
-        }
-      }
-
-      case class *(rr: Shift[Num]) extends Shift[Num] {
-
-        override lazy val forward: Num = Num(ll.forward.x * rr.forward.x)
-
-        override def reverse(cont: Num => Unit): Unit = {
-
-          cont(forward)
-
-          ll.forward.d += rr.forward.x * forward.d
-          rr.forward.d += ll.forward.x * forward.d
-
-          ll.reverse()
-          rr.reverse()
-        }
-      }
-    }
   }
 
   type CPS[I, O] = I => Shift[O]
@@ -86,11 +50,46 @@ object ReverseGrad_NoCPS {
     }
     _x.d
   }
+
+  implicit class NumShiftFunctions(val ll: Shift[Num]) {
+
+    case class +(rr: Shift[Num]) extends Shift[Num] {
+
+      override lazy val forward: Num = Num(ll.forward.x + rr.forward.x)
+
+      override def reverse(cont: Num => Unit): Unit = {
+
+        cont(forward)
+
+        ll.forward.d += forward.d
+        rr.forward.d += forward.d
+
+        ll.reverse()
+        rr.reverse()
+      }
+    }
+
+    case class *(rr: Shift[Num]) extends Shift[Num] {
+
+      override lazy val forward: Num = Num(ll.forward.x * rr.forward.x)
+
+      override def reverse(cont: Num => Unit): Unit = {
+
+        cont(forward)
+
+        ll.forward.d += rr.forward.x * forward.d
+        rr.forward.d += ll.forward.x * forward.d
+
+        ll.reverse()
+        rr.reverse()
+      }
+    }
+  }
 }
 
-class ReverseGrad_NoCPS extends FunSpec {
+class ReverseGrad_Raw extends FunSpec {
 
-  import ReverseGrad_NoCPS._
+  import ReverseGrad_Raw._
 
   it("simple") {
 
