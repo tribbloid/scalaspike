@@ -52,6 +52,7 @@ object ReverseGrad_Trampolining {
     o.reverse { z =>
       z.d = 1.0
     }
+      .value
     _x.d
   }
 
