@@ -1,7 +1,6 @@
 package com.tribbloids.spike.spark_spike
 
 import org.apache.spark.sql.{SQLContext, SparkSession}
-import org.apache.spark.sql.functions.udf
 import org.apache.spark.util.LongAccumulator
 import org.apache.spark.{SparkConf, SparkContext}
 import org.scalatest.FunSpec
@@ -20,8 +19,8 @@ object TransientCreation {
     println("test")
 
     val conf = new SparkConf().setAppName("test").setMaster("local[*]")
-    val sc: SparkContext = new SparkContext(conf)
-    val sqlC: SQLContext = new SQLContext(sc)
+    val sqlC: SQLContext = SparkSession.builder().config(conf).getOrCreate().sqlContext
+    val sc: SparkContext = sqlC.sparkContext
 
     val tokens: Seq[OriginalToken] = {
       (1 to 200).flatMap { i =>
@@ -69,26 +68,26 @@ object TransientCreation {
 
     println("\nacc value " + acc.value)
   }
-}
 
-case class SomeClass(string: String, acc: LongAccumulator) {
+  case class SomeClass(string: String, acc: LongAccumulator) {
 
-  @transient lazy val randomID: Long = Math.abs(Random.nextLong())
+    @transient lazy val randomID: Long = Math.abs(Random.nextLong())
 
-  @transient lazy val endString: String = {
-    acc.add(1)
-    val endString = string + "_" + randomID
+    @transient lazy val endString: String = {
+      acc.add(1)
+      val endString = string + "_" + randomID
 
-    println(s"LAZY!!!! ${randomID} \t:\t ${endString}")
-    endString
+      println(s"LAZY!!!! ${randomID} \t:\t ${endString}")
+      endString
+    }
+
+    def addSuffix(s: String): String = {
+      s + "_" + endString
+    }
   }
 
-  def addSuffix(s: String): String = {
-    s + "_" + endString
-  }
-
+  case class OriginalToken(original: Int, token: Int)
 }
-case class OriginalToken(original: Int, token: Int)
 
 class TransientCreation extends FunSpec {
   it("count object creation attempts") {
