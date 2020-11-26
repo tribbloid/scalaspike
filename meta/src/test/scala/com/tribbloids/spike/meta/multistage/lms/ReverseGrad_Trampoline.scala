@@ -5,22 +5,8 @@ import org.scalatest.FunSpec
 
 import scala.language.implicitConversions
 
-object ReverseGrad_Trampolining {
+object ReverseGrad_Trampoline {
 
-  trait Stack {
-
-    @volatile var maxStack: Long = 0L
-
-    def increase(): Unit = {
-
-      val v = Thread.currentThread().getStackTrace.length
-      if (v > maxStack) maxStack = v
-    }
-  }
-
-  object Fwd extends Stack {}
-
-  object Rvs extends Stack {}
 
   trait Shift[O] {
 
@@ -28,20 +14,14 @@ object ReverseGrad_Trampolining {
 
     final val forward: Eval[O] = {
 
-      getForward.map { v =>
-        Fwd.increase()
-        v
-      }
+      getForward
     }
 
     def doReverse(cont: O => Unit = _ => {}): Eval[Unit]
 
     final val reverse: Eval[Unit] = {
 
-      doReverse().map { v =>
-        Rvs.increase()
-        v
-      }
+      doReverse()
     }
   }
 
@@ -92,12 +72,11 @@ object ReverseGrad_Trampolining {
       override def getForward: Eval[Num] = {
 
         val result = for (llf <- ll.forward;
-             rrf <- rr.forward) yield {
+                          rrf <- rr.forward) yield {
           Num(llf.x + rrf.x)
         }
 
-        result
-          .memoize
+        result.memoize
       }
 
       override def doReverse(cont: Num => Unit): Eval[Unit] = {
@@ -109,9 +88,11 @@ object ReverseGrad_Trampolining {
           rr.forward.value.d += v.d
         }
 
-        base.map { _ =>
-          ll.reverse.value
-          rr.reverse.value
+
+        for (_ <- base;
+             _ <- ll.reverse;
+             _ <- rr.reverse) yield {
+
           Unit
         }
       }
@@ -122,7 +103,7 @@ object ReverseGrad_Trampolining {
       override def getForward: Eval[Num] = {
 
         val result = for (llf <- ll.forward;
-             rrf <- rr.forward) yield {
+                          rrf <- rr.forward) yield {
 
           Num(llf.x * rrf.x)
         }
@@ -139,18 +120,20 @@ object ReverseGrad_Trampolining {
           rr.forward.value.d += ll.forward.value.x * v.d
         }
 
-        base.map { _ =>
-          ll.reverse.value
-          rr.reverse.value
+        for (_ <- base;
+             _ <- ll.reverse;
+             _ <- rr.reverse) yield {
+
+          Unit
         }
       }
     }
   }
 }
 
-class ReverseGrad_Trampolining extends FunSpec {
+class ReverseGrad_Trampoline extends FunSpec {
 
-  import ReverseGrad_Trampolining._
+  import ReverseGrad_Trampoline._
 
   it("simple") {
 
@@ -183,8 +166,7 @@ class ReverseGrad_Trampolining extends FunSpec {
       val nanoTo = System.nanoTime()
 
       println(
-        s"rank = $n,\t diff = $gg,\t time = ${nanoTo - nanoFrom} fwdDepth = ${ReverseGrad_Trampolining.Fwd.maxStack} " +
-          s"rvsDepth = ${ReverseGrad_Trampolining.Rvs.maxStack}"
+        s"rank = $n,\t diff = $gg,\t time = ${nanoTo - nanoFrom}"
       )
     }
   }
