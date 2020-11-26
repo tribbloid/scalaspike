@@ -7,23 +7,52 @@ import scala.language.implicitConversions
 
 object ReverseGrad_Trampolining {
 
+  trait Stack {
+
+    @volatile var maxStack: Long = 0L
+
+    def increase(): Unit = {
+
+      val v = Thread.currentThread().getStackTrace.length
+      if (v > maxStack) maxStack = v
+    }
+  }
+
+  object Fwd extends Stack {}
+
+  object Rvs extends Stack {}
+
   trait Shift[O] {
 
-    def forward: O
+    def getForward: Eval[O]
 
-    def reverse(cont: O => Unit = _ => {}): Eval[Unit]
+    final val forward: Eval[O] = {
 
-    final val reverseRaw: Eval[Unit] = reverse()
+      getForward.map { v =>
+        Fwd.increase()
+        v
+      }
+    }
+
+    def doReverse(cont: O => Unit = _ => {}): Eval[Unit]
+
+    final val reverse: Eval[Unit] = {
+
+      doReverse().map { v =>
+        Rvs.increase()
+        v
+      }
+    }
   }
 
   object Shift {
 
     trait NoTape[O] extends Shift[O] {
 
-      final override def reverse(cont: O => Unit): Eval[Unit] = {
+      final override def doReverse(cont: O => Unit): Eval[Unit] = {
 
-        Eval.always {
-          cont(forward)
+        forward.map { v =>
+          cont(v)
         }
       }
     }
@@ -34,8 +63,7 @@ object ReverseGrad_Trampolining {
       var d: Double = 0.0
   ) extends Shift.NoTape[Num] {
 
-    override def forward: Num = this
-
+    override def getForward: Eval[Num] = Eval.later(this)
   }
 
   object Num {
@@ -49,10 +77,11 @@ object ReverseGrad_Trampolining {
 
     val _x = x
     val o = f(_x)
-    o.reverse { z =>
+
+    o.doReverse { z =>
       z.d = 1.0
-    }
-      .value
+    }.value
+
     _x.d
   }
 
@@ -60,44 +89,60 @@ object ReverseGrad_Trampolining {
 
     case class +(rr: Shift[Num]) extends Shift[Num] {
 
-      override lazy val forward: Num = Num(ll.forward.x + rr.forward.x)
+      override def getForward: Eval[Num] = {
 
-      override def reverse(cont: Num => Unit): Eval[Unit] = {
+        val result = for (llf <- ll.forward;
+             rrf <- rr.forward) yield {
+          Num(llf.x + rrf.x)
+        }
 
-        val base = Eval.always {
+        result
+          .memoize
+      }
 
-          cont(forward)
+      override def doReverse(cont: Num => Unit): Eval[Unit] = {
 
-          ll.forward.d += forward.d
-          rr.forward.d += forward.d
+        val base = forward.map { v =>
+          cont(v)
+
+          ll.forward.value.d += v.d
+          rr.forward.value.d += v.d
         }
 
         base.map { _ =>
-          ll.reverseRaw.value
-          rr.reverseRaw.value
+          ll.reverse.value
+          rr.reverse.value
+          Unit
         }
       }
     }
 
     case class *(rr: Shift[Num]) extends Shift[Num] {
 
-      override lazy val forward: Num = Num(ll.forward.x * rr.forward.x)
+      override def getForward: Eval[Num] = {
 
-      override def reverse(cont: Num => Unit): Eval[Unit] = {
+        val result = for (llf <- ll.forward;
+             rrf <- rr.forward) yield {
 
-        val base = Eval.always {
+          Num(llf.x * rrf.x)
+        }
 
-          cont(forward)
+        result.memoize
+      }
 
-          ll.forward.d += rr.forward.x * forward.d
-          rr.forward.d += ll.forward.x * forward.d
+      override def doReverse(cont: Num => Unit): Eval[Unit] = {
+
+        val base = forward.map { v =>
+          cont(v)
+
+          ll.forward.value.d += rr.forward.value.x * v.d
+          rr.forward.value.d += ll.forward.value.x * v.d
         }
 
         base.map { _ =>
-          ll.reverseRaw.value
-          rr.reverseRaw.value
+          ll.reverse.value
+          rr.reverse.value
         }
-
       }
     }
   }
@@ -110,7 +155,7 @@ class ReverseGrad_Trampolining extends FunSpec {
   it("simple") {
 
     val fn = { x: Num =>
-      val result = (x + Num.fromX(3)) * (x + Num.fromX(4))
+      val result = (x + 3) * (x + 4)
       result
     }
 
@@ -137,7 +182,10 @@ class ReverseGrad_Trampolining extends FunSpec {
       val gg = grad(fn)(3)
       val nanoTo = System.nanoTime()
 
-      println(s"rank = $n,\t diff = $gg,\t time = ${nanoTo - nanoFrom}")
+      println(
+        s"rank = $n,\t diff = $gg,\t time = ${nanoTo - nanoFrom} fwdDepth = ${ReverseGrad_Trampolining.Fwd.maxStack} " +
+          s"rvsDepth = ${ReverseGrad_Trampolining.Rvs.maxStack}"
+      )
     }
   }
 }
