@@ -3,7 +3,7 @@
 
 include(
         ":graph-commons",
-        ":common:testcommon",
+        ":graph-commons:test",
         ":common",
         ":lecture",
         ":spark",
