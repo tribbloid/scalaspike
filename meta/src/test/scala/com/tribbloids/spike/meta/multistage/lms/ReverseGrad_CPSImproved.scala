@@ -1,6 +1,6 @@
 package com.tribbloids.spike.meta.multistage.lms
 
-import com.tribbloids.spike.BaseSpec
+import com.tribbloids.spike.Benchmark
 
 import scala.language.implicitConversions
 
@@ -46,9 +46,10 @@ object ReverseGrad_CPSImproved {
   }
 }
 
-class ReverseGrad_CPSImproved extends BaseSpec {
+class ReverseGrad_CPSImproved extends Benchmark {
 
   import ReverseGrad_CPSImproved._
+
   import scala.util.continuations._
 
   it("simple") {
@@ -66,39 +67,42 @@ class ReverseGrad_CPSImproved extends BaseSpec {
 
   it("benchmark") {
 
-    for (n <- 1 to Math.pow(2, 8).toInt) {
+    profile.run {
+      for (n <- 1 to Math.pow(2, 8).toInt) {
 
-//      var fn: Num => Num @cps[Unit] = { x: Num =>
-//        x + 1
-//      }
-//
-//      for (j <- 2 to n) {
-//
-//        fn = fn.andThen { x =>
-//          val result = x * (x + j)
-//          result
-//        }
-//      }
+        //      var fn: Num => Num @cps[Unit] = { x: Num =>
+        //        x + 1
+        //      }
+        //
+        //      for (j <- 2 to n) {
+        //
+        //        fn = fn.andThen { x =>
+        //          val result = x * (x + j)
+        //          result
+        //        }
+        //      }
 
-//      val fn = { x: Num =>
-//        val result = (2 to n).foldLeft(x + 1) { (half, j) =>
-//          half * (x + j)
-//        }
-//
-//        result
-//      }
+        //      val fn = { x: Num =>
+        //        val result = (2 to n).foldLeft(x + 1) { (half, j) =>
+        //          half * (x + j)
+        //        }
+        //
+        //        result
+        //      }
 
-      def fn(base: Int = 1)(x: Num): Num @cps[Unit] = {
+        def fn(base: Int = 1)(x: Num): Num @cps[Unit] = {
 
-        if (base >= n) x + base
-        else (x + base) * fn (base + 1)(x)
+          if (base >= n) x + base
+          else (x + base) * fn(base + 1)(x)
+        }
+
+        val nanoFrom = System.nanoTime()
+        val gg = grad(fn())(3)
+        val nanoTo = System.nanoTime()
+
+//        println(s"rank = $n, diff = $gg,\t time = ${nanoTo - nanoFrom}")
       }
-
-      val nanoFrom = System.nanoTime()
-      val gg = grad(fn())(3)
-      val nanoTo = System.nanoTime()
-
-      println(s"rank = $n, diff = $gg,\t time = ${nanoTo - nanoFrom}")
     }
+      .log()
   }
 }

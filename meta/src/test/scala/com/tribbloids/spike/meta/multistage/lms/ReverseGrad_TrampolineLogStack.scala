@@ -1,6 +1,7 @@
 package com.tribbloids.spike.meta.multistage.lms
 
 import cats.Eval
+import com.tribbloids.spike.Benchmark
 import org.scalatest.FunSpec
 
 import scala.language.implicitConversions
@@ -151,7 +152,7 @@ object ReverseGrad_TrampolineLogStack {
   }
 }
 
-class ReverseGrad_TrampolineLogStack extends FunSpec {
+class ReverseGrad_TrampolineLogStack extends Benchmark {
 
   import ReverseGrad_TrampolineLogStack._
 
@@ -169,7 +170,7 @@ class ReverseGrad_TrampolineLogStack extends FunSpec {
 
   it("benchmark") {
 
-    for (n <- 1 to Math.pow(2, 8).toInt) {
+    for (n <- 1 to Math.pow(2, 6).toInt) {
 
       val fn = { x: Num =>
         var result: Shift[Num] = x + 1

@@ -1,12 +1,11 @@
 package com.tribbloids.spike.meta.multistage.lms
 
 import cats.Eval
-import org.scalatest.FunSpec
+import com.tribbloids.spike.Benchmark
 
 import scala.language.implicitConversions
 
 object ReverseGrad_Trampoline {
-
 
   trait Shift[O] {
 
@@ -88,7 +87,6 @@ object ReverseGrad_Trampoline {
           rr.forward.value.d += v.d
         }
 
-
         for (_ <- base;
              _ <- ll.reverse;
              _ <- rr.reverse) yield {
@@ -131,7 +129,7 @@ object ReverseGrad_Trampoline {
   }
 }
 
-class ReverseGrad_Trampoline extends FunSpec {
+class ReverseGrad_Trampoline extends Benchmark {
 
   import ReverseGrad_Trampoline._
 
@@ -149,25 +147,26 @@ class ReverseGrad_Trampoline extends FunSpec {
 
   it("benchmark") {
 
-    for (n <- 1 to Math.pow(2, 8).toInt) {
+    profile.run {
+      for (n <- 1 to Math.pow(2, 8).toInt) {
 
-      val fn = { x: Num =>
-        var result: Shift[Num] = x + 1
+        val fn = { x: Num =>
+          var result: Shift[Num] = x + 1
 
-        for (j <- 2 to n) {
-          result = result * (x + j)
+          for (j <- 2 to n) {
+            result = result * (x + j)
+          }
+
+          result
         }
 
-        result
+        val nanoFrom = System.nanoTime()
+        val gg = grad(fn)(3)
+        val nanoTo = System.nanoTime()
+
+//        println(s"rank = $n,\t diff = $gg,\t time = ${nanoTo - nanoFrom}")
       }
-
-      val nanoFrom = System.nanoTime()
-      val gg = grad(fn)(3)
-      val nanoTo = System.nanoTime()
-
-      println(
-        s"rank = $n,\t diff = $gg,\t time = ${nanoTo - nanoFrom}"
-      )
     }
+      .log()
   }
 }
