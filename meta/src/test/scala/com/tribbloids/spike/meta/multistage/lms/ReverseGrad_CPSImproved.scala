@@ -1,6 +1,6 @@
 package com.tribbloids.spike.meta.multistage.lms
 
-import com.tribbloids.spike.Benchmark
+import com.tribbloids.graph.commons.testlib.Benchmark
 
 import scala.language.implicitConversions
 

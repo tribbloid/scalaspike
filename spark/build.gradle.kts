@@ -8,6 +8,7 @@ dependencies {
 
     implementation("org.apache.spark:spark-sql_${vv.scalaBinaryV}:${vv.sparkV}")
     implementation("org.apache.spark:spark-mllib_${vv.scalaBinaryV}:${vv.sparkV}")
+
     testImplementation("org.apache.spark:spark-yarn_${vv.scalaBinaryV}:${vv.sparkV}")
 
     implementation("org.apache.spark:spark-sql-kafka-0-10_${vv.scalaBinaryV}:${vv.sparkV}")

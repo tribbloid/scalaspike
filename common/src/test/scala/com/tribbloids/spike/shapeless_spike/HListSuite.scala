@@ -1,6 +1,6 @@
 package com.tribbloids.spike.shapeless_spike
 
-import com.tribbloids.spike.BaseSpec
+import com.tribbloids.graph.commons.testlib.BaseSpec
 import shapeless.{Generic, HList, HNil}
 
 class HListSuite extends BaseSpec {

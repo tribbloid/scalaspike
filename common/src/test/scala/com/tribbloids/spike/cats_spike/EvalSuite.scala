@@ -1,6 +1,6 @@
 package com.tribbloids.spike.cats_spike
 
-import com.tribbloids.spike.BaseSpec
+import com.tribbloids.graph.commons.testlib.BaseSpec
 
 import cats.Eval
 import cats.implicits._

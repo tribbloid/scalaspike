@@ -1,6 +1,6 @@
 package com.tribbloids.spike.meta.multistage.lms
 
-import com.tribbloids.spike.BaseSpec
+import com.tribbloids.graph.commons.testlib.BaseSpec
 
 import scala.language.implicitConversions
 
