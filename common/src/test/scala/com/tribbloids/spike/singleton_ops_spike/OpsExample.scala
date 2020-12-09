@@ -1,6 +1,6 @@
 package com.tribbloids.spike.singleton_ops_spike
 
-import com.tribbloids.spike.BaseSpec
+import com.tribbloids.graph.commons.testlib.BaseSpec
 import shapeless.{Nat, Witness}
 import shapeless.test.illTyped
 import singleton.ops.{*, +, ==, >, Require, SafeInt}

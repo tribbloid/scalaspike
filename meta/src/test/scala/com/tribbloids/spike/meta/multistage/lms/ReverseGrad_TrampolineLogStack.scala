@@ -1,7 +1,7 @@
 package com.tribbloids.spike.meta.multistage.lms
 
 import cats.Eval
-import com.tribbloids.spike.Benchmark
+import com.tribbloids.graph.commons.testlib.Benchmark
 import org.scalatest.FunSpec
 
 import scala.language.implicitConversions

@@ -1,6 +1,6 @@
 package com.tribbloids.spike.meta.multistage.lms
 
-import com.tribbloids.spike.BaseSpec
+import com.tribbloids.graph.commons.testlib.BaseSpec
 import lms.core.{GenericCodeGen, Graph, ScalaCodeGen}
 
 class SimpleLMS extends BaseSpec {

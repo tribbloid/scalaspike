@@ -1,8 +1,8 @@
 package com.tribbloids.spike.shapeless_spike
 
-import com.tribbloids.spike.BaseSpec
-import graph.commons.util.debug.print_@
-import graph.commons.util.viz.VizType
+import com.tribbloids.graph.commons.testlib.BaseSpec
+import com.tribbloids.graph.commons.util.debug.print_@
+import com.tribbloids.graph.commons.util.viz.VizType
 import shapeless.Witness
 
 import scala.language.implicitConversions
