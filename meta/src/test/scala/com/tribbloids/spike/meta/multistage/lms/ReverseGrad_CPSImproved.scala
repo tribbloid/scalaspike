@@ -67,42 +67,23 @@ class ReverseGrad_CPSImproved extends Benchmark {
 
   it("benchmark") {
 
-    profile.run {
-      for (n <- 1 to Math.pow(2, 8).toInt) {
+    profile
+      .run {
+        for (n <- 1 to Math.pow(2, 8).toInt) {
 
-        //      var fn: Num => Num @cps[Unit] = { x: Num =>
-        //        x + 1
-        //      }
-        //
-        //      for (j <- 2 to n) {
-        //
-        //        fn = fn.andThen { x =>
-        //          val result = x * (x + j)
-        //          result
-        //        }
-        //      }
+          def fn(base: Int = 1)(x: Num): Num @cps[Unit] = {
 
-        //      val fn = { x: Num =>
-        //        val result = (2 to n).foldLeft(x + 1) { (half, j) =>
-        //          half * (x + j)
-        //        }
-        //
-        //        result
-        //      }
+            if (base >= n) x + base
+            else (x + base) * fn(base + 1)(x)
+          }
 
-        def fn(base: Int = 1)(x: Num): Num @cps[Unit] = {
-
-          if (base >= n) x + base
-          else (x + base) * fn(base + 1)(x)
-        }
-
-        val nanoFrom = System.nanoTime()
-        val gg = grad(fn())(3)
-        val nanoTo = System.nanoTime()
+          val nanoFrom = System.nanoTime()
+          val gg = grad(fn())(3)
+          val nanoTo = System.nanoTime()
 
 //        println(s"rank = $n, diff = $gg,\t time = ${nanoTo - nanoFrom}")
+        }
       }
-    }
       .log()
   }
 }
