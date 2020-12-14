@@ -147,26 +147,52 @@ class ReverseGrad_Trampoline extends Benchmark {
 
   it("benchmark") {
 
-    profile.run {
-      for (n <- 1 to Math.pow(2, 8).toInt) {
+    profile
+      .run {
 
-        val fn = { x: Num =>
-          var result: Shift[Num] = x + 1
+        for (n <- 1 to Math.pow(2, 8).toInt) {
 
-          for (j <- 2 to n) {
-            result = result * (x + j)
+          def _fn(base: Int = 1)(x: Num): Shift[Num] = {
+
+            if (base >= n) x + base
+            else (x + base) * _fn(base + 1)(x)
           }
 
-          result
+          def fn(x: Num) = _fn()(x)
+
+          val nanoFrom = System.nanoTime()
+          val gg = grad(fn)(3)
+          val nanoTo = System.nanoTime()
+
+          //        println(s"rank = $n,\t diff = $gg,\t time = ${nanoTo - nanoFrom}")
         }
-
-        val nanoFrom = System.nanoTime()
-        val gg = grad(fn)(3)
-        val nanoTo = System.nanoTime()
-
-//        println(s"rank = $n,\t diff = $gg,\t time = ${nanoTo - nanoFrom}")
       }
-    }
+      .log()
+  }
+
+  it("benchmark - for loop") {
+
+    profile
+      .run {
+        for (n <- 1 to Math.pow(2, 8).toInt) {
+
+          def fn(x: Num) = {
+            var result: Shift[Num] = x + 1
+
+            for (j <- 2 to n) {
+              result = result * (x + j)
+            }
+
+            result
+          }
+
+          val nanoFrom = System.nanoTime()
+          val gg = grad(fn)(3)
+          val nanoTo = System.nanoTime()
+
+          //        println(s"rank = $n,\t diff = $gg,\t time = ${nanoTo - nanoFrom}")
+        }
+      }
       .log()
   }
 }
