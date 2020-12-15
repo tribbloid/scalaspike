@@ -1,7 +1,7 @@
 plugins {
 //    base
     java
-//    scala
+    scala
     idea
 }
 
