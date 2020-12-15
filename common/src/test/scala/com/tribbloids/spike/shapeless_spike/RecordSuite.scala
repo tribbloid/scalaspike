@@ -1,14 +1,13 @@
 package com.tribbloids.spike.shapeless_spike
 
-import com.tribbloids.spike.BaseSpec
-import graph.commons.util.WideTyped
-import graph.commons.util.debug.print_@
+import com.tribbloids.graph.commons.testlib.BaseSpec
+import com.tribbloids.graph.commons.util.WideTyped
+import com.tribbloids.graph.commons.util.debug.print_@
 
 class RecordSuite extends BaseSpec {
 
-  import shapeless._;
+  import shapeless._
   import syntax.singleton._
-  import record._
 
   val book =
     ("author" ->> "Benjamin Pierce") ::
