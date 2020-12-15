@@ -15,7 +15,7 @@ dependencies {
     // https://mvnrepository.com/artifact/janino/janino
     implementation("janino:janino:2.5.10")
 
-    testImplementation(project(":graph-commons:testlib"))
+    testImplementation(testFixtures(project(":graph-commons")))
     testImplementation("org.apache.logging.log4j:log4j-slf4j-impl:2.14.0")
 
     implementation(project(":common"))

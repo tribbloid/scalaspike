@@ -8,7 +8,7 @@ val vs: Versions = versions()
 dependencies {
 
     api(project(":graph-commons"))
-    testImplementation(project(":graph-commons:testlib"))
+    testImplementation(testFixtures(project(":graph-commons")))
 
     implementation("eu.timepit:singleton-ops_${vs.scalaBinaryV}:0.5.0")
 
