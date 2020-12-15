@@ -3,7 +3,6 @@
 
 include(
         ":graph-commons",
-        ":graph-commons:testlib",
         ":common",
         ":lecture",
         ":spark",

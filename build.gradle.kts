@@ -13,6 +13,7 @@ allprojects {
     apply(plugin = "base")
     apply(plugin = "java")
     apply(plugin = "java-library")
+    apply(plugin = "java-test-fixtures")
     apply(plugin = "scala")
     apply(plugin = "idea")
 
