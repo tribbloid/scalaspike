@@ -2,7 +2,7 @@ package com.tribbloids.spike.meta.multistage.lms
 
 import cats.Eval
 import com.tribbloids.graph.commons.testlib.Benchmark
-import org.scalatest.FunSpec
+import org.scalatest.funspec.AnyFunSpec
 
 import scala.language.implicitConversions
 
@@ -108,7 +108,6 @@ object ReverseGrad_TrampolineLogStack {
           ll.forward.value.d += v.d
           rr.forward.value.d += v.d
         }
-
 
         for (_ <- base;
              _ <- ll.reverse;

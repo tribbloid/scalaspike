@@ -3,7 +3,7 @@ package com.tribbloids.spike.spark_spike
 import org.apache.spark.sql.{SQLContext, SparkSession}
 import org.apache.spark.util.LongAccumulator
 import org.apache.spark.{SparkConf, SparkContext}
-import org.scalatest.FunSpec
+import org.scalatest.funspec.AnyFunSpec
 
 import scala.collection.concurrent.TrieMap
 import scala.util.Random
@@ -89,7 +89,7 @@ object TransientCreation {
   case class OriginalToken(original: Int, token: Int)
 }
 
-class TransientCreation extends FunSpec {
+class TransientCreation extends AnyFunSpec {
   it("count object creation attempts") {
 
     TransientCreation.apply()

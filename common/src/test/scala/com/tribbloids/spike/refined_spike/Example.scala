@@ -4,9 +4,9 @@ import eu.timepit.refined.api.Refined
 import eu.timepit.refined.collection.Size
 import eu.timepit.refined.generic.Equal
 import eu.timepit.refined.numeric.Positive
-import org.scalatest.FunSpec
+import org.scalatest.funspec.AnyFunSpec
 
-class Example extends FunSpec {
+class Example extends AnyFunSpec {
 
   import eu.timepit.refined.auto._
   import shapeless.{Witness => W}

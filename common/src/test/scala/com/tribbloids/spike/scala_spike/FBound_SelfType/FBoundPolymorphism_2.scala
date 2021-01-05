@@ -1,10 +1,11 @@
 package com.tribbloids.spike.scala_spike.FBound_SelfType
 
-import org.scalatest.{BeforeAndAfterAll, FunSuite}
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.BeforeAndAfterAll
 
 import scala.reflect._
 
-class FBoundPolymorphism_2 extends FunSuite with BeforeAndAfterAll {
+class FBoundPolymorphism_2 extends AnyFunSpec with BeforeAndAfterAll {
 
   trait FBound[+T <: FBound[T]] {
 
@@ -28,12 +29,12 @@ class FBoundPolymorphism_2 extends FunSuite with BeforeAndAfterAll {
       List(new FBoundSubImpl2(this.s + "b"))
   }
 
-  test("1") {
+  it("1") {
 
     assert(new FBoundImpl2("s").respond.isEmpty)
   }
 
-  test("2") {
+  it("2") {
 
     assert(new FBoundSubImpl2("s").respond.head.s == "sb")
 

@@ -1,9 +1,9 @@
 package com.tribbloids.spike.spark_spike.sql
 
 import com.tribbloids.spike.spark_spike.TestHelper
-import org.scalatest.FunSpec
+import org.scalatest.funspec.AnyFunSpec
 
-class DtaasetForEach extends FunSpec {
+class DtaasetForEach extends AnyFunSpec {
 
   import TestHelper.TestSQL.implicits._
 

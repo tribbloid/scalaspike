@@ -5,9 +5,9 @@ import com.tribbloids.spike.spark_spike.sql.DatasetCaching.DSWithAccumulator
 import com.tribbloids.spike.spark_spike.sql.ExtendingDataset.Ext
 import org.apache.spark.sql.{Dataset, DatasetHelper, SparkSession}
 import org.apache.spark.storage.StorageLevel
-import org.scalatest.FunSpec
+import org.scalatest.funspec.AnyFunSpec
 
-class ExtendingDataset extends FunSpec {
+class ExtendingDataset extends AnyFunSpec {
 
   val spark: SparkSession = TestHelper.TestSparkSession
 

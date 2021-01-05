@@ -1,10 +1,10 @@
 package com.tribbloids.spike.scala_spike
 
-import org.scalatest.FunSpec
+import org.scalatest.funspec.AnyFunSpec
 
 import scala.language.higherKinds
 
-class LazyCollections extends FunSpec {
+class LazyCollections extends AnyFunSpec {
 
   import LazyCollections._
 

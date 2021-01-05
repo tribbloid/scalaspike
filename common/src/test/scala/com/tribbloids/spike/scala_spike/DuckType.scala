@@ -1,17 +1,18 @@
 package com.tribbloids.spike.scala_spike
 
-import org.scalatest.{BeforeAndAfterAll, FunSuite}
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.BeforeAndAfterAll
 
 import scala.language.reflectiveCalls
 
 /**
   * Created by peng on 31/03/16.
   */
-class DuckType extends FunSuite with BeforeAndAfterAll {
+class DuckType extends AnyFunSpec with BeforeAndAfterAll {
 
   import DuckType._
 
-  test("1") {
+  it("1") {
 
     val a1 = new Abs {
       override def base: Double = 2.0

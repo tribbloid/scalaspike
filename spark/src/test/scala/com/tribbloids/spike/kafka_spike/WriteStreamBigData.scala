@@ -3,11 +3,11 @@ package com.tribbloids.spike.kafka_spike
 import com.tribbloids.spike.spark_spike.TestHelper
 import org.apache.spark.sql.Dataset
 import org.apache.spark.sql.kafka010.KafkaHelper
-import org.scalatest.FunSpec
+import org.scalatest.funspec.AnyFunSpec
 
 import scala.util.Random
 
-class WriteStreamBigData extends FunSpec with EmbeddedKafkaFixture {
+class WriteStreamBigData extends AnyFunSpec with EmbeddedKafkaFixture {
 
   import TestHelper.TestSQL.implicits._
 

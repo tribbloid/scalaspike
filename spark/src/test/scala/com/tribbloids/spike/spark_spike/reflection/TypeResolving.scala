@@ -1,9 +1,9 @@
 package com.tribbloids.spike.scala_spike.reflection
 
 import com.tribbloids.spike.scala_spike.reflection.TypeResolving.Example
-import org.scalatest.FunSpec
+import org.scalatest.funspec.AnyFunSpec
 
-class TypeResolving extends FunSpec {
+class TypeResolving extends AnyFunSpec {
 
   import org.apache.spark.sql.catalyst.ScalaReflection.universe._
 

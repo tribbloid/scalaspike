@@ -1,6 +1,6 @@
 package com.tribbloids.spike.scala_spike.reflection
 
-import org.scalatest.FunSpec
+import org.scalatest.funspec.AnyFunSpec
 
 import scala.reflect.{ClassTag, ManifestFactory}
 
@@ -36,7 +36,7 @@ object TypeTag2Manifest {
 
 }
 
-class TypeTag2Manifest extends FunSpec {
+class TypeTag2Manifest extends AnyFunSpec {
 
   import TypeTag2Manifest._
   import org.apache.spark.sql.catalyst.ScalaReflection.universe._

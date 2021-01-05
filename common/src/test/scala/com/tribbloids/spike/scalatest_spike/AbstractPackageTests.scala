@@ -1,13 +1,13 @@
 package com.tribbloids.spike.scalatest_spike
 
-import org.scalatest.FunSpec
+import org.scalatest.funspec.AnyFunSpec
 
 // TODO: this pattern DOES NOT work
 trait AbstractPackageTests {
 
   val name: String
 
-  class Suite1 extends FunSpec {
+  class Suite1 extends AnyFunSpec {
 
     describe(name) {
 
@@ -17,7 +17,7 @@ trait AbstractPackageTests {
     }
   }
 
-  class Suite2 extends FunSpec {
+  class Suite2 extends AnyFunSpec {
     describe(name) {
 
       it("test 3") {}

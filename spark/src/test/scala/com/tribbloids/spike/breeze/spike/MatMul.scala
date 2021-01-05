@@ -1,8 +1,8 @@
 package com.tribbloids.spike.breeze.spike
 
-import org.scalatest.FunSpec
+import org.scalatest.funspec.AnyFunSpec
 
-class MatMul extends FunSpec {
+class MatMul extends AnyFunSpec {
 
   import breeze.linalg._
 

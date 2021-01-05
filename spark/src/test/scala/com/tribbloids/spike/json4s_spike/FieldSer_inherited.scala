@@ -3,7 +3,7 @@ package com.tribbloids.spike.json4s_spike
 import com.tribbloids.spike.json4s_spike.FieldSer_inherited.Mixed
 import org.json4s.{DefaultFormats, Extraction, FieldSerializer, Formats}
 import org.json4s.jackson.JsonMethods
-import org.scalatest.FunSpec
+import org.scalatest.funspec.AnyFunSpec
 
 object FieldSer_inherited {
 
@@ -24,7 +24,7 @@ object FieldSer_inherited {
   val formats: Formats = DefaultFormats + FieldSerializer[Mixed]()
 }
 
-class FieldSer_inherited extends FunSpec {
+class FieldSer_inherited extends AnyFunSpec {
 
   it("obj => json => obj") {
 

@@ -1,6 +1,6 @@
 package com.tribbloids.spike.scala_spike.Implicit
 
-import org.scalatest.FunSpec
+import org.scalatest.funspec.AnyFunSpec
 
 import scala.reflect.ClassTag
 import com.tribbloids.spike.scala_spike.Implicit.InferClassTag._
@@ -26,7 +26,7 @@ object InferClassTag {
 
 }
 
-class InferClassTag extends FunSpec {
+class InferClassTag extends AnyFunSpec {
 
   it("1") {
     val ctg1 = infer(Some(new Sub11), Some(new Sub12), None)

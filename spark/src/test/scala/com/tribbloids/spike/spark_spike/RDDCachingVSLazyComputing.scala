@@ -2,9 +2,9 @@ package com.tribbloids.spike.spark_spike
 
 import org.apache.spark.SparkContext
 import org.apache.spark.util.LongAccumulator
-import org.scalatest.FunSpec
+import org.scalatest.funspec.AnyFunSpec
 
-class RDDCachingVSLazyComputing extends FunSpec {
+class RDDCachingVSLazyComputing extends AnyFunSpec {
 
   import RDDCachingVSLazyComputing._
   import org.apache.spark.storage.StorageLevel._

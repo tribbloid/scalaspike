@@ -1,6 +1,6 @@
 package com.tribbloids.spike.scala_spike
 
-import org.scalatest.FunSpec
+import org.scalatest.funspec.AnyFunSpec
 
 object MethodAsFunction {
 
@@ -20,7 +20,7 @@ object MethodAsFunction {
     typeOf[T].baseClasses.map(typeOf[T].baseType)
 }
 
-class MethodAsFunction extends FunSpec {
+class MethodAsFunction extends AnyFunSpec {
 
   import MethodAsFunction._
 

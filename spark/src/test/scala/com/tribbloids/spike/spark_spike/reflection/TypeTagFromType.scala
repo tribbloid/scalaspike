@@ -1,17 +1,12 @@
 package com.tribbloids.spike.scala_spike
 
-import java.io.{
-  ByteArrayInputStream,
-  ByteArrayOutputStream,
-  ObjectInputStream,
-  ObjectOutputStream
-}
+import java.io.{ByteArrayInputStream, ByteArrayOutputStream, ObjectInputStream, ObjectOutputStream}
 
 import org.apache.spark.sql.catalyst.ScalaReflection
 import org.apache.spark.sql.catalyst.ScalaReflection.universe
-import org.scalatest.FunSpec
+import org.scalatest.funspec.AnyFunSpec
 
-class TypeTagFromType extends FunSpec {
+class TypeTagFromType extends AnyFunSpec {
 
   import ScalaReflection.universe._
 
@@ -99,8 +94,7 @@ object TypeUtils {
 
   case class NaiveTypeCreator(tpe: Type) extends reflect.api.TypeCreator {
 
-    def apply[U <: reflect.api.Universe with Singleton](
-        m: reflect.api.Mirror[U]): U#Type = {
+    def apply[U <: reflect.api.Universe with Singleton](m: reflect.api.Mirror[U]): U#Type = {
       //          assert(m eq mirror, s"TypeTag[$tpe] defined in $mirror cannot be migrated to $m.")
       tpe.asInstanceOf[U#Type]
     }

@@ -1,10 +1,10 @@
 package com.tribbloids.spike.scala_spike.Annotation
 
-import org.scalatest.FunSpec
+import org.scalatest.funspec.AnyFunSpec
 
 import scala.annotation.StaticAnnotation
 
-class Static extends FunSpec {
+class Static extends AnyFunSpec {
 
   it("can read member") {
 

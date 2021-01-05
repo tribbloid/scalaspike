@@ -1,6 +1,6 @@
 package com.tribbloids.spike.scala_spike.AbstractType
 
-import org.scalatest.FunSpec
+import org.scalatest.funspec.AnyFunSpec
 
 import scala.reflect.ClassTag
 
@@ -33,7 +33,7 @@ object DelayedInferClassTag {
 
 }
 
-class DelayedInferClassTag extends FunSpec {
+class DelayedInferClassTag extends AnyFunSpec {
 
   import DelayedInferClassTag._
 

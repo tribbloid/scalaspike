@@ -1,6 +1,6 @@
 //package com.tribbloids.spike.spike
 //
-//import org.scalatest.FunSpec
+//import org.scalatest.funspec.AnyFunSpec
 //
 //import scala.language.implicitConversions
 //import com.tribbloids.spike.spike.PrecedingImplicit.B
@@ -20,7 +20,7 @@
 //  object B extends Companion {}
 //}
 //
-//class PrecedingImplicit extends FunSpec {
+//class PrecedingImplicit extends AnyFunSpec {
 //
 //  it("") {
 //

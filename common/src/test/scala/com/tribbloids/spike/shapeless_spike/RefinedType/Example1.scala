@@ -1,6 +1,6 @@
 package com.tribbloids.spike.shapeless_spike.RefinedType
 
-import org.scalatest.FunSpec
+import org.scalatest.funspec.AnyFunSpec
 import shapeless.Witness
 import shapeless.Witness._
 
@@ -48,7 +48,7 @@ object Example1 {
 
 }
 
-class Example1 extends FunSpec {
+class Example1 extends AnyFunSpec {
 
   it("2d") {
 

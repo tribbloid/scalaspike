@@ -2,17 +2,16 @@ package com.tribbloids.spike.spark_spike
 
 import org.apache.spark.SparkContext
 import org.apache.spark.sql.{DataFrame, SQLContext}
-import org.scalatest.FunSpec
+import org.scalatest.funspec.AnyFunSpec
 
-class StreamingRepartition extends FunSpec {
+class StreamingRepartition extends AnyFunSpec {
 
   import TestHelper.TestSQL.implicits._
 
   def sparkContext: SparkContext = TestHelper.TestSC
   def sqlContext: SQLContext = TestHelper.TestSQL
 
-  describe(
-    "repartition doesn't have to wait for iterations to finish in previous stage") {
+  describe("repartition doesn't have to wait for iterations to finish in previous stage") {
 
     it("dataset version") {
 
