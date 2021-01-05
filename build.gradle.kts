@@ -52,7 +52,7 @@ allprojects {
         // TODO: alpha project, switch to mature solution once https://github.com/scalatest/scalatest/issues/1454 is solved
         testRuntimeOnly("co.helmethair:scalatest-junit-runner:0.1.3")
 
-        testImplementation("org.scalatest:scalatest_${vs.scalaBinaryV}:3.0.8")
+        testImplementation("org.scalatest:scalatest_${vs.scalaBinaryV}:${vs.scalatestV}")
 //        testRuntimeOnly("org.pegdown:pegdown:1.4.2") // required by maiflai scalatest
 
     }
