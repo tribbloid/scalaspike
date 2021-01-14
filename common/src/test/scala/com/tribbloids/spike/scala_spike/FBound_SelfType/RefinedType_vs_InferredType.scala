@@ -1,10 +1,10 @@
 package com.tribbloids.spike.scala_spike.FBound_SelfType
 
 import com.tribbloids.graph.commons.testlib.BaseSpec
-import com.tribbloids.spike.scala_spike.FBound_SelfType.RefinedType_vs_InferredType.{ParamTyped, Typed}
-import com.tribbloids.graph.commons.util.TypeTag
+import com.tribbloids.graph.commons.util.ScalaReflection.TypeTag
 import com.tribbloids.graph.commons.util.debug.print_@
 import com.tribbloids.graph.commons.util.viz.VizType
+import com.tribbloids.spike.scala_spike.FBound_SelfType.RefinedType_vs_InferredType.{ParamTyped, Typed}
 
 class RefinedType_vs_InferredType extends BaseSpec {
 

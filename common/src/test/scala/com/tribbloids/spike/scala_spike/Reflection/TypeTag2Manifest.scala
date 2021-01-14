@@ -1,4 +1,4 @@
-package com.tribbloids.spike.scala_spike.reflection
+package com.tribbloids.spike.scala_spike.Reflection
 
 import org.scalatest.funspec.AnyFunSpec
 
@@ -6,7 +6,7 @@ import scala.reflect.{ClassTag, ManifestFactory}
 
 object TypeTag2Manifest {
 
-  import org.apache.spark.sql.catalyst.ScalaReflection.universe._
+  import com.tribbloids.graph.commons.util.ScalaReflection.universe._
 
   def toManifest[T: TypeTag]: Manifest[T] = {
     val tt = typeTag[T]
@@ -33,13 +33,12 @@ object TypeTag2Manifest {
     type T = Map[String, Int]
   }
   val example = new Example
-
 }
 
 class TypeTag2Manifest extends AnyFunSpec {
 
   import TypeTag2Manifest._
-  import org.apache.spark.sql.catalyst.ScalaReflection.universe._
+  import com.tribbloids.graph.commons.util.ScalaReflection.universe._
 
   it("can convert") {
 

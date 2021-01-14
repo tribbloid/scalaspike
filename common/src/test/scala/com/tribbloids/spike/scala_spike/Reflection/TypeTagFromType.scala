@@ -1,14 +1,12 @@
-package com.tribbloids.spike.scala_spike
+package com.tribbloids.spike.scala_spike.Reflection
+
+import org.scalatest.funspec.AnyFunSpec
 
 import java.io.{ByteArrayInputStream, ByteArrayOutputStream, ObjectInputStream, ObjectOutputStream}
 
-import org.apache.spark.sql.catalyst.ScalaReflection
-import org.apache.spark.sql.catalyst.ScalaReflection.universe
-import org.scalatest.funspec.AnyFunSpec
-
 class TypeTagFromType extends AnyFunSpec {
 
-  import ScalaReflection.universe._
+  import com.tribbloids.graph.commons.util.ScalaReflection.universe._
 
   it("create TypeTag from reflection") {
 
@@ -37,7 +35,7 @@ class TypeTagFromType extends AnyFunSpec {
     }
   }
 
-  def serialise(tt: universe.TypeTag[_]): Array[Byte] = {
+  def serialise(tt: TypeTag[_]): Array[Byte] = {
     val bos = new ByteArrayOutputStream()
     try {
       val out = new ObjectOutputStream(bos)
@@ -67,7 +65,7 @@ class TypeTagFromType extends AnyFunSpec {
 
 object TypeUtils {
 
-  import ScalaReflection.universe._
+  import com.tribbloids.graph.commons.util.ScalaReflection.universe._
 
   def createTypeTag_fast[T](
       tpe: Type,

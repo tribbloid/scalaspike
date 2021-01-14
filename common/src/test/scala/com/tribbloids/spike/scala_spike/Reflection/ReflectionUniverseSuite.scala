@@ -2,7 +2,8 @@ package com.tribbloids.spike.scala_spike.Reflection
 
 import com.tribbloids.graph.commons.testlib.BaseSpec
 import com.tribbloids.graph.commons.util.debug.print_@
-import com.tribbloids.graph.commons.util.{ScalaReflection, TypeTag}
+import com.tribbloids.graph.commons.util.ScalaReflection
+import com.tribbloids.graph.commons.util.ScalaReflection.TypeTag
 
 class ReflectionUniverseSuite extends BaseSpec {
 

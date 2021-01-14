@@ -1,11 +1,11 @@
-package com.tribbloids.spike.scala_spike.reflection
+package com.tribbloids.spike.scala_spike.Reflection
 
-import com.tribbloids.spike.scala_spike.reflection.TypeResolving.Example
+import com.tribbloids.graph.commons.util.ScalaReflection.TypeTag
 import org.scalatest.funspec.AnyFunSpec
 
 class TypeResolving extends AnyFunSpec {
 
-  import org.apache.spark.sql.catalyst.ScalaReflection.universe._
+  import com.tribbloids.spike.scala_spike.Reflection.TypeResolving._
 
   val example = new Example
 
