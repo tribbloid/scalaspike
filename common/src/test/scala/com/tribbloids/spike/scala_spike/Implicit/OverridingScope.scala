@@ -2,9 +2,9 @@ package com.tribbloids.spike.scala_spike.Implicit
 
 import com.tribbloids.graph.commons.testlib.BaseSpec
 
-class OverridingPoly extends BaseSpec {
+class OverridingScope extends BaseSpec {
 
-  import OverridingPoly._
+  import OverridingScope._
 
   it("implicits in companion is in scope") {
 
@@ -18,7 +18,7 @@ class OverridingPoly extends BaseSpec {
   }
 }
 
-object OverridingPoly {
+object OverridingScope {
 
   trait System {
 
