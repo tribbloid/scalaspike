@@ -1,6 +1,6 @@
 package com.tribbloids.spike.scala_spike.Reflection
 
-import com.tribbloids.graph.commons.util.ScalaReflection.TypeTag
+import ai.acyclic.graph.commons.viz.TypeViz.TypeTag
 import org.scalatest.funspec.AnyFunSpec
 
 class TypeResolving extends AnyFunSpec {

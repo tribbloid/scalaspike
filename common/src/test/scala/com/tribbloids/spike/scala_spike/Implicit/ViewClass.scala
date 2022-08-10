@@ -1,6 +1,6 @@
 package com.tribbloids.spike.scala_spike.Implicit
 
-import com.tribbloids.graph.commons.testlib.BaseSpec
+import ai.acyclic.graph.commons.testlib.BaseSpec
 
 class ViewClass extends BaseSpec {
 

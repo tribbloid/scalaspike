@@ -10,9 +10,9 @@ import org.apache.spark.storage.StorageLevel
   */
 object DatasetHelper {
 
-  def fromQueryExecution[T: Encoder](sparkSession: SparkSession, exe: QueryExecution): Dataset[T] = {
+  def fromQueryExecution[T: Encoder](exe: QueryExecution): Dataset[T] = {
 
-    new Dataset[T](sparkSession, exe, implicitly[Encoder[T]])
+    new Dataset[T](exe, implicitly[Encoder[T]])
   }
 
   def ofRows(

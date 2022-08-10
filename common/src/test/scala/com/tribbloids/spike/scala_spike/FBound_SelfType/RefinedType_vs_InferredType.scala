@@ -1,9 +1,9 @@
 package com.tribbloids.spike.scala_spike.FBound_SelfType
 
-import com.tribbloids.graph.commons.testlib.BaseSpec
-import com.tribbloids.graph.commons.util.ScalaReflection.TypeTag
-import com.tribbloids.graph.commons.util.debug.print_@
-import com.tribbloids.graph.commons.util.viz.VizType
+import ai.acyclic.graph.commons.debug.print_@
+import ai.acyclic.graph.commons.testlib.BaseSpec
+import ai.acyclic.graph.commons.viz.TypeViz
+import ai.acyclic.graph.commons.viz.TypeViz.TypeTag
 import com.tribbloids.spike.scala_spike.FBound_SelfType.RefinedType_vs_InferredType.{ParamTyped, Typed}
 
 class RefinedType_vs_InferredType extends BaseSpec {
@@ -12,18 +12,18 @@ class RefinedType_vs_InferredType extends BaseSpec {
 
     val v = Typed()
 
-    print_@(VizType(v.refinedTTag))
-    print_@(VizType(v.refinedSuperTTag))
-    print_@(VizType(v.inferredTTag))
+    print_@(TypeViz(v.refinedTTag))
+    print_@(TypeViz(v.refinedSuperTTag))
+    print_@(TypeViz(v.inferredTTag))
   }
 
   it("... even if parameterised") {
 
     val v = ParamTyped[String, Int]()
 
-    print_@(VizType(v.refinedTTag))
-    print_@(VizType(v.refinedSuperTTag))
-    print_@(VizType(v.inferredTTag))
+    print_@(TypeViz(v.refinedTTag))
+    print_@(TypeViz(v.refinedSuperTTag))
+    print_@(TypeViz(v.inferredTTag))
   }
 }
 

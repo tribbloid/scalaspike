@@ -1,6 +1,6 @@
 package com.tribbloids.spike.singleton_ops_spike
 
-import com.tribbloids.graph.commons.testlib.BaseSpec
+import ai.acyclic.graph.commons.testlib.BaseSpec
 import shapeless.ops.hlist
 import shapeless.{HList, Nat}
 import singleton.ops.impl.OpInt

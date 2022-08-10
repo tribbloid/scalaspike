@@ -1,6 +1,6 @@
 package com.tribbloids.spike.meta.multistage.spark
 
-import com.tribbloids.graph.commons.testlib.BaseSpec
+import ai.acyclic.graph.commons.testlib.BaseSpec
 import com.tribbloids.spike.meta.multistage.spark.CodeGenBenchmark.SomeInterface
 import com.tribbloids.spike.meta.multistage.spark.CodeGenSpike.{Janino, MacroV1}
 import org.codehaus.janino.SimpleCompiler

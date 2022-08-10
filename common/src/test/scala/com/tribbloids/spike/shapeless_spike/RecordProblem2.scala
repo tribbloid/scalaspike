@@ -1,8 +1,6 @@
 package com.tribbloids.spike.shapeless_spike
 
-import com.tribbloids.graph.commons.util.ScalaReflection.TypeTag
-import com.tribbloids.graph.commons.util.WideTyped
-import com.tribbloids.graph.commons.util.debug.print_@
+import ai.acyclic.graph.commons.viz.TypeViz.TypeTag
 import shapeless.ops.record.Values
 
 object RecordProblem2 {

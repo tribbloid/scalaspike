@@ -1,7 +1,7 @@
 package com.tribbloids.spike.scala_spike.AbstractType
 
-import com.tribbloids.graph.commons.testlib.BaseSpec
-import com.tribbloids.graph.commons.util.viz.VizType
+import ai.acyclic.graph.commons.testlib.BaseSpec
+import ai.acyclic.graph.commons.viz.TypeViz
 
 class OverrideMemberType extends BaseSpec {
 
@@ -9,7 +9,7 @@ class OverrideMemberType extends BaseSpec {
 
   it("can override path dependent type") {
 
-    VizType[Sub1.abc.type].toString.shouldBe(
+    TypeViz[Sub1.abc.type].toString.shouldBe(
       """
         |-+ com.tribbloids.spike.scala_spike.AbstractType.OverrideMemberType.Sub1.abc.type
         | !-+ com.tribbloids.spike.scala_spike.AbstractType.OverrideMemberType.Sub1
@@ -19,7 +19,7 @@ class OverrideMemberType extends BaseSpec {
         |""".stripMargin.trim
     )
 
-    VizType[Sub2.abc.type].toString.shouldBe(
+    TypeViz[Sub2.abc.type].toString.shouldBe(
       """
         |-+ com.tribbloids.spike.scala_spike.AbstractType.OverrideMemberType.Sub2.abc.type
         | !-+ com.tribbloids.spike.scala_spike.AbstractType.OverrideMemberType.Sub2
@@ -29,7 +29,7 @@ class OverrideMemberType extends BaseSpec {
         |""".stripMargin.trim
     )
 
-    VizType[Sub3.abc.type].toString.shouldBe(
+    TypeViz[Sub3.abc.type].toString.shouldBe(
       """
         |-+ com.tribbloids.spike.scala_spike.AbstractType.OverrideMemberType.Sub3.abc.type
         | !-+ com.tribbloids.spike.scala_spike.AbstractType.OverrideMemberType.Sub3
@@ -39,7 +39,7 @@ class OverrideMemberType extends BaseSpec {
         |""".stripMargin.trim
     )
 
-    VizType[Sub4.abc.type].toString.shouldBe(
+    TypeViz[Sub4.abc.type].toString.shouldBe(
       """
         |-+ com.tribbloids.spike.scala_spike.AbstractType.OverrideMemberType.Sub4.abc.type
         | !-+ com.tribbloids.spike.scala_spike.AbstractType.OverrideMemberType.Sup

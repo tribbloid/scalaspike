@@ -1,14 +1,12 @@
 package com.tribbloids.spike.scala_spike.Reflection
 
-import com.tribbloids.graph.commons.testlib.BaseSpec
-import com.tribbloids.graph.commons.util.debug.print_@
-import com.tribbloids.graph.commons.util.ScalaReflection
-import com.tribbloids.graph.commons.util.ScalaReflection.TypeTag
+import ai.acyclic.graph.commons.debug.print_@
+import ai.acyclic.graph.commons.testlib.BaseSpec
+import ai.acyclic.graph.commons.viz.TypeViz.{universe, TypeTag}
 
 class ReflectionUniverseSuite extends BaseSpec {
 
   import ReflectionUniverseSuite._
-  import ScalaReflection._
 
   describe("reify") {
 

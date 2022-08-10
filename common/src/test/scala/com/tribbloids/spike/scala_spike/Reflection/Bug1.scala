@@ -1,6 +1,6 @@
 package com.tribbloids.spike.scala_spike.Reflection
 
-import com.tribbloids.graph.commons.util.ScalaReflection.WeakTypeTag
+import ai.acyclic.graph.commons.viz.TypeViz.WeakTypeTag
 import shapeless.Witness
 
 object Bug1 {

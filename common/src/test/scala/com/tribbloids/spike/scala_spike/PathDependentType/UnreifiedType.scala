@@ -1,10 +1,11 @@
 package com.tribbloids.spike.scala_spike.PathDependentType
 
-import com.tribbloids.graph.commons.testlib.BaseSpec
-import com.tribbloids.graph.commons.util.debug.print_@
-import com.tribbloids.graph.commons.util.viz.VizType
+import ai.acyclic.graph.commons.debug.print_@
+import ai.acyclic.graph.commons.testlib.BaseSpec
+import ai.acyclic.graph.commons.viz.TypeViz
 
 import scala.language.existentials
+import scala.reflect.runtime.universe
 
 object UnreifiedType {
 
@@ -36,7 +37,6 @@ object UnreifiedType {
 class UnreifiedType extends BaseSpec {
 
   import UnreifiedType._
-  import com.tribbloids.graph.commons.util.ScalaReflection.universe
 
   it("ttg from type") {
 
@@ -44,20 +44,20 @@ class UnreifiedType extends BaseSpec {
 
     val ttg = universe.typeTag[rr.Out]
 
-    print_@(VizType(ttg))
+    print_@(TypeViz(ttg))
   }
 
   it("ttg from archetype") {
 
     {
       val ttg = universe.typeTag[Reif1#Out]
-      print_@(VizType(ttg))
+      print_@(TypeViz(ttg))
     }
 
     {
       // TODO: this doesn't work, why?
       //      val ttg = universe.typeTag[Reif2#Out]
-      //      print_@(VizType(ttg))
+      //      print_@(TypeViz(ttg))
     }
   }
 }

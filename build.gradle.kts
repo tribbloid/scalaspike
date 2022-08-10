@@ -3,9 +3,11 @@ plugins {
     java
     scala
     idea
+
+    id("com.github.ben-manes.versions") version "0.42.0"
 }
 
-val jUnitV = "5.6.2"
+val jUnitV = "5.9.0"
 val jUnitPlatformV = "1.6.0" // TODO: useless
 
 allprojects {
@@ -50,9 +52,9 @@ allprojects {
 //        testRuntimeOnly("org.junit.platform:junit-platform-launcher:$jUnitPlatformV")
 
         // TODO: alpha project, switch to mature solution once https://github.com/scalatest/scalatest/issues/1454 is solved
-        testRuntimeOnly("co.helmethair:scalatest-junit-runner:0.1.3")
+        testRuntimeOnly("co.helmethair:scalatest-junit-runner:0.1.11")
 
-        testImplementation("org.scalatest:scalatest_${vs.scalaBinaryV}:${vs.scalatestV}")
+        testImplementation("org.scalatest:scalatest_${vs.scalaBinaryV}:${vs.scalaTestV}")
 //        testRuntimeOnly("org.pegdown:pegdown:1.4.2") // required by maiflai scalatest
 
     }
@@ -64,7 +66,6 @@ allprojects {
     }
 
     tasks {
-
 
         val jvmTarget = JavaVersion.VERSION_1_8.toString()
 

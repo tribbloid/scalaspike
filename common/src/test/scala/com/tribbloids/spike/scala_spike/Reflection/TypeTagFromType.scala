@@ -6,7 +6,7 @@ import java.io.{ByteArrayInputStream, ByteArrayOutputStream, ObjectInputStream, 
 
 class TypeTagFromType extends AnyFunSpec {
 
-  import com.tribbloids.graph.commons.util.ScalaReflection.universe._
+  import ai.acyclic.graph.commons.viz.TypeViz.universe._
 
   it("create TypeTag from reflection") {
 
@@ -65,7 +65,7 @@ class TypeTagFromType extends AnyFunSpec {
 
 object TypeUtils {
 
-  import com.tribbloids.graph.commons.util.ScalaReflection.universe._
+  import ai.acyclic.graph.commons.viz.TypeViz.universe._
 
   def createTypeTag_fast[T](
       tpe: Type,

@@ -6,7 +6,7 @@ import scala.reflect.{ClassTag, ManifestFactory}
 
 object TypeTag2Manifest {
 
-  import com.tribbloids.graph.commons.util.ScalaReflection.universe._
+  import ai.acyclic.graph.commons.viz.TypeViz.universe._
 
   def toManifest[T: TypeTag]: Manifest[T] = {
     val tt = typeTag[T]
@@ -38,7 +38,7 @@ object TypeTag2Manifest {
 class TypeTag2Manifest extends AnyFunSpec {
 
   import TypeTag2Manifest._
-  import com.tribbloids.graph.commons.util.ScalaReflection.universe._
+  import ai.acyclic.graph.commons.viz.TypeViz.universe._
 
   it("can convert") {
 

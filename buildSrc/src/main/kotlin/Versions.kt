@@ -11,5 +11,7 @@ class Versions(self: Project) {
 
     val sparkV: String = self.properties.get("sparkVersion").toString()
 
-    val scalatestV: String = "3.2.3"
+    val scalaTestV: String = "3.2.12"
+
+    val splainV: String = ""
 }

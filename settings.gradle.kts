@@ -1,8 +1,9 @@
 //val versions = gradle.rootProject.versions()
 
+include("graph-commons")
+project(":graph-commons").projectDir = file("graph-commons/core")
 
 include(
-        ":graph-commons",
         ":common",
         ":lecture",
         ":spark",

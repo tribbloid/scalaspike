@@ -1,16 +1,16 @@
 package com.tribbloids.spike.scala_spike
 
-import com.tribbloids.graph.commons.testlib.BaseSpec
-import com.tribbloids.graph.commons.util.viz.VizType
+import ai.acyclic.graph.commons.testlib.BaseSpec
+import ai.acyclic.graph.commons.viz.TypeViz
 
 class TypeAlias extends BaseSpec {
   import TypeAlias._
 
   it("example") {
 
-    VizType[String].toString.shouldBe()
+    TypeViz[String].toString.shouldBe()
 
-    VizType[Alias].toString.shouldBe()
+    TypeViz[Alias].toString.shouldBe()
   }
 }
 
