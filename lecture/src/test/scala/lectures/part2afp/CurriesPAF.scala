@@ -21,7 +21,7 @@ object CurriesPAF extends App {
 
   // functions != methods (JVM limitation)
   def inc(x: Int) = x + 1
-  List(1,2,3).map(x => inc(x))  // ETA-expansion
+  List(1, 2, 3).map(x => inc(x)) // ETA-expansion
 
   // Partial function applications
   val add5 = curriedAdder(5) _ // Int => Int
@@ -34,19 +34,20 @@ object CurriesPAF extends App {
   // add7: Int => Int = y => 7 + y
   // as many different implementations of add7 using the above
   // be creative!
-  val add7 = (x: Int) => simpleAddFunction(7, x)  // simplest
+  val add7 = (x: Int) => simpleAddFunction(7, x) // simplest
   val add7_2 = simpleAddFunction.curried(7)
   val add7_6 = simpleAddFunction(7, _: Int) // works as well
 
-  val add7_3 = curriedAddMethod(7) _  // PAF
+  val add7_3 = curriedAddMethod(7) _ // PAF
   val add7_4 = curriedAddMethod(7)(_) // PAF = alternative syntax
 
   val add7_5 = simpleAddMethod(7, _: Int) // alternative syntax for turning methods into function values
-                // y => simpleAddMethod(7, y)
+  // y => simpleAddMethod(7, y)
 
   // underscores are powerful
   def concatenator(a: String, b: String, c: String) = a + b + c
-  val insertName = concatenator("Hello, I'm ", _: String, ", how are you?") // x: String => concatenator(hello, x, howarewyou)
+  val insertName =
+    concatenator("Hello, I'm ", _: String, ", how are you?") // x: String => concatenator(hello, x, howarewyou)
   println(insertName("Daniel"))
 
   val fillInTheBlanks = concatenator("Hello, ", _: String, _: String) // (x, y) => concatenator("Hello, ", x, y)
@@ -85,8 +86,8 @@ object CurriesPAF extends App {
     - lambda
     - PAF
    */
-  byName(23)  // ok
-  byName(method)  // ok
+  byName(23) // ok
+  byName(method) // ok
   byName(parenMethod())
   byName(parenMethod) // ok but beware ==> byName(parenMethod())
   //  byName(() => 42) // not ok
@@ -99,4 +100,3 @@ object CurriesPAF extends App {
   byFunction(() => 46) // works
   byFunction(parenMethod _) // also works, but warning- unnecessary
 }
-

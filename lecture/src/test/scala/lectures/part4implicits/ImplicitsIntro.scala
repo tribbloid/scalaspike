@@ -22,7 +22,10 @@ object ImplicitsIntro extends App {
 //  implicit def fromStringToA(str: String): A = new A
 
   // implicit parameters
-  def increment(x: Int)(implicit amount: Int) = x + amount
+  def increment(x: Int)(
+      implicit
+      amount: Int
+  ) = x + amount
   implicit val defaultAmount = 10
 
   increment(2)

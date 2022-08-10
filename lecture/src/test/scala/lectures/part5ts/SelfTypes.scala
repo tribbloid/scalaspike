@@ -17,7 +17,7 @@ object SelfTypes extends App {
     def sing(): Unit
   }
 
-  class LeadSinger extends Singer with Instrumentalist  {
+  class LeadSinger extends Singer with Instrumentalist {
     override def play(): Unit = ???
     override def sing(): Unit = ???
   }
@@ -76,8 +76,6 @@ object SelfTypes extends App {
 
   // layer 3 - app
   trait AnalyticsApp extends ScalaApplication with Analytics
-
-
 
   // cyclical dependencies
 

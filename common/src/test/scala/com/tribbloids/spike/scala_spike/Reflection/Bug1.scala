@@ -9,7 +9,10 @@ object Bug1 {
   val v1 = w1.value
 
   def main(args: Array[String]): Unit = {
-    def infer[T](v: T)(implicit ev: WeakTypeTag[T]): WeakTypeTag[T] = ev
+    def infer[T](v: T)(
+        implicit
+        ev: WeakTypeTag[T]
+    ): WeakTypeTag[T] = ev
 
     val tag = infer(v1)
 

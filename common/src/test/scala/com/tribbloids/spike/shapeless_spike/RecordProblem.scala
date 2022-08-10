@@ -23,7 +23,10 @@ object RecordProblem {
   case class HasValues[T <: HList: TypeTag](v: T) {
 
 //    def vs(implicit v: Values[T]) = v // doesn't work
-    def vs(implicit v: Values[T]): Values.Aux[T, v.Out] = v // works
+    def vs(
+        implicit
+        v: Values[T]
+    ): Values.Aux[T, v.Out] = v // works
   }
 
   val _vs = HasValues(book).vs

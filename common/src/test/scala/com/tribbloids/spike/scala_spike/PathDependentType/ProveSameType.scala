@@ -11,7 +11,10 @@ class ProveSameType extends BaseSpec {
 
   class SS1() extends SS {}
 
-  def sameType[T1, T2](implicit ev: T1 =:= T2): Unit = {}
+  def sameType[T1, T2](
+      implicit
+      ev: T1 =:= T2
+  ): Unit = {}
 
   it("1 object, 2 variables, their dependent type should be identical") {
 

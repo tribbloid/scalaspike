@@ -59,7 +59,11 @@ object HigherKindedTypes extends App {
     override def map[B](f: A => B): Option[B] = option.map(f)
   }
 
-  def multiply[F[_], A, B](implicit ma: Monad[F, A], mb: Monad[F, B]): F[(A, B)] =
+  def multiply[F[_], A, B](
+      implicit
+      ma: Monad[F, A],
+      mb: Monad[F, B]
+  ): F[(A, B)] =
     for {
       a <- ma
       b <- mb
@@ -68,14 +72,12 @@ object HigherKindedTypes extends App {
     ma.flatMap(a => mb.map(b => (a,b)))
    */
 
-
-
-  val monadList = new MonadList(List(1,2,3))
+  val monadList = new MonadList(List(1, 2, 3))
   monadList.flatMap(x => List(x, x + 1)) // List[Int]
   // Monad[List, Int] => List[Int]
   monadList.map(_ * 2) // List[Int
   // Monad[List, Int] => List[Int]
 
-  println(multiply(List(1,2), List("a", "b")))
+  println(multiply(List(1, 2), List("a", "b")))
   println(multiply(Some(2), Some("scala")))
 }

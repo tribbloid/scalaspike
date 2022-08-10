@@ -77,7 +77,7 @@ class RDDCachingVSLazyComputing extends AnyFunSpec {
 object RDDCachingVSLazyComputing {
 
   case class ComputingUnit(
-      v: Long,
+      v: Long
   ) {
 
     var acc: LongAccumulator = _

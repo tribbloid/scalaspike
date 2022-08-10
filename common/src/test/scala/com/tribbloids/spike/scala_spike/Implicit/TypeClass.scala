@@ -24,9 +24,16 @@ class TypeClass extends BaseSpec {
 
   case class Thing[X](v: X) {
 
-    def +[Y](that: Thing[Y])(implicit typeClass: TypeClass[X, Y]): typeClass.Out = typeClass.v
+    def +[Y](that: Thing[Y])(
+        implicit
+        typeClass: TypeClass[X, Y]
+    ): typeClass.Out = typeClass.v
 
-    def ++[Y, Z](that: Thing[Y])(implicit t1: TypeClass[X, Y] { type Out <: Z }, t2: TypeClass[Z, Y]): t2.Out =
+    def ++[Y, Z](that: Thing[Y])(
+        implicit
+        t1: TypeClass[X, Y] { type Out <: Z },
+        t2: TypeClass[Z, Y]
+    ): t2.Out =
       t2.v
 
 //    def +++[Y, Z](that: Thing[Y])(implicit t1: TypeClass[X, Y] { type Out <: Y }, a: Any = this + that + that): a.type =

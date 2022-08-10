@@ -6,6 +6,7 @@ import scala.concurrent.duration._
 
 // important for futures
 import scala.concurrent.ExecutionContext.Implicits.global
+
 /**
   * Created by Daniel.
   */
@@ -19,7 +20,6 @@ object FuturesPromises extends App {
   val aFuture = Future {
     calculateMeaningOfLife // calculates the  meaning of  life on ANOTHER thread
   } // (global) which is passed by the compiler
-
 
   println(aFuture.value) // Option[Try[Int]]
 
@@ -78,7 +78,6 @@ object FuturesPromises extends App {
 //    case Failure(ex) => ex.printStackTrace()
 //  }
 
-
   // functional composition of futures
   // map, flatMap, filter
   val nameOnTheWall = mark.map(profile => profile.name)
@@ -102,7 +101,7 @@ object FuturesPromises extends App {
     case e: Throwable => SocialNetwork.fetchProfile("fb.id.0-dummy")
   }
 
-  val fallbackResult =  SocialNetwork.fetchProfile("unknown id").fallbackTo(SocialNetwork.fetchProfile("fb.id.0-dummy"))
+  val fallbackResult = SocialNetwork.fetchProfile("unknown id").fallbackTo(SocialNetwork.fetchProfile("fb.id.0-dummy"))
 
   // online banking app
   case class User(name: String)
@@ -190,7 +189,7 @@ object FuturesPromises extends App {
     val bothPromise = Promise[A]
     val lastPromise = Promise[A]
     val checkAndComplete = (result: Try[A]) =>
-      if(!bothPromise.tryComplete(result))
+      if (!bothPromise.tryComplete(result))
         lastPromise.complete(result)
 
     fa.onComplete(checkAndComplete)
@@ -209,26 +208,27 @@ object FuturesPromises extends App {
     45
   }
   first(fast, slow).foreach(f => println("FIRST: " + f))
-  last(fast, slow).foreach(l => println("LAST: "  +  l))
+  last(fast, slow).foreach(l => println("LAST: " + l))
 
   Thread.sleep(1000)
 
   // retry until
   def retryUntil[A](action: () => Future[A], condition: A => Boolean): Future[A] =
     action()
-    .filter(condition)
-    .recoverWith {
-      case _ => retryUntil(action, condition)
-    }
+      .filter(condition)
+      .recoverWith {
+        case _ => retryUntil(action, condition)
+      }
 
   val random = new Random()
-  val action = () => Future {
-    Thread.sleep(100)
-    val nextValue = random.nextInt(100)
-    println("generated " + nextValue)
-    nextValue
-  }
+  val action = () =>
+    Future {
+      Thread.sleep(100)
+      val nextValue = random.nextInt(100)
+      println("generated " + nextValue)
+      nextValue
+    }
 
-  retryUntil(action, (x: Int) =>  x < 10).foreach(result => println("settled at " + result))
+  retryUntil(action, (x: Int) => x < 10).foreach(result => println("settled at " + result))
   Thread.sleep(10000)
 }

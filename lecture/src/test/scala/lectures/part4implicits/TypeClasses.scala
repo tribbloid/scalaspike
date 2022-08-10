@@ -57,10 +57,16 @@ object TypeClasses extends App {
 
   // part 2
   object HTMLSerializer {
-    def serialize[T](value: T)(implicit serializer: HTMLSerializer[T]): String =
+    def serialize[T](value: T)(
+        implicit
+        serializer: HTMLSerializer[T]
+    ): String =
       serializer.serialize(value)
 
-    def apply[T](implicit serializer: HTMLSerializer[T]) = serializer
+    def apply[T](
+        implicit
+        serializer: HTMLSerializer[T]
+    ) = serializer
   }
 
   implicit object IntSerializer extends HTMLSerializer[Int] {
@@ -73,13 +79,15 @@ object TypeClasses extends App {
   // access to the entire type class  interface
   println(HTMLSerializer[User].serialize(john))
 
-
   // part 3
   implicit class HTMLEnrichment[T](value: T) {
-    def toHTML(implicit serializer: HTMLSerializer[T]): String = serializer.serialize(value)
+    def toHTML(
+        implicit
+        serializer: HTMLSerializer[T]
+    ): String = serializer.serialize(value)
   }
 
-  println(john.toHTML)  // println(new HTMLEnrichment[User](john).toHTML(UserSerializer))
+  println(john.toHTML) // println(new HTMLEnrichment[User](john).toHTML(UserSerializer))
   // COOL!
   /*
     - extend to new types
@@ -97,10 +105,13 @@ object TypeClasses extends App {
    */
 
   // context bounds
-  def htmlBoilerplate[T](content: T)(implicit serializer: HTMLSerializer[T]): String =
+  def htmlBoilerplate[T](content: T)(
+      implicit
+      serializer: HTMLSerializer[T]
+  ): String =
     s"<html><body> ${content.toHTML(serializer)}</body></html>"
 
-  def htmlSugar[T : HTMLSerializer](content: T): String = {
+  def htmlSugar[T: HTMLSerializer](content: T): String = {
     val serializer = implicitly[HTMLSerializer[T]]
     // use serializer
     s"<html><body> ${content.toHTML(serializer)}</body></html>"
@@ -108,11 +119,10 @@ object TypeClasses extends App {
 
   // implicitly
   case class Permissions(mask: String)
-  implicit val defaultPermissions: Permissions = Permissions("0744")
+  implicit
+  val defaultPermissions: Permissions = Permissions("0744")
 
   // in some other part of the  code
   val standardPerms = implicitly[Permissions]
 
-
 }
-

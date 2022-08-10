@@ -67,8 +67,10 @@ object JSONSerialization extends App {
         List(
           JSONString("Scala Rocks!"),
           JSONNumber(453)
-        ))
-    ))
+        )
+      )
+    )
+  )
 
   println(data.stringify)
 
@@ -87,7 +89,10 @@ object JSONSerialization extends App {
   // 2.3 conversion
 
   implicit class JSONOps[T](value: T) {
-    def toJSON(implicit converter: JSONConverter[T]): JSONValue =
+    def toJSON(
+        implicit
+        converter: JSONConverter[T]
+    ): JSONValue =
       converter.convert(value)
   }
 
@@ -110,7 +115,8 @@ object JSONSerialization extends App {
           "name" -> JSONString(user.name),
           "age" -> JSONNumber(user.age),
           "email" -> JSONString(user.email)
-        ))
+        )
+      )
   }
 
   implicit object PostConverter extends JSONConverter[Post] {
@@ -119,7 +125,8 @@ object JSONSerialization extends App {
         Map(
           "content" -> JSONString(post.content),
           "created:" -> JSONString(post.createdAt.toString)
-        ))
+        )
+      )
   }
 
   implicit object FeedConverter extends JSONConverter[Feed] {
@@ -128,17 +135,20 @@ object JSONSerialization extends App {
         Map(
           "user" -> feed.user.toJSON,
           "posts" -> JSONArray(feed.posts.map(_.toJSON))
-        ))
+        )
+      )
   }
 
   // call stringify on result
   val now = new Date(System.currentTimeMillis())
   val john = User("John", 34, "john@rockthejvm.com")
-  val feed = Feed(john,
-                  List(
-                    Post("hello", now),
-                    Post("look at this cute puppy", now)
-                  ))
+  val feed = Feed(
+    john,
+    List(
+      Post("hello", now),
+      Post("look at this cute puppy", now)
+    )
+  )
 
   println(feed.toJSON.stringify)
 

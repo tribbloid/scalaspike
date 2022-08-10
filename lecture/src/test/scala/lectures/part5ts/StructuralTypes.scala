@@ -27,10 +27,7 @@ object StructuralTypes extends App {
   })
   closeQuietly(new HipsterCloseable)
 
-
-
   // TYPE REFINEMENTS
-
 
   type AdvancedCloseable = JavaCloseable {
     def closeSilently(): Unit
@@ -48,7 +45,6 @@ object StructuralTypes extends App {
 
   // using structural types as standalone types
   def altClose(closeable: { def close(): Unit }): Unit = closeable.close()
-
 
   // type-checking => duck typing
 
@@ -76,7 +72,7 @@ object StructuralTypes extends App {
    */
 
   // 1.
-  trait CBL[+T]  {
+  trait CBL[+T] {
     def head: T
     def tail: CBL[T]
   }
@@ -102,7 +98,7 @@ object StructuralTypes extends App {
   case class CBCons[T](override val head: T, override val tail: CBL[T]) extends CBL[T]
 
   f(CBCons(2, CBNil))
-  f(new  Human) // ?! T = Brain !!
+  f(new Human) // ?! T = Brain !!
 
   // 2.
   object HeadEqualizer {

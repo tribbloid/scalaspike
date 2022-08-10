@@ -25,7 +25,10 @@ object InferGeneric3 {
 
   object HasCodec {
 
-    class AdHocCodec[T <: HasCodec](implicit val ev: Generic[T]) extends Codec {}
+    class AdHocCodec[T <: HasCodec](
+        implicit
+        val ev: Generic[T]
+    ) extends Codec {}
 
 //    implicit def AdHocCodec[T <: HasCodec](v: T)(
 //        implicit ev: Generic[T]): Codec = {

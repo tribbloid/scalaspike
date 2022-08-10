@@ -6,5 +6,8 @@ trait MyTypeClassTemplate[T] {
 }
 
 object MyTypeClassTemplate {
-  def apply[T](implicit instance: MyTypeClassTemplate[T]) = instance
+  def apply[T](
+      implicit
+      instance: MyTypeClassTemplate[T]
+  ) = instance
 }

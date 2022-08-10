@@ -1,6 +1,7 @@
 package lectures.part4implicits
 
 import java.{util => ju}
+
 /**
   * Created by Daniel.
   */
@@ -29,7 +30,7 @@ object ScalaJavaConversions extends App {
 
   println(juNumbersBuffer.asScala eq numbersBuffer)
 
-  val numbers = List(1,2,3)
+  val numbers = List(1, 2, 3)
   val juNumbers = numbers.asJava
   val backToScala = juNumbers.asScala
   println(backToScala eq numbers) // false

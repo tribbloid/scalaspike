@@ -84,7 +84,10 @@ class WitnessSuite extends BaseSpec {
     }
   }
 
-  def sameType[T1, T2](implicit ev: T1 =:= T2): Unit = {}
+  def sameType[T1, T2](
+      implicit
+      ev: T1 =:= T2
+  ): Unit = {}
 
   class Wrap[T]() {
 

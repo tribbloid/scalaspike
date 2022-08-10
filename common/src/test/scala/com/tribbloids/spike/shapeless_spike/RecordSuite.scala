@@ -46,7 +46,10 @@ class RecordSuite extends BaseSpec {
         HNil
     }
 
-    def inferKeys[T <: HList](v: T)(implicit keys: shapeless.ops.record.Keys[T]) = keys
+    def inferKeys[T <: HList](v: T)(
+        implicit
+        keys: shapeless.ops.record.Keys[T]
+    ) = keys
 
     it("1") {
 

@@ -35,15 +35,13 @@ class TestHelper() {
     Try {
       properties.load(ClassLoader.getSystemResourceAsStream(".rootkey.csv"))
     }.recoverWith {
-        case _: Throwable =>
-          Try {
-            properties.load(
-              ClassLoader.getSystemResourceAsStream("rootkey.csv"))
-          }
-      }
-      .getOrElse {
-        println("rootkey.csv is missing")
-      }
+      case _: Throwable =>
+        Try {
+          properties.load(ClassLoader.getSystemResourceAsStream("rootkey.csv"))
+        }
+    }.getOrElse {
+      println("rootkey.csv is missing")
+    }
 
     if (S3Path.isDefined)
       println("Test on AWS S3 with credentials provided by rootkey.csv")
@@ -124,8 +122,7 @@ class TestHelper() {
     } else {
       val masterStr =
         s"local-cluster[${clusterSizeOpt.get},${numCoresPerWorkerOpt.get},${executorMemoryOpt.get}]"
-      println(
-        s"initializing SparkContext in local-cluster simulation mode:" + masterStr)
+      println(s"initializing SparkContext in local-cluster simulation mode:" + masterStr)
       //TODO: Unstable! remove?
       masterStr
     }
@@ -200,8 +197,7 @@ class TestHelper() {
   lazy val TestSC = TestSparkSession.sparkContext
   lazy val TestSQL = TestSparkSession.sqlContext
 
-  def setLoggerDuring[T](clazzes: Class[_]*)(fn: => T,
-                                             level: String = "OFF"): T = {
+  def setLoggerDuring[T](clazzes: Class[_]*)(fn: => T, level: String = "OFF"): T = {
     val logger_oldLevels = clazzes.map { clazz =>
       val logger = org.apache.log4j.Logger.getLogger(clazz)
       val oldLevel = logger.getLevel
@@ -218,8 +214,7 @@ class TestHelper() {
     }
   }
 
-  def assureKryoSerializer(sc: SparkContext,
-                           rigorous: Boolean = false): Unit = {
+  def assureKryoSerializer(sc: SparkContext, rigorous: Boolean = false): Unit = {
     val ser = SparkEnv.get.serializer
     require(ser.isInstanceOf[KryoSerializer])
 
@@ -240,9 +235,7 @@ class TestHelper() {
             "should be triggered by KryoException, but the message doesn't indicate that:\n" + ee.getMessage
           )
         case e: Throwable =>
-          throw new AssertionError(
-            s"Expecting SparkException, but ${e.getClass.getSimpleName} was thrown",
-            e)
+          throw new AssertionError(s"Expecting SparkException, but ${e.getClass.getSimpleName} was thrown", e)
       }
     }
   }
@@ -255,12 +248,9 @@ class TestHelper() {
     trial match {
       case Failure(e: EE) =>
       case Failure(e) =>
-        throw new AssertionError(
-          s"Expecting $expectedErrorName, but get ${e.getClass.getSimpleName}",
-          e)
+        throw new AssertionError(s"Expecting $expectedErrorName, but get ${e.getClass.getSimpleName}", e)
       case Success(n) =>
-        throw new AssertionError(
-          s"expecting $expectedErrorName, but no exception was thrown")
+        throw new AssertionError(s"expecting $expectedErrorName, but no exception was thrown")
     }
   }
 }

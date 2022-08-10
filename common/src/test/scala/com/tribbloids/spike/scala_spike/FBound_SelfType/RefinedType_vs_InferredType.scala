@@ -31,7 +31,10 @@ object RefinedType_vs_InferredType {
 
   trait TTagInfo {
 
-    def inferredTTag[E >: this.type](implicit ev: TypeTag[E]): TypeTag[E] = implicitly[TypeTag[E]]
+    def inferredTTag[E >: this.type](
+        implicit
+        ev: TypeTag[E]
+    ): TypeTag[E] = implicitly[TypeTag[E]]
 
     def refinedSuperTTag: TypeTag[this.type] = implicitly[TypeTag[this.type]]
   }

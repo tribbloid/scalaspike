@@ -14,7 +14,10 @@ class HListSuite extends BaseSpec {
     println(hh)
   }
 
-  def getHList[P <: Product, F, L <: HList](p: P)(implicit gen: Generic.Aux[P, L]): L = {
+  def getHList[P <: Product, F, L <: HList](p: P)(
+      implicit
+      gen: Generic.Aux[P, L]
+  ): L = {
     gen.to(p)
   }
 

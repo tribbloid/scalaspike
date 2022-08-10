@@ -2,7 +2,6 @@ package lectures.part1as
 
 import scala.annotation.tailrec
 
-
 /**
   * Created by Daniel.
   */
@@ -63,14 +62,15 @@ object Recap extends App {
 
   // exceptions and try/catch/finally
 
-  val throwsException = throw new RuntimeException  // Nothing
-  val aPotentialFailure = try {
-    throw new RuntimeException
-  } catch {
-    case e: Exception => "I caught an exception"
-  } finally {
-    println("some logs")
-  }
+  val throwsException = throw new RuntimeException // Nothing
+  val aPotentialFailure =
+    try {
+      throw new RuntimeException
+    } catch {
+      case e: Exception => "I caught an exception"
+    } finally {
+      println("some logs")
+    }
 
   // packaging and imports
 
@@ -82,12 +82,12 @@ object Recap extends App {
   incrementer(1)
 
   val anonymousIncrementer = (x: Int) => x + 1
-  List(1,2,3).map(anonymousIncrementer) // HOF
+  List(1, 2, 3).map(anonymousIncrementer) // HOF
   // map, flatMap, filter
 
   // for-comprehension
   val pairs = for {
-    num <- List(1,2,3) // if condition
+    num <- List(1, 2, 3) // if condition
     char <- List('a', 'b', 'c')
   } yield num + "-" + char
 

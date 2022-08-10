@@ -4,7 +4,10 @@ import shapeless.Generic
 
 object InferGeneric {
 
-  class WithGeneric[T](implicit ev: Generic[T])
+  class WithGeneric[T](
+      implicit
+      ev: Generic[T]
+  )
 
   case class Impl() {}
 

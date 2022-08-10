@@ -8,7 +8,10 @@ object AsBinaryGeneric {
 
     def v: A
 
-    def assertInt[B](implicit ev: A <:< Int): Unit = {}
+    def assertInt[B](
+        implicit
+        ev: A <:< Int
+    ): Unit = {}
   }
 
   object TakeInt extends TakeAny[Int] {

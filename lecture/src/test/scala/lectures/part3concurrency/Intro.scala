@@ -117,7 +117,6 @@ object Intro extends App {
     *     Thread1 -> thread2 -> thread3 -> ...
     *     println("hello from thread #3")
     *   in REVERSE ORDER
-    *
     */
   def inceptionThreads(maxThreads: Int, i: Int = 1): Thread =
     new Thread(() => {

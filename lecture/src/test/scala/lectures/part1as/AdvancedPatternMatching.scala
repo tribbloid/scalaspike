@@ -8,7 +8,7 @@ object AdvancedPatternMatching extends App {
   val numbers = List(1)
   val description = numbers match {
     case head :: Nil => println(s"the only element is $head.")
-    case _           =>
+    case _ =>
   }
 
   /*
@@ -58,8 +58,8 @@ object AdvancedPatternMatching extends App {
   val n: Int = 8
   val mathProperty = n match {
     case singleDigit() => "single digit"
-    case even()        => "an even number"
-    case _             => "no property"
+    case even() => "an even number"
+    case _ => "no property"
   }
 
   println(mathProperty)
@@ -93,7 +93,7 @@ object AdvancedPatternMatching extends App {
   val myList: MyList[Int] = Cons(1, Cons(2, Cons(3, Empty)))
   val decomposed = myList match {
     case MyList(1, 2, _*) => "starting with 1, 2"
-    case _                => "something else"
+    case _ => "something else"
   }
 
   println(decomposed)
@@ -115,7 +115,7 @@ object AdvancedPatternMatching extends App {
 
   println(bob match {
     case PersonWrapper(n) => s"This person's name is $n"
-    case _                => "An alien"
+    case _ => "An alien"
   })
 
 }

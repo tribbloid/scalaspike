@@ -11,12 +11,18 @@ class ViewClass extends BaseSpec {
       def print1(): Unit = println(v)
     }
 
-    implicit class Thing2[T](v: T)(implicit bound: T => Thing1) {
+    implicit class Thing2[T](v: T)(
+        implicit
+        bound: T => Thing1
+    ) {
 
       def print2(): Unit = v.print1()
     }
 
-    implicit class Thing3[TT](v: TT)(implicit bound: TT => Thing2[_]) {
+    implicit class Thing3[TT](v: TT)(
+        implicit
+        bound: TT => Thing2[_]
+    ) {
 
       def print3(): Unit = v.print2()
     }
@@ -47,7 +53,8 @@ object ViewClass {
     implicit class Reify[A1, P](
         self: Vector[A1]
     )(
-        implicit prove: A1 ~~> P
+        implicit
+        prove: A1 ~~> P
     ) {
 
       def dim: Int = {

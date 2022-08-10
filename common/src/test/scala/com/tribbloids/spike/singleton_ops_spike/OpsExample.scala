@@ -14,13 +14,22 @@ class OpsExample extends BaseSpec {
 
     def nSize[N] = new Vec[N * L]
 
-    def getLength(implicit length: SafeInt[L]): Int = length
+    def getLength(
+        implicit
+        length: SafeInt[L]
+    ): Int = length
   }
 
   object Vec {
-    def apply[L]()(implicit check: Require[L > W.`0`.T]): Vec[L] = new Vec[L]()
+    def apply[L]()(
+        implicit
+        check: Require[L > W.`0`.T]
+    ): Vec[L] = new Vec[L]()
 
-    def dot_*[L1, L2](v1: Vec[L1], v2: Vec[L2])(implicit ev: Require[L1 == L2]): Unit = {}
+    def dot_*[L1, L2](v1: Vec[L1], v2: Vec[L2])(
+        implicit
+        ev: Require[L1 == L2]
+    ): Unit = {}
   }
 
   it("simple example") {

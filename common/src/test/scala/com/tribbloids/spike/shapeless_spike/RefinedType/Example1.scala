@@ -25,7 +25,8 @@ object Example1 {
   class ComplexVector[D <: Lt[Int]](
       val vs: List[(Double, Double)]
   )(
-      implicit ev: Aux[D]
+      implicit
+      ev: Aux[D]
   ) {
 
     {
@@ -34,7 +35,8 @@ object Example1 {
     }
 
     def +(v2: ComplexVector[D])(
-        implicit ev2: D <:< two.type
+        implicit
+        ev2: D <:< two.type
     ): ComplexVector[D] = {
       val newVs = this.vs.zip(v2.vs).map {
         case (t1, t2) =>

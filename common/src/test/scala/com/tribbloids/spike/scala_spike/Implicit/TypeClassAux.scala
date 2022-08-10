@@ -30,7 +30,10 @@ class TypeClassAux extends BaseSpec {
 
     class TypeClass[B]
 
-    def summon[B](b: B)(implicit ev: TypeClass[B]): TypeClass[B] = ev
+    def summon[B](b: B)(
+        implicit
+        ev: TypeClass[B]
+    ): TypeClass[B] = ev
   }
 
   object T1 extends TypeClasses {

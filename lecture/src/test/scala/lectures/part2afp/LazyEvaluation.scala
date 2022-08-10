@@ -63,9 +63,9 @@ object LazyEvaluation extends App {
 
   // for-comprehensions use withFilter with guards
   for {
-    a <- List(1,2,3) if a % 2 == 0 // use lazy vals!
+    a <- List(1, 2, 3) if a % 2 == 0 // use lazy vals!
   } yield a + 1
-  List(1,2,3).withFilter(_ % 2 == 0).map(_ + 1) // List[Int]
+  List(1, 2, 3).withFilter(_ % 2 == 0).map(_ + 1) // List[Int]
 
   /*
     Exercise: implement a lazily evaluated, singly linked STREAM of elements.
@@ -80,7 +80,7 @@ object LazyEvaluation extends App {
     def head: A
     def tail: MyStream[A]
 
-    def #::[B >: A](element: B): MyStream[B]  // prepend operator
+    def #::[B >: A](element: B): MyStream[B] // prepend operator
     def ++[B >: A](anotherStream: MyStream[B]): MyStream[B] // concatenate two streams
 
     def foreach(f: A => Unit): Unit

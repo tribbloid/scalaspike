@@ -8,7 +8,7 @@ object OrganizingImplicits extends App {
   implicit def reverseOrdering: Ordering[Int] = Ordering.fromLessThan(_ > _)
 //  implicit val normalOrdering: Ordering[Int] = Ordering.fromLessThan(_ < _)
 
-  println(List(1,4,5,3,2).sorted)
+  println(List(1, 4, 5, 3, 2).sorted)
 
   // scala.Predef
 
@@ -66,7 +66,8 @@ object OrganizingImplicits extends App {
    */
   case class Purchase(nUnits: Int, unitPrice: Double)
   object Purchase {
-    implicit val totalPriceOrdering: Ordering[Purchase] = Ordering.fromLessThan((a,b) => a.nUnits * a.unitPrice < b.nUnits * b.unitPrice)
+    implicit val totalPriceOrdering: Ordering[Purchase] =
+      Ordering.fromLessThan((a, b) => a.nUnits * a.unitPrice < b.nUnits * b.unitPrice)
   }
 
   object UnitCountOrdering {
@@ -76,6 +77,5 @@ object OrganizingImplicits extends App {
   object UnitPriceOrdering {
     implicit val unitPriceOrdering: Ordering[Purchase] = Ordering.fromLessThan(_.unitPrice < _.unitPrice)
   }
-
 
 }

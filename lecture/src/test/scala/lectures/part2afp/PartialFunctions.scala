@@ -15,11 +15,12 @@ object PartialFunctions extends App {
 
   class FunctionNotApplicableException extends RuntimeException
 
-  val aNicerFussyFunction = (x: Int) => x match {
-    case 1 => 42
-    case 2 => 56
-    case 5 => 999
-  }
+  val aNicerFussyFunction = (x: Int) =>
+    x match {
+      case 1 => 42
+      case 2 => 56
+      case 5 => 999
+    }
   //  {1,2,5} => Int
 
   val aPartialFunction: PartialFunction[Int, Int] = {
@@ -53,7 +54,7 @@ object PartialFunctions extends App {
   }
 
   // HOFs accept partial functions as well
-  val aMappedList = List(1,2,3).map {
+  val aMappedList = List(1, 2, 3).map {
     case 1 => 42
     case 2 => 78
     case 3 => 1000
@@ -69,7 +70,7 @@ object PartialFunctions extends App {
     *
     * 1 - construct a PF instance yourself (anonymous class)
     * 2 - dumb chatbot as a PF
-  */
+    */
 
   val aManualFussyFunction = new PartialFunction[Int, Int] {
     override def apply(x: Int): Int = x match {

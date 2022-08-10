@@ -13,6 +13,6 @@ object Chained {
   // TODO: spike is incomplete!
   class Sub1 extends Super {
     override type A = String
-    override implicit val ev: ClassTag[String] = implicitly[ClassTag[String]]
+    implicit override val ev: ClassTag[String] = implicitly[ClassTag[String]]
   }
 }

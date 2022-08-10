@@ -32,8 +32,7 @@ class StreamingRepartition extends AnyFunSpec {
           ii
         }
 
-      mapped2.foreach { _ =>
-        }
+      mapped2.foreach { _ => }
     }
 
     it("stream version") {
@@ -64,8 +63,7 @@ class StreamingRepartition extends AnyFunSpec {
           ii
         }
 
-      mapped2.foreach { _ =>
-        }
+      mapped2.foreach { _ => }
 
     }
 

@@ -47,8 +47,8 @@ object Reflection extends App {
   // type erasure
 
   // pp #1: differentiate types at runtime
-  val numbers = List(1,2,3)
-  numbers match  {
+  val numbers = List(1, 2, 3)
+  numbers match {
     case listOfStrings: List[String] => println("list of strings")
     case listOfNumbers: List[Int] => println("list of numbers")
   }
@@ -69,16 +69,23 @@ object Reflection extends App {
   class MyMap[K, V]
 
   // 2 - pass type tags as implicit parameters
-  def getTypeArguments[T](value: T)(implicit typeTag: TypeTag[T]) = typeTag.tpe match {
+  def getTypeArguments[T](value: T)(
+      implicit
+      typeTag: TypeTag[T]
+  ) = typeTag.tpe match {
     case TypeRef(_, _, typeArguments) => typeArguments
     case _ => List()
   }
 
   val myMap = new MyMap[Int, String]
-  val typeArgs = getTypeArguments(myMap)//(typeTag: TypeTag[MyMap[Int,String]])
+  val typeArgs = getTypeArguments(myMap) //(typeTag: TypeTag[MyMap[Int,String]])
   println(typeArgs)
 
-  def isSubtype[A, B](implicit ttagA: TypeTag[A], ttagB: TypeTag[B]): Boolean = {
+  def isSubtype[A, B](
+      implicit
+      ttagA: TypeTag[A],
+      ttagB: TypeTag[B]
+  ): Boolean = {
     ttagA.tpe <:< ttagB.tpe
   }
 
@@ -87,7 +94,6 @@ object Reflection extends App {
   println(isSubtype[Dog, Animal])
 
   // I have an instance
-
 
   // 3 - method symbol
   val anotherMethodSymbol = typeTag[Person].tpe.decl(ru.TermName(methodName)).asMethod

@@ -10,7 +10,10 @@ object DelayedInferClassTag {
 
     type TT <: Any
 
-    def ctg(implicit tag: ClassTag[TT]): ClassTag[TT] = implicitly[ClassTag[TT]]
+    def ctg(
+        implicit
+        tag: ClassTag[TT]
+    ): ClassTag[TT] = implicitly[ClassTag[TT]]
 
     val fakeCtg: ClassTag[None.type] = implicitly[ClassTag[None.type]]
 
@@ -18,17 +21,17 @@ object DelayedInferClassTag {
 
   class Sub1 extends SS {
 
-    override final type TT = Int
+    final override type TT = Int
   }
 
   class Sub2 extends SS {
 
-    override final type TT = Double
+    final override type TT = Double
   }
 
   class Sub3 extends SS {
 
-    override final type TT = String
+    final override type TT = String
   }
 
 }

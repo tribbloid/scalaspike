@@ -63,7 +63,10 @@ class InferTypeTag extends BaseSpec {
     val w1: Witness.Lt[Int] = Witness(1)
     val v1 = w1.value
 
-    def infer[T](v: T)(implicit ev: WeakTypeTag[T]) = ev
+    def infer[T](v: T)(
+        implicit
+        ev: WeakTypeTag[T]
+    ) = ev
 
     val tag = infer(v1)
 

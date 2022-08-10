@@ -30,11 +30,12 @@ object DatasetHelper {
 
   def checkpointImpl[T](v: Dataset[T], eager: Boolean = true): Dataset[T] = {
     v.persist(StorageLevel.DISK_ONLY)
-    val result = try {
-      v.checkpoint(eager)
-    } finally {
-      v.unpersist()
-    }
+    val result =
+      try {
+        v.checkpoint(eager)
+      } finally {
+        v.unpersist()
+      }
     result
   }
 }

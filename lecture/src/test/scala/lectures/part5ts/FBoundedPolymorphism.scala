@@ -31,7 +31,6 @@ object FBoundedPolymorphism extends App {
 //    override def breed: List[Cat] = ??? // List[Dog] !!
 //  }
 
-
   // Solution 2 - FBP
 
 //  trait Animal[A <: Animal[A]] { // recursive type: F-Bounded Polymorphism
@@ -141,7 +140,10 @@ object FBoundedPolymorphism extends App {
   }
 
   implicit class AnimalOps[A](animal: A) {
-    def breed(implicit animalTypeClassInstance: Animal[A]): List[A] =
+    def breed(
+        implicit
+        animalTypeClassInstance: Animal[A]
+    ): List[A] =
       animalTypeClassInstance.breed(animal)
   }
 

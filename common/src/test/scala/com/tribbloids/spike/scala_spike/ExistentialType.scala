@@ -9,10 +9,12 @@ import ExistentialType._
 class ExistentialType {
 
   trait LocalBuilder[D <: Domain]
-      extends Builder[D,
-                      G forSome {
-                        type G <: LocalGraph[D]
-                      }]
+      extends Builder[
+        D,
+        G forSome {
+          type G <: LocalGraph[D]
+        }
+      ]
 
   object BuilderImpl extends LocalBuilder[MLDomain] {
 

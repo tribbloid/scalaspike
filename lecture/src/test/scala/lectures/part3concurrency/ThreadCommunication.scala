@@ -30,11 +30,11 @@ object ThreadCommunication extends App {
 
     val consumer = new Thread(() => {
       println("[consumer] waiting...")
-      while(container.isEmpty) {
+      while (container.isEmpty) {
         println("[consumer] actively waiting...")
       }
 
-      println("[consumer] I have consumed " +  container.get)
+      println("[consumer] I have consumed " + container.get)
     })
 
     val producer = new Thread(() => {
@@ -94,7 +94,7 @@ object ThreadCommunication extends App {
     val consumer = new Thread(() => {
       val random = new Random()
 
-      while(true) {
+      while (true) {
         buffer.synchronized {
           if (buffer.isEmpty) {
             println("[consumer] buffer empty, waiting...")
@@ -117,7 +117,7 @@ object ThreadCommunication extends App {
       val random = new Random()
       var i = 0
 
-      while(true) {
+      while (true) {
         buffer.synchronized {
           if (buffer.size == capacity) {
             println("[producer] buffer is full, waiting...")
@@ -151,12 +151,11 @@ object ThreadCommunication extends App {
          producer2 -----^     ^---- consumer2
    */
 
-
   class Consumer(id: Int, buffer: mutable.Queue[Int]) extends Thread {
     override def run(): Unit = {
       val random = new Random()
 
-      while(true) {
+      while (true) {
         buffer.synchronized {
           /*
             producer produces value, two Cons are waiting
@@ -186,7 +185,7 @@ object ThreadCommunication extends App {
       val random = new Random()
       var i = 0
 
-      while(true) {
+      while (true) {
         buffer.synchronized {
           while (buffer.size == capacity) {
             println(s"[producer $id] buffer is full, waiting...")
@@ -228,13 +227,15 @@ object ThreadCommunication extends App {
   def testNotifyAll(): Unit = {
     val bell = new Object
 
-    (1 to 10).foreach(i => new Thread(() => {
-      bell.synchronized {
-        println(s"[thread $i] waiting...")
-        bell.wait()
-        println(s"[thread $i] hooray!")
-      }
-    }).start())
+    (1 to 10).foreach(i =>
+      new Thread(() => {
+        bell.synchronized {
+          println(s"[thread $i] waiting...")
+          bell.wait()
+          println(s"[thread $i] hooray!")
+        }
+      }).start()
+    )
 
     new Thread(() => {
       Thread.sleep(2000)

@@ -71,7 +71,7 @@ object PimpMyLibrary extends App {
   println("John".encrypt(2))
 
   3.times(() => println("Scala Rocks!"))
-  println(4 * List(1,2))
+  println(4 * List(1, 2))
 
   // "3" / 4
   implicit def stringToInt(string: String): Int = Integer.valueOf(string)
@@ -79,7 +79,8 @@ object PimpMyLibrary extends App {
 
   // equivalent: implicit class RichAltInt(value: Int)
   class RichAltInt(value: Int)
-  implicit def enrich(value: Int): RichAltInt = new RichAltInt(value)
+  implicit
+  def enrich(value: Int): RichAltInt = new RichAltInt(value)
 
   // danger zone
   implicit def intToBoolean(i: Int): Boolean = i == 1

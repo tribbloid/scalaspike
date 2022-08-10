@@ -44,7 +44,6 @@ class CodeGenSpike extends BaseSpec {
 
   describe("run-time :") {
 
-
     it("Janino") {
       val cc = Janino()
       cc.compileOnce()

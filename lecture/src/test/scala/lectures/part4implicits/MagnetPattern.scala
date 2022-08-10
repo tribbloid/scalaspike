@@ -14,13 +14,12 @@ object MagnetPattern extends App {
   class P2PResponse
   class Serializer[T]
 
-
   trait Actor {
     def receive(statusCode: Int): Int
     def receive(request: P2PRequest): Int
     def receive(response: P2PResponse): Int
-    def receive[T : Serializer](message: T): Int
-    def receive[T : Serializer](message: T, statusCode: Int): Int
+    def receive[T: Serializer](message: T): Int
+    def receive[T: Serializer](message: T, statusCode: Int): Int
     def receive(future: Future[P2PRequest]): Int
     //    def receive(future: Future[P2PResponse]): Int
     // lots of overloads
@@ -121,7 +120,7 @@ object MagnetPattern extends App {
     // other overloads
   }
 
-  trait HandleMagnet  {
+  trait HandleMagnet {
     def apply(): Unit
   }
 
