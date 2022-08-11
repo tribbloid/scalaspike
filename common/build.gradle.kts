@@ -10,7 +10,8 @@ dependencies {
     api(project(":graph-commons"))
     testImplementation(testFixtures(project(":graph-commons")))
 
-    implementation("eu.timepit:singleton-ops_${vs.scalaBinaryV}:0.5.2")
+//    api(("com.chuusai:shapeless_${vs.scalaBinaryV}:2.3.9"))
+    api("eu.timepit:singleton-ops_${vs.scalaBinaryV}:0.5.2")
 
     implementation("eu.timepit:refined_${vs.scalaBinaryV}:0.10.1")
 

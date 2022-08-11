@@ -35,8 +35,8 @@ class OpsExample extends BaseSpec {
   it("simple example") {
 
     val v1 = Vec.apply[W.`4`.T + W.`1`.T]().doubleSize
-    val v2 = Vec[W.`10`.T]
-    val v3 = Vec[W.`9`.T]
+    val v2 = Vec[W.`10`.T]()
+    val v3 = Vec[W.`9`.T]()
 
     Vec.dot_*(v1, v2)
 
@@ -57,7 +57,7 @@ class OpsExample extends BaseSpec {
 
     val v1 = Vec.apply[Nat._3]()
     val v2 = Vec.apply[W.`3`.T]()
-    val v3 = Vec[W.`9`.T]
+    val v3 = Vec[W.`9`.T]()
 
     Vec.dot_*(v1, v2)
 

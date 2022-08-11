@@ -6,20 +6,31 @@ import scala.annotation.StaticAnnotation
 
 class Static extends AnyFunSpec {
 
-  it("can read member") {
+  it("cannot read by java reflection") {
 
-    val clazz = classOf[Static.Annotated]
+    val clazz = classOf[Static.Common]
 
     val annotations = clazz.getAnnotations
 
+    // empty, this can only get Java annotations, scala ones serves a different purpose
     annotations.foreach(println)
   }
 }
 
 object Static {
 
-  class Example(a: Int = 1) extends StaticAnnotation
+  case class SA1(a: Int = 1) extends StaticAnnotation
 
-  @Example(a = 1)
-  class Annotated extends Serializable
+  case class SA2(a: Int = 2) extends StaticAnnotation
+
+  @SA1()
+  class Common(
+      @SA2() a: Int = 1
+  ) extends Serializable
+
+  @SA1()
+  case class Prod(
+      @SA2() a: Int = 1
+  ) extends Serializable
+
 }

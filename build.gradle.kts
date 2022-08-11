@@ -97,9 +97,9 @@ allprojects {
                                     "-Xlint:poly-implicit-overload",
                                     "-Xlint:option-implicit",
 
-                                    "-Xlog-implicits",
-                                    "-Xlog-implicit-conversions",
-                                    "-Yissue-debug"
+//                                    "-Xlog-implicits",
+//                                    "-Xlog-implicit-conversions",
+//                                    "-Yissue-debug"
 
                                     // the following only works on scala 2.13
 //                        ,
