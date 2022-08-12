@@ -57,6 +57,12 @@ allprojects {
         testImplementation("org.scalatest:scalatest_${vs.scalaBinaryV}:${vs.scalaTestV}")
 //        testRuntimeOnly("org.pegdown:pegdown:1.4.2") // required by maiflai scalatest
 
+        if (vs.splainV.isNotEmpty()) {
+            val splainD = "io.tryp:splain_${vs.scalaV}:${vs.splainV}"
+            logger.warn("Using " + splainD)
+
+            scalaCompilerPlugins(splainD)
+        }
     }
 
     // see https://stackoverflow.com/questions/44266687/how-to-print-out-all-dependencies-in-a-gradle-multi-project-build
@@ -87,25 +93,26 @@ allprojects {
                     val existing: MutableList<String> = additionalParameters ?: mutableListOf()
 
                     additionalParameters = existing.plus(
-                            listOf(
-                                    "-encoding", "utf8",
-                                    "-unchecked",
-                                    "-deprecation",
-                                    "-feature",
+                        listOf(
+                            "-encoding", "utf8",
+                            "-unchecked",
+                            "-deprecation",
+                            "-feature",
 //                            "-Xfatal-warnings",
 
-                                    "-Xlint:poly-implicit-overload",
-                                    "-Xlint:option-implicit",
+                            "-Xlint:poly-implicit-overload",
+                            "-Xlint:option-implicit",
 
-//                                    "-Xlog-implicits",
+                            "-Xlog-implicits",
 //                                    "-Xlog-implicit-conversions",
+
 //                                    "-Yissue-debug"
 
-                                    // the following only works on scala 2.13
+                            // the following only works on scala 2.13
 //                        ,
 //                        "-Xlint:implicit-not-found",
 //                        "-Xlint:implicit-recursion"
-                            )
+                        )
                     )
 
                     forkOptions.apply {
@@ -115,7 +122,7 @@ allprojects {
 
                         // this may be over the top but the test code in macro & core frequently run implicit search on church encoded Nat type
                         jvmArgs = listOf(
-                                "-Xss256m"
+                            "-Xss256m"
                         )
                     }
                 }
