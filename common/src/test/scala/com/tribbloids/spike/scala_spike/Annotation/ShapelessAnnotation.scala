@@ -28,7 +28,7 @@ class ShapelessAnnotation extends BaseSpec {
     println(Annotations.apply[SA2, Prod].apply())
   }
 
-  it("get tuples") {
+  it("summon") {
 
     val refl = new FieldAnnotations[SA2, Prod]()
 
