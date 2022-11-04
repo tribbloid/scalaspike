@@ -8,7 +8,7 @@ dependencies {
 
 //    implementation("org.scala-lang.virtualized:lms-clean_${vs.scalaBinaryV}:0.0.1-SNAPSHOT")
 
-//    implementation("org.typelevel:cats-core_${vs.scalaBinaryV}:2.2.0")
+    implementation("org.typelevel:cats-effect_${vs.scalaBinaryV}:2.5.5")
 
 //    scalaCompilerPlugins("org.scala-lang.plugins:scala-continuations-plugin_${vs.scalaBinaryV}.2:1.0.3")
 
