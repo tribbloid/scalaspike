@@ -17,5 +17,5 @@ dependencies {
 
     implementation("eu.timepit:refined_${vs.scalaBinaryV}:0.10.1")
 
-    implementation("org.typelevel:cats-core_${vs.scalaBinaryV}:2.8.0")
+    implementation("org.typelevel:cats-effect_${vs.scalaBinaryV}:2.5.5")
 }
