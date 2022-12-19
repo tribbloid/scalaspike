@@ -1,6 +1,6 @@
 package com.tribbloids.spike.shapeless_spike
 
-import ai.acyclic.graph.commons.viz.TypeViz.TypeTag
+import ai.acyclic.prover.commons.viz.TypeViz.TypeTag
 import shapeless.ops.record.Values
 
 object RecordProblem2 {

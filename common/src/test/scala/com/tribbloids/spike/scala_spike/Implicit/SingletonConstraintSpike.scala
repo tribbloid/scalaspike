@@ -1,6 +1,6 @@
 package com.tribbloids.spike.scala_spike.Implicit
 
-import ai.acyclic.graph.commons.testlib.BaseSpec
+import ai.acyclic.prover.commons.testlib.BaseSpec
 import shapeless.Witness
 
 class SingletonConstraintSpike extends BaseSpec {

@@ -1,6 +1,6 @@
 package com.tribbloids.spike.cats_spike
 
-import ai.acyclic.graph.commons.testlib.BaseSpec
+import ai.acyclic.prover.commons.testlib.BaseSpec
 
 import cats.Eval
 import cats.implicits._

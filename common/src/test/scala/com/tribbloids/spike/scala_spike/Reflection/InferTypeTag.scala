@@ -1,7 +1,7 @@
 package com.tribbloids.spike.scala_spike.Reflection
 
-import ai.acyclic.graph.commons.testlib.BaseSpec
-import ai.acyclic.graph.commons.viz.TypeViz.{TypeTag, WeakTypeTag}
+import ai.acyclic.prover.commons.testlib.BaseSpec
+import ai.acyclic.prover.commons.viz.TypeViz.{TypeTag, WeakTypeTag}
 import shapeless.Witness
 
 import scala.reflect.ClassTag

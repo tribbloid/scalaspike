@@ -1,6 +1,6 @@
 package com.tribbloids.spike.scala_spike.Annotation
 
-import ai.acyclic.graph.commons.testlib.BaseSpec
+import ai.acyclic.prover.commons.testlib.BaseSpec
 import com.tribbloids.spike.scala_spike.Annotation.ShapelessAnnotation.FieldAnnotations
 import shapeless.ops.hlist.Zip
 import shapeless.ops.record.Keys

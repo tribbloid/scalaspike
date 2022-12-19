@@ -1,8 +1,8 @@
 package com.tribbloids.spike.scala_spike.PathDependentType
 
-import ai.acyclic.graph.commons.debug.print_@
-import ai.acyclic.graph.commons.testlib.BaseSpec
-import ai.acyclic.graph.commons.viz.TypeViz
+import ai.acyclic.prover.commons.debug.print_@
+import ai.acyclic.prover.commons.testlib.BaseSpec
+import ai.acyclic.prover.commons.viz.TypeViz
 
 import scala.language.existentials
 import scala.reflect.runtime.universe

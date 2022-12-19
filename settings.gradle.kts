@@ -1,7 +1,7 @@
 //val versions = gradle.rootProject.versions()
 
-include("graph-commons")
-project(":graph-commons").projectDir = file("graph-commons/core")
+include("prover-commons")
+project(":prover-commons").projectDir = file("prover-commons/core")
 
 include(
         ":common",

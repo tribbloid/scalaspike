@@ -158,6 +158,7 @@ allprojects {
 
 
         module {
+            excludeDirs.add(file("prover-commons"))
 
             // apache spark
             excludeDirs.add(file("warehouse"))

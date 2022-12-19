@@ -1,6 +1,6 @@
 package com.tribbloids.spike.scala_spike.AbstractType
 
-import ai.acyclic.graph.commons.testlib.BaseSpec
+import ai.acyclic.prover.commons.testlib.BaseSpec
 
 class ProofOfSubType_bug extends BaseSpec {
 

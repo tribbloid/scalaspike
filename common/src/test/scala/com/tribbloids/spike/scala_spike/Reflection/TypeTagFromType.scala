@@ -6,7 +6,7 @@ import java.io.{ByteArrayInputStream, ByteArrayOutputStream, ObjectInputStream, 
 
 class TypeTagFromType extends AnyFunSpec {
 
-  import ai.acyclic.graph.commons.viz.TypeViz.universe._
+  import ai.acyclic.prover.commons.viz.TypeViz.universe._
 
   it("create TypeTag from reflection") {
 
@@ -65,7 +65,7 @@ class TypeTagFromType extends AnyFunSpec {
 
 object TypeUtils {
 
-  import ai.acyclic.graph.commons.viz.TypeViz.universe._
+  import ai.acyclic.prover.commons.viz.TypeViz.universe._
 
   def createTypeTag_fast[T](
       tpe: Type,

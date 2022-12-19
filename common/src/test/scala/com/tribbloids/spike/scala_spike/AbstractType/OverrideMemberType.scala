@@ -1,7 +1,7 @@
 package com.tribbloids.spike.scala_spike.AbstractType
 
-import ai.acyclic.graph.commons.testlib.BaseSpec
-import ai.acyclic.graph.commons.viz.TypeViz
+import ai.acyclic.prover.commons.testlib.BaseSpec
+import ai.acyclic.prover.commons.viz.TypeViz
 
 class OverrideMemberType extends BaseSpec {
 

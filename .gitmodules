@@ -1,6 +1,6 @@
-[submodule "graph-commons"]
-	path = graph-commons
-	url = https://github.com/tribbloid/graph-commons
 [submodule "lms-clean"]
 	path = lms-clean
 	url = https://github.com/TiarkRompf/lms-clean
+[submodule "prover-commons"]
+	path = prover-commons
+	url = https://github.com/tribbloid/prover-commons

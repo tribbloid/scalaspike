@@ -13,7 +13,7 @@ dependencies {
     // https://mvnrepository.com/artifact/janino/janino
     implementation("janino:janino:2.5.15")
 
-    testImplementation(testFixtures(project(":graph-commons")))
+    testImplementation(testFixtures(project(":prover-commons")))
     testImplementation("org.apache.logging.log4j:log4j-slf4j-impl:2.18.0")
 
     implementation(project(":common"))
