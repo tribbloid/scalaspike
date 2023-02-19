@@ -6,6 +6,7 @@ project(":prover-commons").projectDir = file("prover-commons/core")
 include(
         ":common",
         ":lecture",
+        "cats3",
         ":spark",
         ":meta"
 )

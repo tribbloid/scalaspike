@@ -12,7 +12,7 @@ dependencies {
     testImplementation("org.apache.spark:spark-yarn_${vv.scalaBinaryV}:${vv.sparkV}")
 
     implementation("org.apache.spark:spark-sql-kafka-0-10_${vv.scalaBinaryV}:${vv.sparkV}")
-    implementation("io.github.embeddedkafka:embedded-kafka-streams_${vv.scalaBinaryV}:3.2.1")
+    implementation("io.github.embeddedkafka:embedded-kafka-streams_${vv.scalaBinaryV}:3.3.2")
 
     implementation(project(":common"))
 }

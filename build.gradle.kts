@@ -4,10 +4,10 @@ plugins {
     scala
     idea
 
-    id("com.github.ben-manes.versions") version "0.42.0"
+    id("com.github.ben-manes.versions") version "0.44.0"
 }
 
-val jUnitV = "5.9.0"
+val jUnitV = "5.9.2"
 val jUnitPlatformV = "1.6.0" // TODO: useless
 
 allprojects {
@@ -27,17 +27,17 @@ allprojects {
     repositories {
         mavenLocal()
         mavenCentral()
-        jcenter()
+//        jcenter()
 //        maven("https://dl.bintray.com/kotlin/kotlin-dev")
     }
 
-    configurations.all {
-        resolutionStrategy.dependencySubstitution {
-            substitute(module("com.chuusai:shapeless_${vs.scalaBinaryV}")).apply {
-                with(module("com.chuusai:shapeless_${vs.scalaBinaryV}:2.3.3"))
-            }
-        }
-    }
+//    configurations.all {
+//        resolutionStrategy.dependencySubstitution {
+//            substitute(module("com.chuusai:shapeless_${vs.scalaBinaryV}")).apply {
+//                with(module("com.chuusai:shapeless_${vs.scalaBinaryV}:2.3.3"))
+//            }
+//        }
+//    }
 
     dependencies {
 
@@ -52,7 +52,7 @@ allprojects {
 //        testRuntimeOnly("org.junit.platform:junit-platform-launcher:$jUnitPlatformV")
 
         // TODO: alpha project, switch to mature solution once https://github.com/scalatest/scalatest/issues/1454 is solved
-        testRuntimeOnly("co.helmethair:scalatest-junit-runner:0.1.11")
+        testRuntimeOnly("co.helmethair:scalatest-junit-runner:0.2.0")
 
         testImplementation("org.scalatest:scalatest_${vs.scalaBinaryV}:${vs.scalaTestV}")
 //        testRuntimeOnly("org.pegdown:pegdown:1.4.2") // required by maiflai scalatest
