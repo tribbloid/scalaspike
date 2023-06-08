@@ -1,4 +1,4 @@
-val vv: Versions = versions()
+val vs: Versions = versions()
 
 
 //apply(plugin = "java")
@@ -6,13 +6,13 @@ val vv: Versions = versions()
 
 dependencies {
 
-    implementation("org.apache.spark:spark-sql_${vv.scalaBinaryV}:${vv.sparkV}")
-    implementation("org.apache.spark:spark-mllib_${vv.scalaBinaryV}:${vv.sparkV}")
+    implementation("org.apache.spark:spark-sql_${vs.scala.binaryV}:${vs.sparkV}")
+    implementation("org.apache.spark:spark-mllib_${vs.scala.binaryV}:${vs.sparkV}")
 
-    testImplementation("org.apache.spark:spark-yarn_${vv.scalaBinaryV}:${vv.sparkV}")
+    testImplementation("org.apache.spark:spark-yarn_${vs.scala.binaryV}:${vs.sparkV}")
 
-    implementation("org.apache.spark:spark-sql-kafka-0-10_${vv.scalaBinaryV}:${vv.sparkV}")
-    implementation("io.github.embeddedkafka:embedded-kafka-streams_${vv.scalaBinaryV}:3.3.2")
+    implementation("org.apache.spark:spark-sql-kafka-0-10_${vs.scala.binaryV}:${vs.sparkV}")
+    implementation("io.github.embeddedkafka:embedded-kafka-streams_${vs.scala.binaryV}:3.3.2")
 
     implementation(project(":common"))
 }

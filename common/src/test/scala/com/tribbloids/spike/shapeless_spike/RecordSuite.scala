@@ -1,8 +1,8 @@
 package com.tribbloids.spike.shapeless_spike
 
-import ai.acyclic.prover.commons.WideTyped
 import ai.acyclic.prover.commons.debug.print_@
 import ai.acyclic.prover.commons.testlib.BaseSpec
+import ai.acyclic.prover.commons.viz.WideTyped
 import shapeless.ops.record.Values
 
 class RecordSuite extends BaseSpec {

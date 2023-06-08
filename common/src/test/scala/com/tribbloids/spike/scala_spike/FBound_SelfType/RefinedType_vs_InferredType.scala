@@ -3,7 +3,7 @@ package com.tribbloids.spike.scala_spike.FBound_SelfType
 import ai.acyclic.prover.commons.debug.print_@
 import ai.acyclic.prover.commons.testlib.BaseSpec
 import ai.acyclic.prover.commons.viz.TypeViz
-import ai.acyclic.prover.commons.viz.TypeViz.TypeTag
+import ai.acyclic.prover.commons.meta2.Reflection.Runtime.TypeTag
 import com.tribbloids.spike.scala_spike.FBound_SelfType.RefinedType_vs_InferredType.{ParamTyped, Typed}
 
 class RefinedType_vs_InferredType extends BaseSpec {

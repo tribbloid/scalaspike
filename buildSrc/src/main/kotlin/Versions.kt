@@ -1,17 +1,21 @@
 import org.gradle.api.Project
 
-class Versions(self: Project) {
+class Versions(private val self: Project) {
 
-    val scalaV: String = self.properties.get("scalaVersion").toString()
+    inner class Scala {
+        val group: String = self.properties["scala.group"].toString()
 
-    protected val scalaVParts = scalaV.split('.')
+        val v: String = self.properties["scala.version"].toString()
+        protected val vParts: List<String> = v.split('.')
 
-    val scalaBinaryV: String = scalaVParts.subList(0, 2).joinToString(".")
-    val scalaMinorV: String = scalaVParts[2]
+        val binaryV: String = vParts.subList(0, 2).joinToString(".")
+        val minorV: String = vParts[2]
+    }
+    val scala = Scala()
 
-    val sparkV: String = self.properties.get("sparkVersion").toString()
+    val sparkV: String = self.properties.get("spark.version").toString()
 
-    val scalaTestV: String = "3.2.12"
+    val scalaTestV: String = "3.2.16"
 
-    val splainV: String = self.properties.get("splainVersion")?.toString() ?: ""
+    val splainV: String = self.properties.get("splain.version")?.toString() ?: ""
 }

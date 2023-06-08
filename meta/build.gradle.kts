@@ -6,14 +6,14 @@ val vs: Versions = versions()
 
 dependencies {
 
-//    implementation("org.scala-lang.virtualized:lms-clean_${vs.scalaBinaryV}:0.0.1-SNAPSHOT")
+//    implementation("org.scala-lang.virtualized:lms-clean_${vs.scala.binaryV}:0.0.1-SNAPSHOT")
 
-//    scalaCompilerPlugins("org.scala-lang.plugins:scala-continuations-plugin_${vs.scalaBinaryV}.2:1.0.3")
+//    scalaCompilerPlugins("org.scala-lang.plugins:scala-continuations-plugin_${vs.scala.binaryV}.2:1.0.3")
 
     // https://mvnrepository.com/artifact/janino/janino
     implementation("org.codehaus.janino:janino:3.1.9")
 
-    testImplementation(testFixtures(project(":prover-commons")))
+    testImplementation(testFixtures(project(":prover-commons:meta2")))
     testImplementation("org.apache.logging.log4j:log4j-slf4j-impl:2.19.0")
 
     implementation(project(":common"))

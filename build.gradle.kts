@@ -1,22 +1,26 @@
 plugins {
 //    base
     java
+    `java-library`
+    `java-test-fixtures`
+
     scala
+    id("io.github.cosmicsilence.scalafix") version "0.1.14"
+
     idea
 
     id("com.github.ben-manes.versions") version "0.44.0"
 }
 
-val jUnitV = "5.9.2"
-val jUnitPlatformV = "1.6.0" // TODO: useless
-
 allprojects {
 
-    apply(plugin = "base")
     apply(plugin = "java")
     apply(plugin = "java-library")
     apply(plugin = "java-test-fixtures")
+
     apply(plugin = "scala")
+    apply(plugin = "io.github.cosmicsilence.scalafix")
+
     apply(plugin = "idea")
 
     val vs = this.versions()
@@ -33,20 +37,24 @@ allprojects {
 
 //    configurations.all {
 //        resolutionStrategy.dependencySubstitution {
-//            substitute(module("com.chuusai:shapeless_${vs.scalaBinaryV}")).apply {
-//                with(module("com.chuusai:shapeless_${vs.scalaBinaryV}:2.3.3"))
+//            substitute(module("com.chuusai:shapeless_${vs.scala.binaryV}")).apply {
+//                with(module("com.chuusai:shapeless_${vs.scala.binaryV}:2.3.3"))
 //            }
 //        }
 //    }
 
     dependencies {
 
-        implementation("org.scala-lang:scala-compiler:${vs.scalaV}")
-        implementation("org.scala-lang:scala-library:${vs.scalaV}")
-        implementation("org.scala-lang:scala-reflect:${vs.scalaV}")
+        // see https://github.com/gradle/gradle/issues/13067
+        fun both(constraintNotation: Any) {
+            implementation(constraintNotation)
+            testFixturesApi(constraintNotation)
+        }
 
-//        testImplementation("junit:junit:4.12")
-        testImplementation("org.junit.jupiter:junit-jupiter:$jUnitV")
+        both("${vs.scala.group}:scala-library:${vs.scala.v}")
+
+        implementation("org.scala-lang:scala-compiler:${vs.scala.v}")
+        implementation("org.scala-lang:scala-reflect:${vs.scala.v}")
 
 //        testRuntimeOnly("org.junit.platform:junit-platform-engine:$jUnitPlatformV")
 //        testRuntimeOnly("org.junit.platform:junit-platform-launcher:$jUnitPlatformV")
@@ -54,11 +62,16 @@ allprojects {
         // TODO: alpha project, switch to mature solution once https://github.com/scalatest/scalatest/issues/1454 is solved
         testRuntimeOnly("co.helmethair:scalatest-junit-runner:0.2.0")
 
-        testImplementation("org.scalatest:scalatest_${vs.scalaBinaryV}:${vs.scalaTestV}")
+        testFixturesApi("org.scalatest:scalatest_${vs.scala.binaryV}:${vs.scalaTestV}")
+        // https://mvnrepository.com/artifact/org.scalatestplus/scalacheck-1-17
+        testImplementation("org.scalatestplus:scalacheck-1-17_2.13:${vs.scalaTestV}.0")
+
+        testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
+
 //        testRuntimeOnly("org.pegdown:pegdown:1.4.2") // required by maiflai scalatest
 
         if (vs.splainV.isNotEmpty()) {
-            val splainD = "io.tryp:splain_${vs.scalaV}:${vs.splainV}"
+            val splainD = "io.tryp:splain_${vs.scala.v}:${vs.splainV}"
             logger.warn("Using " + splainD)
 
             scalaCompilerPlugins(splainD)
@@ -151,26 +164,26 @@ allprojects {
             }
         }
     }
-
-    idea {
-
-        targetVersion = "2020"
-
-
-        module {
-            excludeDirs.add(file("prover-commons"))
-
-            // apache spark
-            excludeDirs.add(file("warehouse"))
-            excludeDirs.add(file("latex"))
-
-            // gradle log
-            excludeDirs.add(file("logs"))
-            excludeDirs.add(file("gradle"))
-
-            isDownloadJavadoc = true
-            isDownloadSources = true
-        }
-    }
 }
 
+
+idea {
+
+    targetVersion = "2020"
+
+
+    module {
+        excludeDirs.add(file("prover-commons"))
+
+        // apache spark
+        excludeDirs.add(file("warehouse"))
+        excludeDirs.add(file("latex"))
+
+        // gradle log
+        excludeDirs.add(file("logs"))
+        excludeDirs.add(file("gradle"))
+
+        isDownloadJavadoc = true
+        isDownloadSources = true
+    }
+}

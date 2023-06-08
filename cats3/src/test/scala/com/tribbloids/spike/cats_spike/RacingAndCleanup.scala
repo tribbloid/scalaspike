@@ -1,6 +1,6 @@
 package com.tribbloids.spike.cats_spike
 
-import cats.effect.IO
+import cats.effect.{IO, Resource}
 import cats.effect.unsafe.implicits.global
 
 import java.util.concurrent.TimeUnit
@@ -25,20 +25,17 @@ object RacingAndCleanup {
   }
 
   val e1: IO[Int] = repeat(
-    IO {
+    IO.delay {
       buffer += "1"
       println("1")
       1
     } <* IO.sleep(Duration(Random.nextInt(1000), "millis"))
-//      IO.sleep(Duration.create(Random.nextInt(1000), TimeUnit.MILLISECONDS))
   )
 
   val e2: IO[Int] = repeat(
     IO {
       buffer += "2"
       println("2")
-//      Thread.sleep(Random.nextInt(1000))
-//      IO.sleep(Duration.create(Random.nextInt(1000), TimeUnit.MILLISECONDS))
       2
     } <* IO.sleep(Duration(Random.nextInt(1000), "millis"))
   )

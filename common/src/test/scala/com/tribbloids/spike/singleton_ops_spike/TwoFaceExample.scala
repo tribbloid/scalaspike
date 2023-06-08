@@ -1,9 +1,8 @@
 package com.tribbloids.spike.singleton_ops_spike
 
-import ai.acyclic.prover.commons.WideTyped
 import ai.acyclic.prover.commons.debug.print_@
 import ai.acyclic.prover.commons.testlib.BaseSpec
-import ai.acyclic.prover.commons.viz.TypeViz
+import ai.acyclic.prover.commons.viz.{TypeViz, WideTyped}
 import shapeless.Witness
 import singleton.ops.{==, Require}
 import singleton.twoface.TwoFace
