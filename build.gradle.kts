@@ -46,12 +46,12 @@ allprojects {
     dependencies {
 
         // see https://github.com/gradle/gradle/issues/13067
-        fun both(constraintNotation: Any) {
-            implementation(constraintNotation)
-            testFixturesApi(constraintNotation)
+        fun both(notation: Any) {
+            implementation(notation)
+            testFixturesImplementation(notation)
         }
 
-        both("${vs.scala.group}:scala-library:${vs.scala.v}")
+        implementation("${vs.scala.group}:scala-library:${vs.scala.v}")
 
         implementation("org.scala-lang:scala-compiler:${vs.scala.v}")
         implementation("org.scala-lang:scala-reflect:${vs.scala.v}")
