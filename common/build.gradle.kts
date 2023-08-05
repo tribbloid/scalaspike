@@ -15,6 +15,6 @@ dependencies {
 
     api("io.circe:circe-generic-extras_${vs.scala.binaryV}:0.14.3")
 
-    implementation("eu.timepit:refined_${vs.scala.binaryV}:0.10.3")
+    implementation("eu.timepit:refined_${vs.scala.binaryV}:0.11.0")
 
 }

@@ -32,7 +32,7 @@ allprojects {
         mavenLocal()
         mavenCentral()
 //        jcenter()
-//        maven("https://dl.bintray.com/kotlin/kotlin-dev")
+        maven("https://dl.bintray.com/kotlin/kotlin-dev")
     }
 
 //    configurations.all {
@@ -164,6 +164,34 @@ allprojects {
             }
         }
     }
+
+    idea {
+
+        module {
+
+            excludeDirs = excludeDirs + files(
+
+                "target",
+                "out",
+                "build",
+
+                ".idea",
+                ".vscode",
+                ".bloop",
+                ".bsp",
+                ".metals",
+                "bin",
+
+                ".ammonite",
+
+                "logs",
+
+                )
+
+            isDownloadJavadoc = true
+            isDownloadSources = true
+        }
+    }
 }
 
 
@@ -182,8 +210,5 @@ idea {
         // gradle log
         excludeDirs.add(file("logs"))
         excludeDirs.add(file("gradle"))
-
-        isDownloadJavadoc = true
-        isDownloadSources = true
     }
 }

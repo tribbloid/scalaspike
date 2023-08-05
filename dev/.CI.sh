@@ -6,4 +6,8 @@ CRDIR="$(
 )"
 
 "${CRDIR}"/.update-submodules.sh && \
-"${CRDIR}"/CI-pipeline.sh "${@}"
+
+echo "[COMPILING]" && \
+"${CRDIR}"/make-all.sh "${@}" && \
+echo "[RUNNING TESTS]" && \
+"${CRDIR}"/test.sh "${@}"

@@ -11,7 +11,7 @@ dependencies {
 //    scalaCompilerPlugins("org.scala-lang.plugins:scala-continuations-plugin_${vs.scala.binaryV}.2:1.0.3")
 
     // https://mvnrepository.com/artifact/janino/janino
-    implementation("org.codehaus.janino:janino:3.1.9")
+    implementation("org.codehaus.janino:janino:3.1.10")
 
     testImplementation(testFixtures(project(":prover-commons:meta2")))
     testImplementation("org.apache.logging.log4j:log4j-slf4j-impl:2.19.0")
