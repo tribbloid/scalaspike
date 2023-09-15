@@ -36,7 +36,7 @@ object ExtractingTypeArg {
     //  val strEx = summon[ArgOf[StringVec]]
     //  implicitly[intEx.TT =:= Int] // disabled temporarily for not explaining type reduction
 
-    val x: String = ??? : strEx.TT
+//    val x: String = ??? : strEx.TT
   }
 
   object Case2 {
