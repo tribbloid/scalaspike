@@ -15,7 +15,6 @@ class OverrideMemberType extends BaseSpec {
         | !-+ com.tribbloids.spike.scala_spike.AbstractType.OverrideMemberType.Sub1
         |   !-+ com.tribbloids.spike.scala_spike.AbstractType.OverrideMemberType.Sup
         |     !-+ Object
-        |       !-- Any
         |""".stripMargin.trim
     )
 
@@ -24,8 +23,7 @@ class OverrideMemberType extends BaseSpec {
         |-+ com.tribbloids.spike.scala_spike.AbstractType.OverrideMemberType.Sub2.abc.type
         | !-+ com.tribbloids.spike.scala_spike.AbstractType.OverrideMemberType.Sub2
         |   !-+ com.tribbloids.spike.scala_spike.AbstractType.OverrideMemberType.Sup
-        |     !-+ Object
-        |       !-- Any
+        |     !-+ Objec
         |""".stripMargin.trim
     )
 
@@ -35,7 +33,6 @@ class OverrideMemberType extends BaseSpec {
         | !-+ com.tribbloids.spike.scala_spike.AbstractType.OverrideMemberType.Sub3
         |   !-+ com.tribbloids.spike.scala_spike.AbstractType.OverrideMemberType.Sup
         |     !-+ Object
-        |       !-- Any
         |""".stripMargin.trim
     )
 
@@ -44,7 +41,6 @@ class OverrideMemberType extends BaseSpec {
         |-+ com.tribbloids.spike.scala_spike.AbstractType.OverrideMemberType.Sub4.abc.type
         | !-+ com.tribbloids.spike.scala_spike.AbstractType.OverrideMemberType.Sup
         |   !-+ Object
-        |     !-- Any
         |""".stripMargin.trim
     )
   }

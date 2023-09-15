@@ -66,7 +66,7 @@ allprojects {
         // https://mvnrepository.com/artifact/org.scalatestplus/scalacheck-1-17
         testImplementation("org.scalatestplus:scalacheck-1-17_2.13:${vs.scalaTestV}.0")
 
-        testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
+        testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
 
 //        testRuntimeOnly("org.pegdown:pegdown:1.4.2") // required by maiflai scalatest
 
