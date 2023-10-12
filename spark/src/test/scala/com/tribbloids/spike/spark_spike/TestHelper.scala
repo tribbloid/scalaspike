@@ -1,11 +1,10 @@
 package com.tribbloids.spike.spark_spike
 
-import java.util.Properties
-
-import org.apache.spark.serializer.KryoSerializer
+import org.apache.spark.serializer.{KryoSerializer, Serializer}
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.{SparkConf, SparkContext, SparkEnv, SparkException}
 
+import java.util.Properties
 import scala.reflect.ClassTag
 import scala.util.{Failure, Success, Try}
 
@@ -35,13 +34,14 @@ class TestHelper() {
     Try {
       properties.load(ClassLoader.getSystemResourceAsStream(".rootkey.csv"))
     }.recoverWith {
-      case _: Throwable =>
-        Try {
-          properties.load(ClassLoader.getSystemResourceAsStream("rootkey.csv"))
-        }
-    }.getOrElse {
-      println("rootkey.csv is missing")
-    }
+        case _: Throwable =>
+          Try {
+            properties.load(ClassLoader.getSystemResourceAsStream("rootkey.csv"))
+          }
+      }
+      .getOrElse {
+        println("rootkey.csv is missing")
+      }
 
     if (S3Path.isDefined)
       println("Test on AWS S3 with credentials provided by rootkey.csv")
@@ -106,6 +106,11 @@ class TestHelper() {
       Math.min(n * MEMORY_PER_CORE, cap)
     }
 
+  lazy val serializerClass: Class[_ <: Serializer] = {
+//    classOf[JavaSerializer]
+    classOf[KryoSerializer]
+  }
+
   /**
     * @return local mode: None -> local[n, 4]
     *         cluster simulation mode: Some(SPARK_HOME) -> local-cluster[m,n, mem]
@@ -143,7 +148,7 @@ class TestHelper() {
     }
 
     base ++ Map(
-      "spark.serializer" -> "org.apache.spark.serializer.KryoSerializer",
+      "spark.serializer" -> serializerClass.getName,
       //      .set("spark.kryo.registrator", "com.tribbloids.spookystuff.SpookyRegistrator")Incomplete for the moment
       "spark.kryoserializer.buffer.max" -> "512m",
       "spark.sql.warehouse.dir" -> WAREHOUSE_PATH,
@@ -190,7 +195,7 @@ class TestHelper() {
 
     sparkSessionInitialised = true
 
-    assureKryoSerializer(sc)
+    if (serializerClass == classOf[KryoSerializer]) ensureKryoSerializer(sc)
     session
   }
 
@@ -214,7 +219,8 @@ class TestHelper() {
     }
   }
 
-  def assureKryoSerializer(sc: SparkContext, rigorous: Boolean = false): Unit = {
+  def ensureKryoSerializer(sc: SparkContext, rigorous: Boolean = false): Unit = {
+
     val ser = SparkEnv.get.serializer
     require(ser.isInstanceOf[KryoSerializer])
 
