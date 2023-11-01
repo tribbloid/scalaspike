@@ -17,4 +17,6 @@ dependencies {
 
     implementation("eu.timepit:refined_${vs.scala.binaryV}:0.11.0")
 
+    // https://mvnrepository.com/artifact/org.scalatestplus/scalacheck-1-17
+    testImplementation("org.scalatestplus:scalacheck-1-17_${vs.scala.binaryV}:${vs.scalaTestV}.0")
 }
