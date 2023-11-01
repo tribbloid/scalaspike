@@ -34,20 +34,19 @@ class TestHelper() {
     Try {
       properties.load(ClassLoader.getSystemResourceAsStream(".rootkey.csv"))
     }.recoverWith {
-        case _: Throwable =>
-          Try {
-            properties.load(ClassLoader.getSystemResourceAsStream("rootkey.csv"))
-          }
-      }
-      .getOrElse {
-        println("rootkey.csv is missing")
-      }
+      case _: Throwable =>
+        Try {
+          properties.load(ClassLoader.getSystemResourceAsStream("rootkey.csv"))
+        }
+    }.getOrElse {
+      println("rootkey.csv is missing")
+    }
 
     if (S3Path.isDefined)
       println("Test on AWS S3 with credentials provided by rootkey.csv")
 
     AWSAccessKeyId.foreach {
-      System.setProperty("fs.s3.awsAccessKeyId", _) //TODO: useless here? set in conf directly?
+      System.setProperty("fs.s3.awsAccessKeyId", _) // TODO: useless here? set in conf directly?
     }
     AWSSecretKey.foreach {
       System.setProperty("fs.s3.awsSecretAccessKey", _)
@@ -69,7 +68,7 @@ class TestHelper() {
   }
 
   lazy val clusterSize_numCoresPerWorker_Opt: Option[(Int, Int)] = {
-    Option(SPARK_HOME).flatMap { h =>
+    Option(SPARK_HOME).flatMap { _ =>
       val tuple = (
         Option(properties.getProperty("ClusterSize")).map(_.toInt),
         Option(properties.getProperty("NumCoresPerWorker")).map(_.toInt)
@@ -112,8 +111,8 @@ class TestHelper() {
   }
 
   /**
-    * @return local mode: None -> local[n, 4]
-    *         cluster simulation mode: Some(SPARK_HOME) -> local-cluster[m,n, mem]
+    * @return
+    *   local mode: None -> local[n, 4] cluster simulation mode: Some(SPARK_HOME) -> local-cluster[m,n, mem]
     */
   lazy val coreSettings: Map[String, String] = {
     val masterEnv = System.getenv("SPARK_MASTER")
@@ -128,7 +127,7 @@ class TestHelper() {
       val masterStr =
         s"local-cluster[${clusterSizeOpt.get},${numCoresPerWorkerOpt.get},${executorMemoryOpt.get}]"
       println(s"initializing SparkContext in local-cluster simulation mode:" + masterStr)
-      //TODO: Unstable! remove?
+      // TODO: Unstable! remove?
       masterStr
     }
 
@@ -157,11 +156,11 @@ class TestHelper() {
     )
   }
 
-  //if SPARK_PATH & ClusterSize in rootkey.csv is detected, use local-cluster simulation mode
-  //otherwise use local mode
+  // if SPARK_PATH & ClusterSize in rootkey.csv is detected, use local-cluster simulation mode
+  // otherwise use local mode
   lazy val TestSparkConf: SparkConf = {
 
-    //always use KryoSerializer, it is less stable than Native Serializer
+    // always use KryoSerializer, it is less stable than Native Serializer
     val conf: SparkConf = new SparkConf(false)
 
     conf.setAll(coreSettings)
@@ -252,10 +251,10 @@ class TestHelper() {
     }
     val expectedErrorName = implicitly[ClassTag[EE]].runtimeClass.getSimpleName
     trial match {
-      case Failure(e: EE) =>
+      case Failure(_: EE) =>
       case Failure(e) =>
         throw new AssertionError(s"Expecting $expectedErrorName, but get ${e.getClass.getSimpleName}", e)
-      case Success(n) =>
+      case Success(_) =>
         throw new AssertionError(s"expecting $expectedErrorName, but no exception was thrown")
     }
   }

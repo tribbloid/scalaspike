@@ -46,7 +46,7 @@ object DarkSugars extends App {
     def f(a: Int): Unit
   }
 
-  val anAbstractInstance: AnAbstractType = (a: Int) => println("sweet")
+  val anAbstractInstance: AnAbstractType = (_: Int) => println("sweet")
 
   // syntax sugar #3: the :: and #:: methods are special
 

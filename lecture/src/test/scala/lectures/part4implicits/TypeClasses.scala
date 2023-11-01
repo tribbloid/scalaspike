@@ -22,8 +22,8 @@ object TypeClasses extends App {
   // option 2 - pattern matching
   object HTMLSerializerPM {
     def serializeToHtml(value: Any) = value match {
-      case User(n, a, e) =>
-      case _ =>
+      case User(_, _, _) =>
+      case _             =>
     }
   }
 
@@ -119,8 +119,7 @@ object TypeClasses extends App {
 
   // implicitly
   case class Permissions(mask: String)
-  implicit
-  val defaultPermissions: Permissions = Permissions("0744")
+  implicit val defaultPermissions: Permissions = Permissions("0744")
 
   // in some other part of the  code
   val standardPerms = implicitly[Permissions]

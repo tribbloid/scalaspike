@@ -70,7 +70,8 @@ object DatasetHelper {
               s" ${cell.toString} " + Array.fill(size - cell.displayLength - 2)(' ').mkString
 
           }
-          .mkString("|", "|", "|"))
+          .mkString("|", "|", "|")
+      )
 
 //      val separator = colWidths.map("-" * _).mkString("+", "+", "+")
       // Put the table together and return

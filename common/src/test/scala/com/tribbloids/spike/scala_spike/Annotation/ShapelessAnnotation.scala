@@ -66,7 +66,10 @@ object ShapelessAnnotation {
       def asTuples: List[(String, Option[A])]
     }
 
-    def get(implicit e: this.Impl): Impl = implicitly[this.Impl]
+    def get(
+        implicit
+        e: this.Impl
+    ): Impl = implicitly[this.Impl]
 
     implicit def summon[G <: HList, KS <: HList, VS <: HList](
         implicit

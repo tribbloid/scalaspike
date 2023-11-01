@@ -59,7 +59,7 @@ class Example1 extends AnyFunSpec {
 
     q + q
 
-    //TODO: how to make it work?
+    // TODO: how to make it work?
     //    q + q2
     //
     //    q2 + q2

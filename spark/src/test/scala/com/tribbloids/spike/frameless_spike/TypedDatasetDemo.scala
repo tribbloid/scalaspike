@@ -1,19 +1,13 @@
 package com.tribbloids.spike.frameless_spike
 
 import com.tribbloids.spike.spark_spike.TestHelper
-import frameless.TypedDataset
 import org.scalatest.funspec.AnyFunSpec
-import org.apache.spark.{SparkConf, SparkContext}
-import org.apache.spark.sql.SparkSession
-import frameless.functions.aggregate._
 import frameless.TypedDataset
-import frameless.functions.lit
 
 class TypedDatasetDemo extends AnyFunSpec {
   import TypedDatasetDemo._
 
   implicit val spark = TestHelper.TestSparkSession
-  import spark.implicits._
 
   spark.sparkContext.setLogLevel("WARN")
 

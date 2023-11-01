@@ -7,7 +7,7 @@ object PimpMyLibrary extends App {
 
   // 2.isPrime
 
-  implicit class RichInt(val value: Int) extends AnyVal {
+  implicit class RichInt(private val value: Int) extends AnyVal {
     def isEven: Boolean = value % 2 == 0
     def sqrt: Double = Math.sqrt(value)
 
@@ -79,8 +79,7 @@ object PimpMyLibrary extends App {
 
   // equivalent: implicit class RichAltInt(value: Int)
   class RichAltInt(value: Int)
-  implicit
-  def enrich(value: Int): RichAltInt = new RichAltInt(value)
+  implicit def enrich(value: Int): RichAltInt = new RichAltInt(value)
 
   // danger zone
   implicit def intToBoolean(i: Int): Boolean = i == 1

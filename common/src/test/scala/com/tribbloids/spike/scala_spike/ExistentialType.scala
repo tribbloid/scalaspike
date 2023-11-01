@@ -1,6 +1,5 @@
 package com.tribbloids.spike.scala_spike
 
-import scala.language.{existentials, reflectiveCalls}
 import ExistentialType._
 
 /**
@@ -28,7 +27,7 @@ class ExistentialType {
 
   class MLNodeFn(d: i.NodeType forSome { val i: MLDomain })
 
-  //this will fail
+  // this will fail
 //  trait AnyBuilder2[D <: Domain] extends Builder[D, _]
 //  object BuilderImpl3 extends AnyBuilder2[MLDomain] {
 //    override val vv: RDDGraph[MLDomain] = ???

@@ -103,16 +103,11 @@ object Variance extends App {
    */
 
   /**
-    * 1. Invariant, covariant, contravariant
-    *   Parking[T](things: List[T]) {
-    *     park(vehicle: T)
-    *     impound(vehicles: List[T])
-    *     checkVehicles(conditions: String): List[T]
-    *   }
+    *   1. Invariant, covariant, contravariant Parking[T](things: List[T]) { park(vehicle: T) impound(vehicles: List[T])
+    *      checkVehicles(conditions: String): List[T] }
     *
-    * 2. used someone else's API: IList[T]
-    * 3. Parking = monad!
-    *     - flatMap
+    * 2. used someone else's API: IList[T] 3. Parking = monad!
+    *   - flatMap
     */
   class Vehicle
   class Bike extends Vehicle

@@ -40,11 +40,14 @@ object ExtractingTypeArg {
   }
 
   object Case2 {
-    //improvement based on https://github.com/scala/bug/issues/12841
+    // improvement based on https://github.com/scala/bug/issues/12841
 
     object ExtractingTypeArg {
 
-      def apply[V <: Vec[_]](implicit ev: ArgOf[_ >: V]): ev.type = ev
+      def apply[V <: Vec[_]](
+          implicit
+          ev: ArgOf[_ >: V]
+      ): ev.type = ev
 
       implicit def impl1[T <: AnyRef]: ArgOf[Vec[T]] { type TT = T } =
         new ArgOf[Vec[T]] {

@@ -1,8 +1,5 @@
 package lectures.part5ts
 
-import scala.concurrent.Future
-import scala.concurrent.ExecutionContext.Implicits.global
-
 /**
   * Created by Daniel.
   */

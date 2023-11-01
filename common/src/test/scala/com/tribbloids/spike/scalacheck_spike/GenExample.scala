@@ -1,6 +1,6 @@
 package com.tribbloids.spike.scalacheck_spike
 
-import org.scalacheck.{Gen, Prop, Test}
+import org.scalacheck.{Gen, Prop}
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 

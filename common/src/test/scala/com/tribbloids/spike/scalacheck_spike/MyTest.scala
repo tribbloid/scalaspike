@@ -5,7 +5,6 @@ import org.scalacheck.{Arbitrary, Gen}
 import org.scalatest.Assertion
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers._
-import org.scalatest.prop.Seed
 import org.scalatestplus.scalacheck.ScalaCheckPropertyChecks
 
 class MyTest extends AnyFlatSpec with ScalaCheckPropertyChecks {

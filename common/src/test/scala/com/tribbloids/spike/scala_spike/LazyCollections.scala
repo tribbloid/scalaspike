@@ -129,7 +129,7 @@ class LazyCollections extends AnyFunSpec {
 
 object LazyCollections {
 
-  //size must >= 2 otherwise cannot detect
+  // size must >= 2 otherwise cannot detect
   case class Test[T](
       fn: StringBuilder => T
   ) {

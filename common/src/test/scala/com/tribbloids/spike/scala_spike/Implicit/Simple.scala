@@ -28,6 +28,6 @@ object Simple {
 
   src.isTgt2
 
-  //this will trigger a compilation error
+  // this will trigger a compilation error
 //  src.isTgt1
 }

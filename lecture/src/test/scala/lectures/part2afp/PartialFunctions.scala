@@ -68,8 +68,7 @@ object PartialFunctions extends App {
   /**
     * Exercises
     *
-    * 1 - construct a PF instance yourself (anonymous class)
-    * 2 - dumb chatbot as a PF
+    * 1 - construct a PF instance yourself (anonymous class) 2 - dumb chatbot as a PF
     */
 
   val aManualFussyFunction = new PartialFunction[Int, Int] {
@@ -84,8 +83,8 @@ object PartialFunctions extends App {
   }
 
   val chatbot: PartialFunction[String, String] = {
-    case "hello" => "Hi, my name is HAL9000"
-    case "goodbye" => "Once you start talking to me, there is no return, human!"
+    case "hello"    => "Hi, my name is HAL9000"
+    case "goodbye"  => "Once you start talking to me, there is no return, human!"
     case "call mom" => "Unable to find your phone without your credit card"
   }
 

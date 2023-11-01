@@ -3,8 +3,7 @@ package com.tribbloids.spike.singleton_ops_spike
 import ai.acyclic.prover.commons.testlib.BaseSpec
 import shapeless.ops.hlist
 import shapeless.{HList, Nat}
-import singleton.ops.impl.OpInt
-import singleton.ops.{SafeInt, ToInt}
+import singleton.ops.ToInt
 
 class OpsFastCompile extends BaseSpec {
 

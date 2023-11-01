@@ -50,7 +50,7 @@ object CodeGenBenchmark {
       sum += compiler.getClassLoader.loadClass("MyClass").newInstance().asInstanceOf[SomeInterface].eval()
       val p1 = System.nanoTime()
 
-      //println(s"eval result = $res")
+      // println(s"eval result = $res")
       if (i < 10 || i % 1000 == 0) {
         println(s"$i: p1 - p0 = ${p1 - p0}ns")
       }

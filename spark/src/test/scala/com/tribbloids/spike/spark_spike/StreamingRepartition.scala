@@ -40,7 +40,7 @@ class StreamingRepartition extends AnyFunSpec {
       val ds: DataFrame = sqlContext.readStream.load("~/abc")
 
 //      ds.
-      //TODO: figure it out
+      // TODO: figure it out
     }
 
     it("rdd version") {

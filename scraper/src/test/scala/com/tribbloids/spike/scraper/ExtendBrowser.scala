@@ -1,11 +1,5 @@
 package com.tribbloids.spike.scraper
 
-import cats.Eval.FlatMap
-import net.ruippeixotog.scalascraper.browser
-import net.ruippeixotog.scalascraper.browser.Browser
-
-import java.io.{File, InputStream}
-
 object ExtendBrowser {
 
 //  case class MyBrowser() extends Browser {

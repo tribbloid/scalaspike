@@ -4,8 +4,6 @@ import org.scalatest.funspec.AnyFunSpec
 import shapeless.ops.{hlist, tuple}
 import shapeless.{Generic, HList, Nat, Witness}
 
-import scala.language.implicitConversions
-
 class NatSuite extends AnyFunSpec {
 
   it("can encode large number") {

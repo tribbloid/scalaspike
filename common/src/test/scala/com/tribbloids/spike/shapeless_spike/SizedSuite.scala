@@ -3,8 +3,6 @@ package com.tribbloids.spike.shapeless_spike
 import ai.acyclic.prover.commons.testlib.BaseSpec
 import shapeless.{nat, Sized}
 
-import scala.collection.immutable
-
 class SizedSuite extends BaseSpec {
 
   it("builder") {
@@ -15,7 +13,7 @@ class SizedSuite extends BaseSpec {
 
   it("builder on huge number of arguments") {
 
-    //TODO: oops, doesn't work
+    // TODO: oops, doesn't work
 
     //    val v1 = Sized(
     //      1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8,

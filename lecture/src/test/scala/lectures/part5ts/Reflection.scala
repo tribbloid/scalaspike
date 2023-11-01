@@ -49,8 +49,8 @@ object Reflection extends App {
   // pp #1: differentiate types at runtime
   val numbers = List(1, 2, 3)
   numbers match {
-    case listOfStrings: List[String] => println("list of strings")
-    case listOfNumbers: List[Int] => println("list of numbers")
+    case _: List[String] => println("list of strings")
+    case _: List[Int]    => println("list of numbers")
   }
 
   // pp #2: limitations on overloads
@@ -74,11 +74,11 @@ object Reflection extends App {
       typeTag: TypeTag[T]
   ) = typeTag.tpe match {
     case TypeRef(_, _, typeArguments) => typeArguments
-    case _ => List()
+    case _                            => List()
   }
 
   val myMap = new MyMap[Int, String]
-  val typeArgs = getTypeArguments(myMap) //(typeTag: TypeTag[MyMap[Int,String]])
+  val typeArgs = getTypeArguments(myMap) // (typeTag: TypeTag[MyMap[Int,String]])
   println(typeArgs)
 
   def isSubtype[A, B](

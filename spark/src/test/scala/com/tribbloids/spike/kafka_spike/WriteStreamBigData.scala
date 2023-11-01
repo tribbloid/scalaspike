@@ -2,7 +2,6 @@ package com.tribbloids.spike.kafka_spike
 
 import com.tribbloids.spike.spark_spike.TestHelper
 import org.apache.spark.sql.Dataset
-import org.apache.spark.sql.kafka010.KafkaHelper
 import org.scalatest.funspec.AnyFunSpec
 
 import scala.util.Random
@@ -15,7 +14,7 @@ class WriteStreamBigData extends AnyFunSpec with EmbeddedKafkaFixture {
 
     val seed = TestHelper.TestSQL.createDataset(1 to 1000 * 1000)
 
-    val ds = seed.map { i =>
+    val ds = seed.map { _ =>
       Random.nextString(1000)
     }
 
@@ -48,6 +47,6 @@ class WriteStreamBigData extends AnyFunSpec with EmbeddedKafkaFixture {
     val batchID = 1000
 
     //    KafkaHelper.sink()
-    //TODO: incmplete
+    // TODO: incmplete
   }
 }

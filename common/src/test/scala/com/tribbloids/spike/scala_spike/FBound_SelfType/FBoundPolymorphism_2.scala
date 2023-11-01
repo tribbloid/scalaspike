@@ -38,7 +38,7 @@ class FBoundPolymorphism_2 extends AnyFunSpec with BeforeAndAfterAll {
 
     assert(new FBoundSubImpl2("s").respond.head.s == "sb")
 
-    //looks like covariant notation + doesn't work
+    // looks like covariant notation + doesn't work
 //    assert(new FBoundSubImpl("s").getClass.isAssignableFrom(new FBoundImpl("s").getClass))
 //    assert(!new FBoundImpl("s").getClass.isAssignableFrom(new FBoundSubImpl("s").getClass))
   }

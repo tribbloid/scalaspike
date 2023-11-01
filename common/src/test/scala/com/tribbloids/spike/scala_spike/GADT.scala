@@ -1,7 +1,5 @@
 package com.tribbloids.spike.scala_spike
 
-import scala.collection.{mutable, Factory}
-
 object GADT {
 
 //  trait C1 {

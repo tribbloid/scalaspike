@@ -74,14 +74,12 @@ class RecordSuite extends BaseSpec {
 
       it("2") {
 
-        {
-          type RR = record.type
+        type RR = record.type
 
-          val record2: RR = record
+        val record2: RR = record
 
-          //        inferKeys(record2)
-          //        inferKeys[record.type](record2)
-        }
+        //        inferKeys(record2)
+        //        inferKeys[record.type](record2)
       }
     }
   }

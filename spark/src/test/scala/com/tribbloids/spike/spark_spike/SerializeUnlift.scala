@@ -32,7 +32,7 @@ object SerializeUnlift {
       Some(v)
     }
 
-    val value: String = unlift.apply()
+    val value: String = unlift.apply(())
   }
 
 }

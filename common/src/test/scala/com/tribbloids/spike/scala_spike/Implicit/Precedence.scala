@@ -23,7 +23,7 @@ class Precedence extends BaseSpec {
       // this caused the following error
       // found   : Int(4)
       // required: String
-      //one error found
+      // one error found
 
 //      val b = a1 + 4
 //

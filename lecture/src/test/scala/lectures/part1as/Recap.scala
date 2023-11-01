@@ -67,7 +67,7 @@ object Recap extends App {
     try {
       throw new RuntimeException
     } catch {
-      case e: Exception => "I caught an exception"
+      case _: Exception => "I caught an exception"
     } finally {
       println("some logs")
     }

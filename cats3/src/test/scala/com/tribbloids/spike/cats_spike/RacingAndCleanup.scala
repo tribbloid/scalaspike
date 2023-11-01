@@ -1,6 +1,6 @@
 package com.tribbloids.spike.cats_spike
 
-import cats.effect.{IO, Resource}
+import cats.effect.IO
 import cats.effect.unsafe.implicits.global
 
 import java.util.concurrent.TimeUnit

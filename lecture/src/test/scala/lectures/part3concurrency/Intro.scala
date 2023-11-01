@@ -113,10 +113,8 @@ object Intro extends App {
   /**
     * Exercises
     *
-    * 1) Construct 50 "inception" threads
-    *     Thread1 -> thread2 -> thread3 -> ...
-    *     println("hello from thread #3")
-    *   in REVERSE ORDER
+    * 1) Construct 50 "inception" threads Thread1 -> thread2 -> thread3 -> ... println("hello from thread #3") in
+    * REVERSE ORDER
     */
   def inceptionThreads(maxThreads: Int, i: Int = 1): Thread =
     new Thread(() => {

@@ -1,7 +1,5 @@
 package com.tribbloids.spike.scala_spike.TypeBoundInference
 
-import scala.language.existentials
-
 object Example1 {
 
   trait Domain {}
@@ -15,7 +13,7 @@ object Example1 {
 
   trait DSL[I <: Impl] {
 
-    //this will fail
+    // this will fail
 //    val impl: Builder[I#DD, I#GG]
 
     val impl: Builder[i.DD, i.GG] forSome { val i: Impl }

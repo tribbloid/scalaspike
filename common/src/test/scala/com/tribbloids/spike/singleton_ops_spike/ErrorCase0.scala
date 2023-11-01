@@ -3,8 +3,6 @@ package com.tribbloids.spike.singleton_ops_spike
 import shapeless.Witness
 import singleton.ops.+
 
-import scala.language.implicitConversions
-
 object ErrorCase0 {
 
   trait Proof extends Serializable {

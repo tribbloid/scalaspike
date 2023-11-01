@@ -64,7 +64,7 @@ class WitnessSuite extends BaseSpec {
 
       object MayHaveWitness extends MayHaveWitness_Implicits0 {
 
-        //TODO: oops. doesn't work
+        // TODO: oops. doesn't work
 //        implicit def fromLit[T <: Integer with Singleton](literal: T): Some =
 //          new Some(Witness(literal.intValue()))
       }

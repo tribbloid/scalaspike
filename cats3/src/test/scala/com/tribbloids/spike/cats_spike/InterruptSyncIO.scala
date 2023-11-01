@@ -35,7 +35,7 @@ class InterruptSyncIO extends AnyFunSpec {
     }
 
     val withCallback = twenty.guaranteeCase {
-      case Outcome.Succeeded(fa) =>
+      case Outcome.Succeeded(_) =>
         IO {
           println("SUCCESS!")
         }
@@ -43,7 +43,7 @@ class InterruptSyncIO extends AnyFunSpec {
         IO {
           println(s"FAILUE: ${ee.toString}")
         }
-      case _ => IO.pure() // do nothing
+      case _ => IO.pure(()) // do nothing
     }
 
     def timeoutIn(milliS: Int): Unit = {

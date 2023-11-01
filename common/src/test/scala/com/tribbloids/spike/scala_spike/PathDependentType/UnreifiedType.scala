@@ -4,7 +4,6 @@ import ai.acyclic.prover.commons.debug.print_@
 import ai.acyclic.prover.commons.testlib.BaseSpec
 import ai.acyclic.prover.commons.viz.TypeViz
 
-import scala.language.existentials
 import scala.reflect.runtime.universe
 
 object UnreifiedType {

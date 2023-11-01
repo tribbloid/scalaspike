@@ -26,7 +26,7 @@ object FuturesPromises extends App {
   println("Waiting on the future")
   aFuture.onComplete {
     case Success(meaningOfLife) => println(s"the meaning of life is $meaningOfLife")
-    case Failure(e) => println(s"I have failed with $e")
+    case Failure(e)             => println(s"I have failed with $e")
   } // SOME thread
 
   Thread.sleep(3000)
@@ -94,11 +94,11 @@ object FuturesPromises extends App {
 
   // fallbacks
   val aProfileNoMatterWhat = SocialNetwork.fetchProfile("unknown id").recover {
-    case e: Throwable => Profile("fb.id.0-dummy", "Forever alone")
+    case _: Throwable => Profile("fb.id.0-dummy", "Forever alone")
   }
 
   val aFetchedProfileNoMatterWhat = SocialNetwork.fetchProfile("unknown id").recoverWith {
-    case e: Throwable => SocialNetwork.fetchProfile("fb.id.0-dummy")
+    case _: Throwable => SocialNetwork.fetchProfile("fb.id.0-dummy")
   }
 
   val fallbackResult = SocialNetwork.fetchProfile("unknown id").fallbackTo(SocialNetwork.fetchProfile("fb.id.0-dummy"))

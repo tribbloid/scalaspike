@@ -8,7 +8,6 @@ import singleton.ops.{==, Require}
 import singleton.twoface.TwoFace
 import singleton.twoface.impl.TwoFaceAny
 
-import scala.language.existentials
 import scala.util.Random
 
 class TwoFaceExample extends BaseSpec {

@@ -3,8 +3,6 @@ package com.tribbloids.spike.scala_spike
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.BeforeAndAfterAll
 
-import scala.language.reflectiveCalls
-
 /**
   * Created by peng on 31/03/16.
   */
@@ -28,7 +26,7 @@ class DuckType extends AnyFunSpec with BeforeAndAfterAll {
     assert(fun(a1) == 2)
     assert(fun2(a1) == 2)
 
-    //this will trigger a compilation error
+    // this will trigger a compilation error
 //    assert(fun(a2) == 3L)
 //    assert(fun2(a2) == 3L)
   }

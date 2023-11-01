@@ -2,8 +2,6 @@ package com.tribbloids.spike.shapeless_spike
 
 import shapeless.Generic
 
-import scala.language.implicitConversions
-
 object InferGeneric3 {
 
   trait Codec {

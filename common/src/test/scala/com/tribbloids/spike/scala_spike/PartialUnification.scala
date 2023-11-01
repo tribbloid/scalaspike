@@ -6,7 +6,10 @@ object PartialUnification {
   object Widen {
     implicit class Ops[M[_], A](ma: M[A]) {
 
-      def widen[B >: A](implicit ev: Widen[M]): M[B] = ev.widen[A, B](ma)
+      def widen[B >: A](
+          implicit
+          ev: Widen[M]
+      ): M[B] = ev.widen[A, B](ma)
     }
     // implicit class OpsNothing[M[_]](ma: M[Nothing]) {
     //   def widen[B](implicit ev: Widen[M]): M[B] = ev.widen(ma)
