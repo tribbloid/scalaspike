@@ -88,11 +88,12 @@ class RecordSuite extends BaseSpec {
 
     type Book = Record.`'author -> String, 'title -> String, 'id -> Int, 'price -> Double`.T
 
-//    val book: Book = Record( // TODO: why does it break?
-//      author = "Benjamin Pierce",
-//      title = "Types and Programming Languages",
-//      price = 44.11: Double,
-//    )
+    val book: Book = Record( // TODO: why does it break?
+      author = "Benjamin Pierce",
+      title = "Types and Programming Languages",
+      id = 262162091,
+      price = 44.11: Double
+    )
   }
 
 }
