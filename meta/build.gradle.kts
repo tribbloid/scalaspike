@@ -18,18 +18,3 @@ dependencies {
 
     implementation(project(":common"))
 }
-
-tasks {
-
-    withType<ScalaCompile> {
-
-        configureEach {
-
-            scalaCompileOptions.apply {
-
-                val existing: MutableList<String> = additionalParameters ?: mutableListOf()
-
-            }
-        }
-    }
-}

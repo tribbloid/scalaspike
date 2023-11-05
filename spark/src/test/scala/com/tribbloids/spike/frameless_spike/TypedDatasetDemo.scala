@@ -1,13 +1,14 @@
 package com.tribbloids.spike.frameless_spike
 
 import com.tribbloids.spike.spark_spike.TestHelper
-import org.scalatest.funspec.AnyFunSpec
 import frameless.TypedDataset
+import org.scalatest.funspec.AnyFunSpec
 
 class TypedDatasetDemo extends AnyFunSpec {
   import TypedDatasetDemo._
 
   implicit val spark = TestHelper.TestSparkSession
+  import spark.implicits._
 
   spark.sparkContext.setLogLevel("WARN")
 
@@ -24,12 +25,31 @@ class TypedDatasetDemo extends AnyFunSpec {
 
     val t1 = TypedDataset.create(apartments)
 
-    val t2 = {
-
-      t1.select(
+    {
+      val t2 = t1.select(
         t1(Symbol("city")),
         t1(Symbol("surface"))
       )
+
+      println(t2.schema.treeString)
+      t2.toDF().show()
+    }
+
+    {
+//      val t2 = t1.select(
+//        t1(Symbol("surface"))
+//          .opt[Int]
+//          .map(v => v * 2)
+//      ) // TODO: doesn't work?
+
+//      val t2 = t1.select(
+//        t1(Symbol("surface"))
+//          .opt
+//          .map(v => v * 2)
+//      ) // TODO: blocked by a bug
+
+//      t2.printSchema()
+//      t2.toDF().show()
     }
 
 //    val t3 = t1
