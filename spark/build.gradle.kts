@@ -1,6 +1,6 @@
 val vs = versions()
-val sparkBinaryV = "3.5"
-val sparkV = "${sparkBinaryV}.0"
+val sparkBinaryV = "3.4"
+val sparkV = "${sparkBinaryV}.1"
 
 repositories {
     maven("https://repos.spark-packages.org")

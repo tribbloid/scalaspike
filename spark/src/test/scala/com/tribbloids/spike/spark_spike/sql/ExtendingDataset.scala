@@ -2,12 +2,12 @@ package com.tribbloids.spike.spark_spike.sql
 
 import com.tribbloids.spike.spark_spike.TestHelper
 import com.tribbloids.spike.spark_spike.sql.DatasetCaching.DSWithAccumulator
-import com.tribbloids.spike.spark_spike.sql.ExtendingDataset.Ext
 import org.apache.spark.sql.{Dataset, DatasetHelper, SparkSession}
 import org.apache.spark.storage.StorageLevel
 import org.scalatest.funspec.AnyFunSpec
 
 class ExtendingDataset extends AnyFunSpec {
+  import ExtendingDataset._
 
   val spark: SparkSession = TestHelper.TestSparkSession
 
@@ -26,7 +26,7 @@ class ExtendingDataset extends AnyFunSpec {
 
     println(ds2.queryExecution)
 
-    assert(ds2.storageLevel != StorageLevel.NONE)
+    assert(ds2.storageLevel != StorageLevel.NONE) //
   }
 }
 

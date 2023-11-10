@@ -3,12 +3,12 @@ package com.tribbloids.spike.frameless_spike
 import com.tribbloids.spike.spark_spike.TestHelper
 import frameless.TypedDataset
 import org.scalatest.funspec.AnyFunSpec
+import shapeless.record.Record
 
 class TypedDatasetDemo extends AnyFunSpec {
   import TypedDatasetDemo._
 
   implicit val spark = TestHelper.TestSparkSession
-  import spark.implicits._
 
   spark.sparkContext.setLogLevel("WARN")
 
@@ -26,6 +26,8 @@ class TypedDatasetDemo extends AnyFunSpec {
     val t1 = TypedDataset.create(apartments)
 
     {
+      val c1 = t1(Symbol("city"))
+
       val t2 = t1.select(
         t1(Symbol("city")),
         t1(Symbol("surface"))
@@ -36,9 +38,11 @@ class TypedDatasetDemo extends AnyFunSpec {
     }
 
     {
+
+//      val x = t1('surface).opt.map(_ * 2)
+
 //      val t2 = t1.select(
-//        t1(Symbol("surface"))
-//          .opt[Int]
+//        t1(Symbol("surface")).opt
 //          .map(v => v * 2)
 //      ) // TODO: doesn't work?
 
@@ -61,6 +65,30 @@ class TypedDatasetDemo extends AnyFunSpec {
 //    val k: String = t3
   }
 
+  it("from record") { // TODO: doesn't work, not a shapeless Record
+
+//    import shapeless._
+//    import syntax.singleton._
+//
+////    val record = {
+////      ("a" ->> 1) ::
+////        ("b" ->> 2) ::
+////        HNil
+////    }
+//
+//    val record = Record(
+//      a = 1: Int,
+//      b = 2: Int
+//    )
+//
+//    val records = Seq(record)
+//
+//    val t1 = TypedDataset.create(records)
+//
+//    val t2 = t1.select(
+//      t1(Symbol("a"))
+//    )
+  }
 }
 
 object TypedDatasetDemo {
