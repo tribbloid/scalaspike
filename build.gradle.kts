@@ -6,8 +6,26 @@ buildscript {
 }
 
 plugins {
+//    id("ai.acyclic.java-conventions")
     id("ai.acyclic.scala2-conventions")
     id("ai.acyclic.publish-conventions")
+}
+
+subprojects {
+
+
+    tasks {
+
+        withType<ScalaCompile> {
+
+            scalaCompileOptions.additionalParameters.addAll(
+                listOf(
+
+                    "-Wconf:cat=deprecation:ws"
+                )
+            )
+        }
+    }
 }
 
 

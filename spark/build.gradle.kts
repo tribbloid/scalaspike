@@ -6,7 +6,6 @@ repositories {
     maven("https://repos.spark-packages.org")
 }
 
-
 dependencies {
 
     implementation(project(":common"))
@@ -20,5 +19,7 @@ dependencies {
     testImplementation("org.apache.spark:spark-yarn_${vs.scala.binaryV}:${sparkV}")
 
     implementation("org.apache.spark:spark-sql-kafka-0-10_${vs.scala.binaryV}:${sparkV}")
-    implementation("io.github.embeddedkafka:embedded-kafka-streams_${vs.scala.binaryV}:3.5.1")
+    implementation("io.github.embeddedkafka:embedded-kafka-streams_${vs.scala.binaryV}:3.6.0")
+
+    implementation("uk.co.gresearch.spark:spark-extension_2.13:2.10.0-3.5")
 }

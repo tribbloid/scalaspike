@@ -1,12 +1,12 @@
 package com.tribbloids.spike.frameless_spike
 
+//import com.tribbloids.spike.frameless_spike.TypedDatasetDemo.Apartment
 import com.tribbloids.spike.spark_spike.TestHelper
 import frameless.TypedDataset
 import org.scalatest.funspec.AnyFunSpec
-import shapeless.record.Record
+import shapeless.HNil
 
 class TypedDatasetDemo extends AnyFunSpec {
-  import TypedDatasetDemo._
 
   implicit val spark = TestHelper.TestSparkSession
 
@@ -38,11 +38,9 @@ class TypedDatasetDemo extends AnyFunSpec {
     }
 
     {
-
-//      val x = t1('surface).opt.map(_ * 2)
-
 //      val t2 = t1.select(
-//        t1(Symbol("surface")).opt
+//        t1(Symbol("surface"))
+//          .opt[Int]
 //          .map(v => v * 2)
 //      ) // TODO: doesn't work?
 
@@ -67,27 +65,22 @@ class TypedDatasetDemo extends AnyFunSpec {
 
   it("from record") { // TODO: doesn't work, not a shapeless Record
 
-//    import shapeless._
-//    import syntax.singleton._
-//
-////    val record = {
-////      ("a" ->> 1) ::
-////        ("b" ->> 2) ::
-////        HNil
-////    }
-//
-//    val record = Record(
-//      a = 1: Int,
-//      b = 2: Int
-//    )
-//
-//    val records = Seq(record)
-//
-//    val t1 = TypedDataset.create(records)
-//
-//    val t2 = t1.select(
-//      t1(Symbol("a"))
-//    )
+    import frameless.TypedDataset
+    import shapeless.record.Record
+    import shapeless.syntax.singleton._
+
+    // Define a Record type
+    type Person = Record.`'name -> String, 'age -> Int`.T
+
+    // Create a Dataset of this Record
+    val people: Seq[Person] = Seq(
+      ('name ->> "Alice") :: ('age ->> 25) :: HNil,
+      ('name ->> "Bob") :: ('age ->> 29) :: HNil
+    )
+
+    // Convert to TypedDataset
+    val typedDS = TypedDataset.create(people)(RecordEncoder) // TODO: doesn't work
+
   }
 }
 

@@ -9,13 +9,14 @@ import org.scalatest.funspec.AnyFunSpec
 class NestedFieldWithColumn extends AnyFunSpec {
 
   import NestedFieldWithColumn._
-  import org.apache.spark.sql.functions._
 
   implicit val spark: SparkSession = TestHelper.TestSparkSession
 
   describe("encoder for") {
 
     it("nested column") {
+
+      import org.apache.spark.sql.functions._
 
       val rows = Seq(
         Outer1(
@@ -42,8 +43,8 @@ class NestedFieldWithColumn extends AnyFunSpec {
         col("aux1"),
         transform(
           col("ins"),
-          { (ss, ii) =>
-            struct(ss("v"), ss("b"))
+          { (ss, _) =>
+            struct(ss("v"), ss("b"), col("aux1"))
 //            ???
             //          (v: Seq[Record]) => v.map(_.get[Int]("v"))
           }
@@ -56,7 +57,7 @@ class NestedFieldWithColumn extends AnyFunSpec {
 //      ds2.select(ds2(Symbol("in.a"))).show()
     }
 
-    it("nested column with ArrayType") {
+    describe("nested column with ArrayType") {
 
       val rows = Seq(
         OuterN(
@@ -82,13 +83,42 @@ class NestedFieldWithColumn extends AnyFunSpec {
       print_@(ds2.dataset.schema.treeString)
       ds2.dataset.show(false)
 
-//      ds2.select(ds2(Symbol("ins")).explode.getField("v")).show()
+      it("spark") {
 
-      val ds3 = ds2.select(
-        ds2(Symbol("aux1")),
-        ds2(Symbol("aux2"))
-//        ds2(Symbol("ins")).array // TODO: don't know to do this
-      )
+        import org.apache.spark.sql.functions._
+
+        val ds4 = ds2.dataset.select(
+          col("aux1"),
+          transform(
+            col("ins"),
+            { (ss, _) =>
+              struct(ss("v"), ss("b"), col("aux1"))
+              //            ???
+              //          (v: Seq[Record]) => v.map(_.get[Int]("v"))
+            }
+          ) as "ins"
+        )
+
+        print_@(ds4.schema.treeString)
+        ds4.show(false)
+      }
+
+      it("frameless") {
+
+        val ds4 = ds2.select(
+          ds2(Symbol("aux1"))
+//          transform(
+//            col("ins"),
+//            { (ss, ii) =>
+//              struct(ss("v"), ss("b"), col("aux1"))
+//              //            ???
+//              //          (v: Seq[Record]) => v.map(_.get[Int]("v"))
+//            }
+//          ).typedColumn // TODO: don't know to do this
+
+          ds2.explode()
+        )
+      }
     }
   }
 

@@ -3,6 +3,7 @@ package com.tribbloids.spike.shapeless_spike
 import ai.acyclic.prover.commons.debug.print_@
 import ai.acyclic.prover.commons.testlib.BaseSpec
 import ai.acyclic.prover.commons.viz.WideTyped
+import shapeless.labelled.KeyTag
 import shapeless.ops.record.Values
 
 class RecordSuite extends BaseSpec {
@@ -84,7 +85,7 @@ class RecordSuite extends BaseSpec {
     }
   }
 
-  describe("name ->> type") {
+  it("name ->> type") {
 
     type Book = Record.`'author -> String, 'title -> String, 'id -> Int, 'price -> Double`.T
 
@@ -94,6 +95,25 @@ class RecordSuite extends BaseSpec {
       id = 262162091,
       price = 44.11: Double
     )
+
+    import shapeless.syntax.RecordOps
+    import shapeless.record._
+
+    val book1 = new RecordOps(book).updated("author", "Benjamin Pierce")
   }
 
+  it("special tag") {
+
+    object Special extends Serializable
+
+    val book =
+      (Special ->> "Benjamin Pierce") ::
+        ("id" ->> 262162091) ::
+        ("price" ->> 44.11) ::
+        HNil
+
+    book.get(Special).shouldBe("Benjamin Pierce")
+
+//    book.get("Special").shouldBe(None) cannot compile
+  }
 }
