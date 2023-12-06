@@ -1,12 +1,13 @@
 package com.tribbloids.spike.frameless_spike
 
-//import com.tribbloids.spike.frameless_spike.TypedDatasetDemo.Apartment
 import com.tribbloids.spike.spark_spike.TestHelper
 import frameless.TypedDataset
 import org.scalatest.funspec.AnyFunSpec
 import shapeless.HNil
 
 class TypedDatasetDemo extends AnyFunSpec {
+
+  import TypedDatasetDemo.Apartment
 
   implicit val spark = TestHelper.TestSparkSession
 
@@ -79,7 +80,7 @@ class TypedDatasetDemo extends AnyFunSpec {
     )
 
     // Convert to TypedDataset
-    val typedDS = TypedDataset.create(people)(RecordEncoder) // TODO: doesn't work
+//    val typedDS = TypedDataset.create(people)(RecordEncoder) // TODO: doesn't work
 
   }
 }

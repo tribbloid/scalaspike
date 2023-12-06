@@ -116,7 +116,7 @@ class NestedFieldWithColumn extends AnyFunSpec {
 //            }
 //          ).typedColumn // TODO: don't know to do this
 
-          ds2.explode()
+//          ds2.explode()
         )
       }
     }
