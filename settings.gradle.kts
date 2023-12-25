@@ -7,6 +7,7 @@ include(":prover-commons:meta2")
 
 include(
     ":common",
+    ":common:xsource3",
     ":lecture",
     ":cats3",
 //    ":cats2",

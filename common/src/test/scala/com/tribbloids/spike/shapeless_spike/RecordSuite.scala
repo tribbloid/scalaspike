@@ -112,6 +112,8 @@ class RecordSuite extends BaseSpec {
         ("price" ->> 44.11) ::
         HNil
 
+    book.tupled._1 shouldBe "Benjamin Pierce"
+
     book.get(Special).shouldBe("Benjamin Pierce")
 
 //    book.get("Special").shouldBe(None) cannot compile
