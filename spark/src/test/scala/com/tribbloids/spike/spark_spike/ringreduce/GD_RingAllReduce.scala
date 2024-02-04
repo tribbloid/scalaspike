@@ -1,6 +1,7 @@
 package com.tribbloids.spike.spark_spike.ringreduce
 
-import org.apache.spark.{BarrierTaskContext, SparkConf, SparkContext}
+import ai.acyclic.prover.commons.spark.TestHelper
+import org.apache.spark.BarrierTaskContext
 
 import scala.util.Random
 
@@ -54,14 +55,10 @@ object GD_RingAllReduce {
   }
 
   def main(args: Array[String]): Unit = {
-    val cores = args(0)
-    val iterations = args(1)
-    val conf = new SparkConf()
-      .setAppName("BarrierTest")
-      .setMaster(s"local[${cores}]")
-    // standalone spark://master:7077
 
-    val sc = new SparkContext(conf)
+    val iterations = scala.util.Try(args(1)).getOrElse("10")
+
+    val sc = TestHelper.TestSC
     sc.setLogLevel("ERROR")
     var w0 = Array(1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0)
 //    val v1 = Array(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0)

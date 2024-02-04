@@ -1,6 +1,7 @@
 package com.tribbloids.spike.spark_spike.ringreduce
 
-import org.apache.spark.{BarrierTaskContext, SparkConf, SparkContext}
+import ai.acyclic.prover.commons.spark.TestHelper
+import org.apache.spark.BarrierTaskContext
 
 // testing example
 
@@ -52,13 +53,8 @@ object RingAllReduce {
   }
 
   def main(args: Array[String]): Unit = {
-    val cores = args(0)
-    val conf = new SparkConf()
-      .setAppName("BarrierTest")
-      .setMaster(s"local[${cores}]")
-    // standalone spark://master:7077
+    val sc = TestHelper.TestSC
 
-    val sc = new SparkContext(conf)
     sc.setLogLevel("ERROR")
     val v1 = Array(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0)
     val v2 = Array(9.0, 10.0, 11.0, 12.0, 13.0, 14.0, 15.0, 16.0)

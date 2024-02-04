@@ -1,15 +1,12 @@
 package com.tribbloids.spike.spark_spike.ringreduce
 
-import org.apache.spark.{SparkConf, SparkContext}
+import ai.acyclic.prover.commons.spark.TestHelper
 
 object treeAggregateTest {
 
   def main(args: Array[String]): Unit = {
-    val cores = args(0)
-    val conf = new SparkConf()
-      .setAppName("treeAggregateTest")
-      .setMaster(s"local[${cores}]")
-    val sc = new SparkContext(conf)
+
+    val sc = TestHelper.TestSC
     val dataSize = 12
     val n = 5
     val maxIterations = 5

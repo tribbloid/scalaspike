@@ -1,7 +1,5 @@
 package com.tribbloids.spike.scala_spike.TypeBoundInference
 
-import scala.language.higherKinds
-
 object Example5 {
 
   trait Domain {}

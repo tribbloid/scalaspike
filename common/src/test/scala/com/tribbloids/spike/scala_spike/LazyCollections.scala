@@ -2,8 +2,6 @@ package com.tribbloids.spike.scala_spike
 
 import org.scalatest.funspec.AnyFunSpec
 
-import scala.language.higherKinds
-
 class LazyCollections extends AnyFunSpec {
 
   import LazyCollections._
@@ -17,7 +15,7 @@ class LazyCollections extends AnyFunSpec {
     it(s"$name is ${test.typeOfExecution}") {}
   }
 
-  def render(vs: TraversableOnce[_]): Unit = {
+  def render(vs: IterableOnce[_]): Unit = {
     vs.foreach(_ => ())
   }
 
@@ -144,7 +142,7 @@ object LazyCollections {
 
       require(log.nonEmpty, "empty log! not executed!")
 
-      val isLazy = log.replaceAll("12", "").length == 0
+      val isLazy = log.replaceAll("12", "").isEmpty
 
       val isEager = {
 

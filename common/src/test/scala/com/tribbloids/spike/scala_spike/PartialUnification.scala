@@ -14,7 +14,7 @@ object PartialUnification {
     // implicit class OpsNothing[M[_]](ma: M[Nothing]) {
     //   def widen[B](implicit ev: Widen[M]): M[B] = ev.widen(ma)
     // }
-    implicit val WidenList = new Widen[List] { def widen[A, B >: A](l: List[A]): List[B] = l }
+    implicit val WidenList: Widen[List] = new Widen[List] { def widen[A, B >: A](l: List[A]): List[B] = l }
   }
 
   import Widen._

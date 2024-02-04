@@ -7,7 +7,7 @@ object PimpMyLibrary extends App {
 
   // 2.isPrime
 
-  implicit class RichInt(val value: Int) extends AnyVal {
+  implicit class RichInt(private val value: Int) extends AnyVal {
 
     def _v: Int = value
     def isEven: Boolean = value % 2 == 0
@@ -35,7 +35,7 @@ object PimpMyLibrary extends App {
   }
 
   implicit class RicherInt(richInt: RichInt) {
-    def isOdd: Boolean = richInt.value % 2 != 0
+    def isOdd: Boolean = richInt._v % 2 != 0
   }
 
   new RichInt(42).sqrt

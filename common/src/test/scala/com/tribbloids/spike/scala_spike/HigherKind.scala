@@ -1,6 +1,5 @@
 package com.tribbloids.spike.scala_spike
 
-import scala.language.higherKinds
 import HigherKind.{LocalGraph, MLDomain}
 
 /**
