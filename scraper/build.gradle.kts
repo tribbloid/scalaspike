@@ -11,6 +11,6 @@ dependencies {
     testFixturesApi(testFixtures(project(":common")))
 
 // https://mvnrepository.com/artifact/net.ruippeixotog/scala-scraper
-    implementation("net.ruippeixotog:scala-scraper_${vs.scala.binaryV}:3.1.0")
+    implementation("net.ruippeixotog:scala-scraper_${vs.scala.binaryV}:3.1.1")
 
 }

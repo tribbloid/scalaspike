@@ -1,6 +1,6 @@
 package com.tribbloids.spike.spark_spike.sql
 
-import com.tribbloids.spike.spark_spike.TestHelper
+import ai.acyclic.prover.commons.spark.TestHelper
 import com.tribbloids.spike.spark_spike.sql.DatasetCaching.DSWithAccumulator
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.storage.StorageLevel

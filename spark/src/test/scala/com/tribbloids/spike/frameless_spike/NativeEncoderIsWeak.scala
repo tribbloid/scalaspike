@@ -1,6 +1,6 @@
 package com.tribbloids.spike.frameless_spike
 
-import com.tribbloids.spike.spark_spike.TestHelper
+import ai.acyclic.prover.commons.spark.TestHelper
 import org.scalatest.funspec.AnyFunSpec
 
 class NativeEncoderIsWeak extends AnyFunSpec {
@@ -17,7 +17,7 @@ class NativeEncoderIsWeak extends AnyFunSpec {
 
     def now = new java.util.GregorianCalendar()
 
-    val ds: Dataset[DateRange] = Seq(DateRange(now, now)).toDS()
+    Seq(DateRange(now, now)).toDS()
   }
 }
 

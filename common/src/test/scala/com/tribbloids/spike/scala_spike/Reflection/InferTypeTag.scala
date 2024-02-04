@@ -14,19 +14,19 @@ class InferTypeTag extends BaseSpec {
 
   it("from type") {
 
-    val ttg = implicitly[TypeTag[(Int, String)]]
-    val ctg = implicitly[ClassTag[(Int, String)]]
+    implicitly[TypeTag[(Int, String)]]
+    implicitly[ClassTag[(Int, String)]]
   }
 
   it("from path dependent type") {
 
     {
-      val ttg = implicitly[TypeTag[U1]]
-      val ctg = implicitly[ClassTag[U1]]
+      implicitly[TypeTag[U1]]
+      implicitly[ClassTag[U1]]
     }
     {
-      val ttg = implicitly[TypeTag[U2]]
-      val ctg = implicitly[ClassTag[U2]]
+      implicitly[TypeTag[U2]]
+      implicitly[ClassTag[U2]]
     }
   }
 
@@ -35,19 +35,19 @@ class InferTypeTag extends BaseSpec {
     type U = (Int, String)
 
 //    val ttg = implicitly[TypeTag[U]] // not working
-    val ctg = implicitly[ClassTag[U]]
+    implicitly[ClassTag[U]]
   }
 
   it("from Witness") {
 
-    val ttg = implicitly[TypeTag[Witness.Lt[String]]]
-    val ctg = implicitly[ClassTag[Witness.Lt[String]]]
+    implicitly[TypeTag[Witness.Lt[String]]]
+    implicitly[ClassTag[Witness.Lt[String]]]
   }
 
   it("... from macro") {
 
-    val ttg = implicitly[TypeTag[Witness.`1`.T]]
-    val ctg = implicitly[ClassTag[Witness.`1`.T]]
+    implicitly[TypeTag[Witness.`1`.T]]
+    implicitly[ClassTag[Witness.`1`.T]]
   }
 
   it("... doesn't work") {

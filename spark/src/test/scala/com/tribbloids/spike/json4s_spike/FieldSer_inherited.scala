@@ -39,7 +39,7 @@ class FieldSer_inherited extends AnyFunSpec {
 
     val jv = Extraction.decompose(mm)
 
-    val json = JsonMethods.pretty(jv)
+    JsonMethods.pretty(jv)
 
     val mm2 = Extraction.extract[Mixed](jv)
 

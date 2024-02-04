@@ -1,6 +1,6 @@
 package com.tribbloids.spike.kafka_spike
 
-import com.tribbloids.spike.spark_spike.TestHelper
+import ai.acyclic.prover.commons.spark.TestHelper
 import org.apache.spark.sql.Dataset
 import org.scalatest.funspec.AnyFunSpec
 
@@ -18,7 +18,7 @@ class WriteStreamBigData extends AnyFunSpec with EmbeddedKafkaFixture {
       Random.nextString(1000)
     }
 
-    val result = ds.checkpoint(true)
+    ds.checkpoint(true)
 
     ds
   }
@@ -43,8 +43,6 @@ class WriteStreamBigData extends AnyFunSpec with EmbeddedKafkaFixture {
   //  }
 
   it("can write big dataset") {
-
-    val batchID = 1000
 
     //    KafkaHelper.sink()
     // TODO: incmplete

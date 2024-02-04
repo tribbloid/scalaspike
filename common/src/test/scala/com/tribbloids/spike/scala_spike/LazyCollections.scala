@@ -138,7 +138,7 @@ object LazyCollections {
 
       val logger = StringBuilder.newBuilder
 
-      val result = fn(logger)
+      fn(logger)
 
       val log = logger.mkString
 

@@ -1,5 +1,6 @@
 package com.tribbloids.spike.spark_spike
 
+import ai.acyclic.prover.commons.spark.TestHelper
 import org.apache.spark.SparkContext
 import org.apache.spark.util.LongAccumulator
 import org.scalatest.funspec.AnyFunSpec

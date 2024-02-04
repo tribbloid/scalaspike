@@ -17,7 +17,7 @@ class DuckType extends AnyFunSpec with BeforeAndAfterAll {
       override type Out = Int
     }
 
-    val a2 = new Abs {
+    new Abs {
       override def base: Double = 3.0
       override type Out = Long
     }

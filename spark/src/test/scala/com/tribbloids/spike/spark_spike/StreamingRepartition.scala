@@ -1,21 +1,22 @@
 package com.tribbloids.spike.spark_spike
 
+import ai.acyclic.prover.commons.spark.TestHelper
 import org.apache.spark.SparkContext
 import org.apache.spark.sql.{DataFrame, SQLContext}
 import org.scalatest.funspec.AnyFunSpec
 
 class StreamingRepartition extends AnyFunSpec {
 
-  import TestHelper.TestSQL.implicits._
-
   def sparkContext: SparkContext = TestHelper.TestSC
-  def sqlContext: SQLContext = TestHelper.TestSQL
+  val sql: SQLContext = TestHelper.TestSQL
+
+  import sql.implicits._
 
   describe("repartition doesn't have to wait for iterations to finish in previous stage") {
 
     it("dataset version") {
 
-      val ds = sqlContext.createDataset(1 to 100).repartition(1)
+      val ds = sql.createDataset(1 to 100).repartition(1)
 
       val mapped = ds.mapPartitions { itr =>
         itr.map { ii =>
@@ -37,7 +38,7 @@ class StreamingRepartition extends AnyFunSpec {
 
     it("stream version") {
 
-      val ds: DataFrame = sqlContext.readStream.load("~/abc")
+      sql.readStream.load("~/abc")
 
 //      ds.
       // TODO: figure it out

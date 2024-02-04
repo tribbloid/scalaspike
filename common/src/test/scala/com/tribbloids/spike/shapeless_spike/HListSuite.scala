@@ -26,14 +26,14 @@ class HListSuite extends BaseSpec {
     //    import shapeless.syntax.std.function._
     //    import shapeless.ops.function._
 
-    val v = getHList(1, 2, 3, 4, 5, 6, 7, 8, 9)
+    getHList(1, 2, 3, 4, 5, 6, 7, 8, 9)
   }
 
   // TODO: need example for ProductArgs
 
   it("can be mapped with T => R, where T is the common type") {
 
-    val hh = 11 :: 22 :: 33 :: HNil
+    11 :: 22 :: 33 :: HNil
 
     //    val hh2 = hh.map { v: Int =>
     //      v + 1

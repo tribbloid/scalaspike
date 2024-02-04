@@ -18,7 +18,7 @@ object Summoner {
 
     {
       val foo = summon[Foo]
-      val foo1: Foo.Foo1 = foo
+      foo
     }
 
     {

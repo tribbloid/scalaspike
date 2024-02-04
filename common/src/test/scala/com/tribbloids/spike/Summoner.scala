@@ -18,11 +18,11 @@ object Summoner {
 
     {
       val foo = summon[Foo]
-      val foo1: Foo.Foo1 = foo
+      foo
     }
 
     {
-      val foo = implicitly[Foo]
+      implicitly[Foo]
       //      val foo1: Foo.Foo1 = foo // fail to compile
     }
   }

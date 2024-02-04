@@ -88,8 +88,8 @@ class TwoFaceExample extends BaseSpec {
 
 //    print_@(TypeViz.apply[v3.type])
 
-    val t1 = WideTyped(v1)
-    val t2 = WideTyped(v2)
+    WideTyped(v1)
+    WideTyped(v2)
     val t3 = WideTyped(v3)
     print_@(TypeViz.apply[t3.Wide])
 

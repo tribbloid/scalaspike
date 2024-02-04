@@ -16,7 +16,7 @@ class Precedence extends BaseSpec {
       }
     }
 
-    val a1 = A(3)
+    A(3)
 
     {
 

@@ -7,7 +7,7 @@ class SizedSuite extends BaseSpec {
 
   it("builder") {
 
-    val v1 = Sized(1, 2, 3, 4)
+    Sized(1, 2, 3, 4)
 
   }
 
@@ -24,9 +24,9 @@ class SizedSuite extends BaseSpec {
 
   it("can be created from List") {
 
-    val v1 = Sized.wrap[List[Int], nat._4](List(1, 2, 3, 4))
+    Sized.wrap[List[Int], nat._4](List(1, 2, 3, 4))
 
-    val v2 = Sized.wrap[List[Int], nat._4](List(1, 2, 3)) // TODO: this should fail either compile-time or run-time
+    Sized.wrap[List[Int], nat._4](List(1, 2, 3)) // TODO: this should fail either compile-time or run-time
   }
 
   it("cannot be created from non-literal List") {

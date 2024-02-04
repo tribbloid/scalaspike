@@ -102,7 +102,7 @@ class WitnessSuite extends BaseSpec {
 
     val v1 = Wrap(3)
     val v2 = Wrap(3)
-    val v3 = Wrap(4)
+    Wrap(4)
 
     v1.sameType(v2)
     sameType[v1.TT, v2.TT]

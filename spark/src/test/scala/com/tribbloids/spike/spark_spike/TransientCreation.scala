@@ -37,7 +37,7 @@ object TransientCreation {
     import sqlC.implicits._
 
     val rdd = sc.parallelize(tokens).repartition(200)
-    val df = rdd.toDF
+    rdd.toDF
 
     val toCloseOver = TrieMap[String, SomeClass]("a" -> SomeClass("aString", acc))
     val broadcasted = sc.broadcast(toCloseOver)

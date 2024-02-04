@@ -3,7 +3,6 @@ package com.tribbloids.spike.shapeless_spike
 import ai.acyclic.prover.commons.debug.print_@
 import ai.acyclic.prover.commons.testlib.BaseSpec
 import ai.acyclic.prover.commons.viz.WideTyped
-import shapeless.labelled.KeyTag
 import shapeless.ops.record.Values
 
 class RecordSuite extends BaseSpec {
@@ -32,7 +31,7 @@ class RecordSuite extends BaseSpec {
 
       val _v = implicitly[Values[bookW.Wide]]
       val _vv = _v: Values.Aux[bookW.Wide, _v.Out]
-      val v2 = book.values(_vv)
+      book.values(_vv)
 
     }
 
@@ -77,7 +76,7 @@ class RecordSuite extends BaseSpec {
 
         type RR = record.type
 
-        val record2: RR = record
+        record
 
         //        inferKeys(record2)
         //        inferKeys[record.type](record2)
@@ -97,9 +96,8 @@ class RecordSuite extends BaseSpec {
     )
 
     import shapeless.syntax.RecordOps
-    import shapeless.record._
 
-    val book1 = new RecordOps(book).updated("author", "Benjamin Pierce")
+    new RecordOps(book).updated("author", "Benjamin Pierce")
   }
 
   it("special tag") {

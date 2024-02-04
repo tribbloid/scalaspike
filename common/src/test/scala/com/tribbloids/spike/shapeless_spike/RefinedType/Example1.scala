@@ -55,7 +55,7 @@ class Example1 extends AnyFunSpec {
   it("2d") {
 
     val q = new Quaternion(List(1.0 -> 2.0, 3.0 -> 4.0))
-    val q2 = new ComplexVector[alsoTwo.type](List(3.0 -> 4.0, 1.0 -> 2.0))
+    new ComplexVector[alsoTwo.type](List(3.0 -> 4.0, 1.0 -> 2.0))
 
     q + q
 
@@ -67,8 +67,7 @@ class Example1 extends AnyFunSpec {
 
   it("3d") {
 
-    val vec =
-      new ComplexVector[three.type](List(1.0 -> 2.0, 3.0 -> 4.0, 5.0 -> 6.0))
+    new ComplexVector[three.type](List(1.0 -> 2.0, 3.0 -> 4.0, 5.0 -> 6.0))
 
     // This will break
     //  {

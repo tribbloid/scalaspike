@@ -20,9 +20,9 @@ class ProveSameType extends BaseSpec {
 
     val a = new SS1()
 
-    val b = new SS1()
+    new SS1()
 
-    val c = a
+    a
 
     sameType[a.II, a.II]
 

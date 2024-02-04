@@ -1,8 +1,7 @@
 package com.tribbloids.spike.frameless_spike
 
-import com.tribbloids.spike.spark_spike.TestHelper
+import ai.acyclic.prover.commons.spark.TestHelper
 import frameless.TypedDataset
-import org.apache.spark.sql.catalyst.InternalRow
 import org.apache.spark.sql.catalyst.expressions.codegen.{GenerateSafeProjection, GenerateUnsafeProjection}
 import org.apache.spark.sql.catalyst.expressions.{Attribute, Expression, Projection, UnsafeProjection}
 import org.scalatest.funspec.AnyFunSpec
@@ -71,7 +70,7 @@ class UseExpressionLocally extends AnyFunSpec {
       )
       .dataset
 
-    val enc = ds.encoder
+    ds.encoder
 
     val col = ds("b1")
 

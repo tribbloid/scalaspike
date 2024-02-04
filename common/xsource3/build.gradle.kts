@@ -16,3 +16,9 @@ allprojects {
         }
     }
 }
+
+
+dependencies {
+
+    api(project(":common"))
+}

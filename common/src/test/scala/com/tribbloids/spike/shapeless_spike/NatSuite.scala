@@ -89,7 +89,7 @@ class NatSuite extends AnyFunSpec {
 
     }
 
-    val v = HasLength((1, 2, 3))
+    HasLength((1, 2, 3))
 
     println()
   }

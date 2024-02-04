@@ -1,6 +1,6 @@
 package com.tribbloids.spike.frameless_spike
 
-import com.tribbloids.spike.spark_spike.TestHelper
+import ai.acyclic.prover.commons.spark.TestHelper
 import frameless.TypedDataset
 import org.scalatest.funspec.AnyFunSpec
 import shapeless.HNil
@@ -27,7 +27,7 @@ class TypedDatasetDemo extends AnyFunSpec {
     val t1 = TypedDataset.create(apartments)
 
     {
-      val c1 = t1(Symbol("city"))
+      t1(Symbol("city"))
 
       val t2 = t1.select(
         t1(Symbol("city")),
@@ -66,7 +66,6 @@ class TypedDatasetDemo extends AnyFunSpec {
 
   it("from record") { // TODO: doesn't work, not a shapeless Record
 
-    import frameless.TypedDataset
     import shapeless.record.Record
     import shapeless.syntax.singleton._
 
@@ -74,7 +73,7 @@ class TypedDatasetDemo extends AnyFunSpec {
     type Person = Record.`'name -> String, 'age -> Int`.T
 
     // Create a Dataset of this Record
-    val people: Seq[Person] = Seq(
+    Seq(
       ('name ->> "Alice") :: ('age ->> 25) :: HNil,
       ('name ->> "Bob") :: ('age ->> 29) :: HNil
     )

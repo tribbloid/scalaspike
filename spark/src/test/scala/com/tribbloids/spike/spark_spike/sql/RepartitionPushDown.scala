@@ -1,6 +1,6 @@
 package com.tribbloids.spike.spark_spike.sql
 
-import com.tribbloids.spike.spark_spike.TestHelper
+import ai.acyclic.prover.commons.spark.TestHelper
 import org.scalatest.funspec.AnyFunSpec
 
 class RepartitionPushDown extends AnyFunSpec {

@@ -14,7 +14,7 @@ class OverridingScope extends BaseSpec {
 
   it("implicits in outer object is in scope") {
 
-    val hh = implicitly[Sys1.Handler[Long]]
+    implicitly[Sys1.Handler[Long]]
   }
 }
 

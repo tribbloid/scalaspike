@@ -5,7 +5,7 @@ import org.scalatest.funspec.AnyFunSpec
 
 class SerializeUnlift extends AnyFunSpec {
 
-  import TestHelper._
+  import ai.acyclic.prover.commons.spark.TestHelper._
   import SerializeUnlift._
 
   val sc: SparkContext = TestSC

@@ -1,6 +1,6 @@
 package com.tribbloids.spike.graphframes_spike
 
-import com.tribbloids.spike.spark_spike.TestHelper
+import ai.acyclic.prover.commons.spark.TestHelper
 import org.apache.spark.sql.SparkSession
 import org.scalatest.funspec.AnyFunSpec
 

@@ -8,7 +8,6 @@ import org.scalatest.funspec.AnyFunSpec
 
 class Example extends AnyFunSpec {
 
-  import eu.timepit.refined.auto._
   import shapeless.{Witness => W}
 
   describe("simple") {
@@ -16,8 +15,6 @@ class Example extends AnyFunSpec {
     it("Positive") {
 
       type Nat = Int Refined Positive
-
-      val v1: Nat = 5
 
       // cannot compile
       //        val v2: Nat = -5
@@ -39,8 +36,6 @@ class Example extends AnyFunSpec {
     it("of String") {
 
       type Str5 = String Refined Size[Equal[W.`5`.T]]
-
-      val v1: Str5 = "abcde"
 
 //      val v2: Str5 = "Abcd" // cannot compile
     }

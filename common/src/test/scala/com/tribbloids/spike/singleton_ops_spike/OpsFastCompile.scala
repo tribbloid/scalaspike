@@ -14,7 +14,7 @@ class OpsFastCompile extends BaseSpec {
 
   it("summon Nat => ToInt") {
 
-    val op1 = implicitly[ToInt[big.nat.N]]
+    implicitly[ToInt[big.nat.N]]
 
     def getOps[D <: HList, T <: Nat](v: D)(
         implicit
@@ -26,7 +26,7 @@ class OpsFastCompile extends BaseSpec {
 
     val filled = HList.fill[Double](100)(0.0)
 
-    val op2 = getOps(filled)
+    getOps(filled)
   }
 
   // TODO triggers StackOverFlow

@@ -44,7 +44,7 @@ class TypeClass extends BaseSpec {
 
     assert(Thing(1) + Thing(2) == 2)
 
-    val v = implicitly[TypeClass[Int, Int] { type Out <: Int }]
+    implicitly[TypeClass[Int, Int] { type Out <: Int }]
 
     assert(Thing(1).++(Thing(2)) == 2)
   }

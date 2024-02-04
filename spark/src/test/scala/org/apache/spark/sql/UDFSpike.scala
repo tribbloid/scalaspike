@@ -1,6 +1,6 @@
 package org.apache.spark.sql
 
-import com.tribbloids.spike.spark_spike.TestHelper
+import ai.acyclic.prover.commons.spark.TestHelper
 import org.apache.spark.sql.expressions.UserDefinedFunction
 import org.scalatest.funspec.AnyFunSpec
 

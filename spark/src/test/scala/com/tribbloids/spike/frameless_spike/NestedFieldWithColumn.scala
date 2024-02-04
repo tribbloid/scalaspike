@@ -1,7 +1,7 @@
 package com.tribbloids.spike.frameless_spike
 
 import ai.acyclic.prover.commons.debug.print_@
-import com.tribbloids.spike.spark_spike.TestHelper
+import ai.acyclic.prover.commons.spark.TestHelper
 import frameless.TypedDataset
 import org.apache.spark.sql.SparkSession
 import org.scalatest.funspec.AnyFunSpec
@@ -105,7 +105,7 @@ class NestedFieldWithColumn extends AnyFunSpec {
 
       it("frameless") {
 
-        val ds4 = ds2.select(
+        ds2.select(
           ds2(Symbol("aux1"))
 //          transform(
 //            col("ins"),

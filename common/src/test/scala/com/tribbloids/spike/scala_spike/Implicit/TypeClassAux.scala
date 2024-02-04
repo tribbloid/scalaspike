@@ -79,7 +79,7 @@ class TypeClassAux extends BaseSpec {
 
   it("Aux1") {
 
-    val v = new Base.ForH()
+    new Base.ForH()
 
 //    T1.summon(v) // oops
 //    T1.summon(Base.ForH) // oops
@@ -101,23 +101,23 @@ class TypeClassAux extends BaseSpec {
 
   it("Aux3") {
 
-    val v = new Base.ForH()
+    new Base.ForH()
 
 //    T3.summon(v) // oops
 //    T3.summon(Base.ForH) // oops
 
-    val v2 = new Base.ForH(): Base.Aux[HNil]
+    new Base.ForH(): Base.Aux[HNil]
 //    T3.summon(v2) // oops
   }
 
   it("Aux4") {
 
-    val v = new Base.ForH()
+    new Base.ForH()
 
 //    T4.summon(v) // oops
 //    T4.summon(Base.ForH) // oops
 
-    val v2 = new Base.ForH(): Base.Aux[HNil]
+    new Base.ForH(): Base.Aux[HNil]
 //    T4.summon(v2) // oops
   }
 }
