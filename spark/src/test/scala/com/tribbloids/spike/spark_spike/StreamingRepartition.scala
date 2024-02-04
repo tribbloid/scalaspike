@@ -2,7 +2,7 @@ package com.tribbloids.spike.spark_spike
 
 import ai.acyclic.prover.commons.spark.TestHelper
 import org.apache.spark.SparkContext
-import org.apache.spark.sql.{DataFrame, SQLContext}
+import org.apache.spark.sql.SQLContext
 import org.scalatest.funspec.AnyFunSpec
 
 class StreamingRepartition extends AnyFunSpec {

@@ -4,7 +4,6 @@ import ai.acyclic.prover.commons.spark.TestHelper
 import org.scalatest.funspec.AnyFunSpec
 
 class NativeEncoderIsWeak extends AnyFunSpec {
-  import org.apache.spark.sql.Dataset
 
   import java.util.Calendar
 

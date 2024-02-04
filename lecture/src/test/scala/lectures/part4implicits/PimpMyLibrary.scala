@@ -8,6 +8,8 @@ object PimpMyLibrary extends App {
   // 2.isPrime
 
   implicit class RichInt(val value: Int) extends AnyVal {
+
+    def _v: Int = value
     def isEven: Boolean = value % 2 == 0
     def sqrt: Double = Math.sqrt(value)
 
