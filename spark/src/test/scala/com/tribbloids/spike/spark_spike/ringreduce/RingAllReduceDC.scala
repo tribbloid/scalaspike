@@ -3,13 +3,11 @@ package com.tribbloids.spike.spark_spike.ringreduce
 import ai.acyclic.prover.commons.spark.TestHelper
 import org.apache.spark.BarrierTaskContext
 
-import scala.collection.JavaConverters._
-
 // testing example
 
 import org.apache.spark.util.AccumulatorV2
+
 import scala.collection.mutable.{Map => MMap}
-import scala.Double
 
 /**
   * Ring Allreduce Divide and Conquer
