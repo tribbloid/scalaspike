@@ -73,7 +73,7 @@ object RingAllReduceDC {
 
     val MapAccumulator = new MapAccumulator()
     sc.register(MapAccumulator, "mapacc")
-    var mapacc = MapAccumulator
+    val mapacc = MapAccumulator
 
 //   rddA ring allreduce
     val t0 = System.nanoTime()
@@ -84,7 +84,7 @@ object RingAllReduceDC {
         .barrier()
         .mapPartitions(
           batches => {
-            var newlist = batches.toList
+            val newlist = batches.toList
             val context = BarrierTaskContext.get();
             val partitionId = context.partitionId();
             val chunk_index = (partitionId + m) % m
@@ -108,7 +108,7 @@ object RingAllReduceDC {
           .barrier()
           .mapPartitions(
             batches => {
-              var newlist = batches.toList
+              val newlist = batches.toList
               val context = BarrierTaskContext.get();
               val partitionId = context.partitionId();
 
@@ -163,7 +163,7 @@ object RingAllReduceDC {
         .barrier()
         .mapPartitions(
           batches => {
-            var newlist = batches.toList
+            val newlist = batches.toList
             newlist.iterator
             val context = BarrierTaskContext.get();
             val partitionId = context.partitionId();
@@ -208,7 +208,7 @@ object RingAllReduceDC {
         .barrier()
         .mapPartitions(
           batches => {
-            var newlist = batches.toList
+            val newlist = batches.toList
             val context = BarrierTaskContext.get();
             val partitionId = context.partitionId();
             val chunk_index = (partitionId + m) % m
@@ -231,7 +231,7 @@ object RingAllReduceDC {
           .barrier()
           .mapPartitions(
             batches => {
-              var newlist = batches.toList
+              val newlist = batches.toList
               val context = BarrierTaskContext.get();
               val partitionId = context.partitionId();
 
@@ -289,7 +289,7 @@ object RingAllReduceDC {
         .barrier()
         .mapPartitions(
           batches => {
-            var newlist = batches.toList
+            val newlist = batches.toList
             newlist.iterator
             val context = BarrierTaskContext.get();
             val partitionId = context.partitionId();
@@ -333,7 +333,7 @@ object RingAllReduceDC {
         .barrier()
         .mapPartitions(
           batches => {
-            var newlist = batches.toList
+            val newlist = batches.toList
             newlist.iterator
             val context = BarrierTaskContext.get();
             val partitionId = context.partitionId();
@@ -374,7 +374,7 @@ object RingAllReduceDC {
         .barrier()
         .mapPartitions(
           batches => {
-            var newlist = batches.toList
+            val newlist = batches.toList
             newlist.iterator
             val context = BarrierTaskContext.get();
             val partitionId = context.partitionId();

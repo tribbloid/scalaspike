@@ -11,7 +11,7 @@ dependencies {
 //    scalaCompilerPlugins("org.scala-lang.plugins:scala-continuations-plugin_${vs.scala.binaryV}.2:1.0.3")
 
     // https://mvnrepository.com/artifact/janino/janino
-    implementation("org.codehaus.janino:janino:3.1.11")
+    implementation("org.codehaus.janino:janino:3.1.12")
     // https://mvnrepository.com/artifact/com.github.julien-truffaut/monocle-core
     implementation("dev.optics:monocle-core_${vs.scala.binaryV}:3.2.0")
     implementation("dev.optics:monocle-macro_${vs.scala.binaryV}:3.2.0")

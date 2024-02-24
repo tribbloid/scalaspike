@@ -76,7 +76,7 @@ object RingAllReduce {
 //    var rddC = sc.parallelize(Array(v1,v2,v3,v4),n)
     val MapAccumulator = new MapAccumulator()
     sc.register(MapAccumulator, "mapacc")
-    var mapacc = MapAccumulator
+    val mapacc = MapAccumulator
 
     //
     val t0 = System.nanoTime()
@@ -86,7 +86,7 @@ object RingAllReduce {
       .barrier()
       .mapPartitions(
         batches => {
-          var newlist = batches.toList
+          val newlist = batches.toList
           val context = BarrierTaskContext.get();
           val partitionId = context.partitionId();
           val chunk_index = (partitionId + n) % n
@@ -108,7 +108,7 @@ object RingAllReduce {
           .barrier()
           .mapPartitions(
             batches => {
-              var newlist = batches.toList
+              val newlist = batches.toList
               val context = BarrierTaskContext.get();
               val partitionId = context.partitionId();
 
@@ -158,7 +158,7 @@ object RingAllReduce {
         .barrier()
         .mapPartitions(
           batches => {
-            var newlist = batches.toList
+            val newlist = batches.toList
             newlist.iterator
             val context = BarrierTaskContext.get();
             val partitionId = context.partitionId();

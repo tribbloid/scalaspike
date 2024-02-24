@@ -2,6 +2,7 @@ package com.tribbloids.spike.frameless_spike
 
 import ai.acyclic.prover.commons.spark.TestHelper
 import frameless.TypedDataset
+import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.catalyst.expressions.codegen.{GenerateSafeProjection, GenerateUnsafeProjection}
 import org.apache.spark.sql.catalyst.expressions.{Attribute, Expression, Projection, UnsafeProjection}
 import org.scalatest.funspec.AnyFunSpec
@@ -9,7 +10,7 @@ import org.scalatest.funspec.AnyFunSpec
 class UseExpressionLocally extends AnyFunSpec {
   import UseExpressionLocally._
 
-  implicit val spark = TestHelper.TestSparkSession
+  implicit val spark: SparkSession = TestHelper.TestSparkSession
 
   it("get elementary cell") {
 

@@ -86,7 +86,7 @@ object GD_RingAllReduce {
 
       val MapAccumulator = new MapAccumulator()
       sc.register(MapAccumulator, "mapacc")
-      var mapacc = MapAccumulator
+      val mapacc = MapAccumulator
 
       val t0 = System.nanoTime()
       var cachearray = collection.Map[Int, Double]()
@@ -95,7 +95,7 @@ object GD_RingAllReduce {
         .barrier()
         .mapPartitions(
           batches => {
-            var newlist = batches.toList
+            val newlist = batches.toList
             val context = BarrierTaskContext.get();
             val partitionId = context.partitionId();
             val chunk_index = (partitionId + n) % n
@@ -116,7 +116,7 @@ object GD_RingAllReduce {
             .barrier()
             .mapPartitions(
               batches => {
-                var newlist = batches.toList
+                val newlist = batches.toList
                 val context = BarrierTaskContext.get();
                 val partitionId = context.partitionId();
 
@@ -167,7 +167,7 @@ object GD_RingAllReduce {
           .barrier()
           .mapPartitions(
             batches => {
-              var newlist2 = batches.toList
+              val newlist2 = batches.toList
               newlist2.iterator
               val context = BarrierTaskContext.get();
               val partitionId = context.partitionId();

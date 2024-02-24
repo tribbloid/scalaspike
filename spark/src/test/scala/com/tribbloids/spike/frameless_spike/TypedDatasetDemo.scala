@@ -2,6 +2,7 @@ package com.tribbloids.spike.frameless_spike
 
 import ai.acyclic.prover.commons.spark.TestHelper
 import frameless.TypedDataset
+import org.apache.spark.sql.SparkSession
 import org.scalatest.funspec.AnyFunSpec
 import shapeless.HNil
 
@@ -9,7 +10,7 @@ class TypedDatasetDemo extends AnyFunSpec {
 
   import TypedDatasetDemo.Apartment
 
-  implicit val spark = TestHelper.TestSparkSession
+  implicit val spark: SparkSession = TestHelper.TestSparkSession
 
   spark.sparkContext.setLogLevel("WARN")
 
@@ -38,30 +39,6 @@ class TypedDatasetDemo extends AnyFunSpec {
       t2.toDF().show()
     }
 
-    {
-//      val t2 = t1.select(
-//        t1(Symbol("surface"))
-//          .opt[Int]
-//          .map(v => v * 2)
-//      ) // TODO: doesn't work?
-
-//      val t2 = t1.select(
-//        t1(Symbol("surface"))
-//          .opt
-//          .map(v => v * 2)
-//      ) // TODO: blocked by a bug
-
-//      t2.printSchema()
-//      t2.toDF().show()
-    }
-
-//    val t3 = t1
-//      .withColumn(lit(List("a", "b", "c")))
-
-//      .withColumn(t1(Symbol("city")))
-//      .withColumn(t1('surface) + 1)
-
-//    val k: String = t3
   }
 
   it("from record") { // TODO: doesn't work, not a shapeless Record
@@ -73,14 +50,13 @@ class TypedDatasetDemo extends AnyFunSpec {
     type Person = Record.`'name -> String, 'age -> Int`.T
 
     // Create a Dataset of this Record
-    Seq(
+    val people = Seq(
       ('name ->> "Alice") :: ('age ->> 25) :: HNil,
       ('name ->> "Bob") :: ('age ->> 29) :: HNil
     )
 
     // Convert to TypedDataset
-//    val typedDS = TypedDataset.create(people)(RecordEncoder) // TODO: doesn't work
-
+//    val typedDS = TypedDataset.create(people) // TODO: doesn't work
   }
 }
 
