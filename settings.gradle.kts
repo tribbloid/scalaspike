@@ -12,6 +12,7 @@ include(
     ":lecture",
     ":cats3",
 //    ":cats2",
+    ":kyo",
     ":scraper",
     ":spark",
     ":meta"

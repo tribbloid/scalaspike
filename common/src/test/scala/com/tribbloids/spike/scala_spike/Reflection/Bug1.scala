@@ -1,6 +1,6 @@
 package com.tribbloids.spike.scala_spike.Reflection
 
-import ai.acyclic.prover.commons.meta2.Reflection.Runtime.WeakTypeTag
+import ai.acyclic.prover.commons.refl.Reflection.Runtime.WeakTypeTag
 import shapeless.Witness
 
 object Bug1 {
