@@ -2,15 +2,16 @@ package com.tribbloids.spike.frameless_spike
 
 import ai.acyclic.prover.commons.spark.TestHelper
 import frameless.TypedDataset
-import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.catalyst.expressions.codegen.{GenerateSafeProjection, GenerateUnsafeProjection}
 import org.apache.spark.sql.catalyst.expressions.{Attribute, Expression, Projection, UnsafeProjection}
+import org.apache.spark.sql.{Column, SparkSession}
 import org.scalatest.funspec.AnyFunSpec
 
 class UseExpressionLocally extends AnyFunSpec {
   import UseExpressionLocally._
 
   implicit val spark: SparkSession = TestHelper.TestSparkSession
+  import spark.RichColumn
 
   it("get elementary cell") {
 
@@ -18,7 +19,7 @@ class UseExpressionLocally extends AnyFunSpec {
 
     val ds = spark.createDataset[Bean](Seq(Bean(1, 2)))
 
-    val col = {
+    val col: Column = {
       val raw = ds("a") + 4 as "c"
       raw
     }
