@@ -1,6 +1,6 @@
 package com.tribbloids.spike.kafka_spike
 
-import net.manub.embeddedkafka.{EmbeddedKafka, EmbeddedKafkaConfig}
+import io.github.embeddedkafka.{EmbeddedKafka, EmbeddedKafkaConfig}
 import org.scalatest.{BeforeAndAfterAll, Suite}
 
 trait EmbeddedKafkaFixture extends Suite with BeforeAndAfterAll {

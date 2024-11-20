@@ -35,12 +35,11 @@ object TransitiveConversion {
         }
       }
     }
-    import ConvUtils.hypotheticalSyllogism
 
     def demo(): Unit = {
       val a = new A(42)
-      val c: C = a
-      println(c.b.a.value) // Outputs: 42
+//      val c: C = a // doesn't work here
+//      println(c.b.a.value) // Outputs: 42
     }
   }
 

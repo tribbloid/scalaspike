@@ -12,9 +12,12 @@ dependencies {
 
     // https://mvnrepository.com/artifact/janino/janino
     implementation("org.codehaus.janino:janino:3.1.12")
+
+    val monocleV = "3.3.0"
+
     // https://mvnrepository.com/artifact/com.github.julien-truffaut/monocle-core
-    implementation("dev.optics:monocle-core_${vs.scala.binaryV}:3.2.0")
-    implementation("dev.optics:monocle-macro_${vs.scala.binaryV}:3.2.0")
+    implementation("dev.optics:monocle-core_${vs.scala.binaryV}:$monocleV")
+    implementation("dev.optics:monocle-macro_${vs.scala.binaryV}:$monocleV")
 
     testImplementation(testFixtures(project(":prover-commons:meta2")))
     testImplementation("org.apache.logging.log4j:log4j-slf4j-impl:2.19.0")
