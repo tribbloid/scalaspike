@@ -6,7 +6,7 @@ class ExtractingTypeArg extends AnyFunSpec {}
 
 object ExtractingTypeArg {
 
-  import com.tribbloids.spike.Summoner._
+  import com.tribbloids.spike.Summoner.*
 
   trait Vec[+T <: AnyRef]
 

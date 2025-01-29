@@ -4,8 +4,8 @@ import ai.acyclic.prover.commons.testlib.BaseSpec
 
 class MonocleFeatures extends BaseSpec {
 
-  import monocle.syntax.all._
-  import MonocleFeatures._
+  import MonocleFeatures.*
+  import monocle.syntax.all.*
 
   it("plain") {
 

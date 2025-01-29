@@ -6,7 +6,7 @@ import java.io.{ByteArrayInputStream, ByteArrayOutputStream, ObjectInputStream, 
 
 class TypeTagFromType extends AnyFunSpec {
 
-  import ai.acyclic.prover.commons.refl.Reflection.Runtime.universe._
+  import ai.acyclic.prover.commons.refl.Reflection.Runtime.universe.*
 
   it("create TypeTag from reflection") {
 
@@ -35,7 +35,7 @@ class TypeTagFromType extends AnyFunSpec {
     }
   }
 
-  def serialise(tt: TypeTag[_]): Array[Byte] = {
+  def serialise(tt: TypeTag[?]): Array[Byte] = {
     val bos = new ByteArrayOutputStream()
     try {
       val out = new ObjectOutputStream(bos)
@@ -48,13 +48,13 @@ class TypeTagFromType extends AnyFunSpec {
     }
   }
 
-  def deserialise(tt: Array[Byte]): TypeTag[_] = {
+  def deserialise(tt: Array[Byte]): TypeTag[?] = {
 
     val bis = new ByteArrayInputStream(tt)
 
     try {
       val in = new ObjectInputStream(bis)
-      in.readObject().asInstanceOf[TypeTag[_]]
+      in.readObject().asInstanceOf[TypeTag[?]]
 
     } finally {
       bis.close()
@@ -65,7 +65,7 @@ class TypeTagFromType extends AnyFunSpec {
 
 object TypeUtils {
 
-  import ai.acyclic.prover.commons.refl.Reflection.Runtime.universe._
+  import ai.acyclic.prover.commons.refl.Reflection.Runtime.universe.*
 
   def createTypeTag_fast[T](
       tpe: Type,
@@ -92,7 +92,7 @@ object TypeUtils {
 
   case class NaiveTypeCreator(tpe: Type) extends reflect.api.TypeCreator {
 
-    def apply[U <: reflect.api.Universe with Singleton](m: reflect.api.Mirror[U]): U#Type = {
+    def apply[U <: reflect.api.Universe & Singleton](m: reflect.api.Mirror[U]): U#Type = {
       //          assert(m eq mirror, s"TypeTag[$tpe] defined in $mirror cannot be migrated to $m.")
       tpe.asInstanceOf[U#Type]
     }

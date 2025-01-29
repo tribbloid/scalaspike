@@ -5,7 +5,7 @@ import ai.acyclic.prover.commons.viz.TypeViz
 
 class OverrideMemberType extends BaseSpec {
 
-  import OverrideMemberType._
+  import OverrideMemberType.*
 
   it("can override path dependent type") {
 
@@ -54,7 +54,7 @@ object OverrideMemberType {
   }
 
   class Sub1 extends Sup {
-    override val abc = this
+    override val abc: com.tribbloids.spike.scala_spike.AbstractType.OverrideMemberType.Sub1 = this
   }
   val Sub1 = new Sub1
 

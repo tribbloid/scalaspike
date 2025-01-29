@@ -17,7 +17,7 @@ object PartialUnification {
     implicit val WidenList: Widen[List] = new Widen[List] { def widen[A, B >: A](l: List[A]): List[B] = l }
   }
 
-  import Widen._
+  import Widen.*
 
   List.empty[Some[Int]].widen[Option[Int]]
 

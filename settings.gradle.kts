@@ -2,6 +2,7 @@
 
 include(":prover-commons")
 project(":prover-commons").projectDir = file("prover-commons/module")
+include(":prover-commons:infra")
 include(":prover-commons:core")
 include(":prover-commons:meta2")
 include(":prover-commons:spark")

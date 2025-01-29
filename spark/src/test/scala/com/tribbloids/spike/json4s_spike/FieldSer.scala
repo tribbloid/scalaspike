@@ -67,7 +67,7 @@ class FieldSer extends AnyFunSpec {
 
       implicit def formats = FieldSer.formats
 
-      import org.json4s.JsonDSL._
+      import org.json4s.JsonDSL.*
 
       {
         val jv = JObject(

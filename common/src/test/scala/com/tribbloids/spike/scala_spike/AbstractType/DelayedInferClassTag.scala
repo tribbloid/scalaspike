@@ -38,7 +38,7 @@ object DelayedInferClassTag {
 
 class DelayedInferClassTag extends AnyFunSpec {
 
-  import DelayedInferClassTag._
+  import DelayedInferClassTag.*
 
   it("1") {
 

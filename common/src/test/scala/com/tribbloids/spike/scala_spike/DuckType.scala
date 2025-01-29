@@ -1,14 +1,14 @@
 package com.tribbloids.spike.scala_spike
 
-import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.BeforeAndAfterAll
+import org.scalatest.funspec.AnyFunSpec
 
 /**
   * Created by peng on 31/03/16.
   */
 class DuckType extends AnyFunSpec with BeforeAndAfterAll {
 
-  import DuckType._
+  import DuckType.*
 
   it("1") {
 

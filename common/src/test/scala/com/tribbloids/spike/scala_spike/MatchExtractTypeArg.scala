@@ -4,7 +4,7 @@ object MatchExtractTypeArg {
 
   import scala.reflect.runtime.universe.TypeTag
 
-  def mapType(k: TypeTag[_], v: TypeTag[_]) = {
+  def mapType(k: TypeTag[?], v: TypeTag[?]) = {
 
     (k, v) match {
       case (k: TypeTag[a], v: TypeTag[b]) =>

@@ -1,7 +1,8 @@
 package com.tribbloids.spike.cats_spike
 
 import cats.effect.{IO, IOApp}
-import scala.concurrent.duration._
+
+import scala.concurrent.duration.*
 
 // obviously this isn't actually the problem definition, but it's kinda fun
 object StupidFizzBuzz extends IOApp.Simple {

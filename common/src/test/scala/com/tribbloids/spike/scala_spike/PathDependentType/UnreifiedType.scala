@@ -35,7 +35,7 @@ object UnreifiedType {
 
 class UnreifiedType extends BaseSpec {
 
-  import UnreifiedType._
+  import UnreifiedType.*
 
   it("ttg from type") {
 

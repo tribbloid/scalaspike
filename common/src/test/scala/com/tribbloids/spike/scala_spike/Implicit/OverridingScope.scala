@@ -4,7 +4,7 @@ import ai.acyclic.prover.commons.testlib.BaseSpec
 
 class OverridingScope extends BaseSpec {
 
-  import OverridingScope._
+  import OverridingScope.*
 
   it("implicits in companion is in scope") {
 

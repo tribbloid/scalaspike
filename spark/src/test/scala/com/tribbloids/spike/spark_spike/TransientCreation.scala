@@ -34,7 +34,7 @@ object TransientCreation {
 
     val acc: LongAccumulator = sc.longAccumulator("test")
 
-    import sqlC.implicits._
+    import sqlC.implicits.*
 
     val rdd = sc.parallelize(tokens).repartition(200)
     rdd.toDF
@@ -58,7 +58,7 @@ object TransientCreation {
         val tt = broadcasted.value
         val res: SomeClass = tt("a")
         val suffixed = res.addSuffix(v.original.toString)
-        import res._
+        import res.*
 
         println(s"${randomID} \t:\t ${endString}")
         suffixed

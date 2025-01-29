@@ -10,7 +10,7 @@ class StreamingRepartition extends AnyFunSpec {
   def sparkContext: SparkContext = TestHelper.TestSC
   val sql: SQLContext = TestHelper.TestSQL
 
-  import sql.implicits._
+  import sql.implicits.*
 
   describe("repartition doesn't have to wait for iterations to finish in previous stage") {
 

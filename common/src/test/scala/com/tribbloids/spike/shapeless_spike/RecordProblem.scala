@@ -5,9 +5,9 @@ import shapeless.ops.record.Values
 
 object RecordProblem {
 
-  import shapeless._
-  import record._
-  import syntax.singleton._
+  import shapeless.*
+  import record.*
+  import syntax.singleton.*
 
   val book =
     ("author" ->> "Benjamin Pierce") ::

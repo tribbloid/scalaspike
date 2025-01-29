@@ -1,9 +1,9 @@
 package com.tribbloids.spike.scala_spike.Implicit
 
+import com.tribbloids.spike.scala_spike.Implicit.InferClassTag.*
 import org.scalatest.funspec.AnyFunSpec
 
 import scala.reflect.ClassTag
-import com.tribbloids.spike.scala_spike.Implicit.InferClassTag._
 
 object InferClassTag {
 

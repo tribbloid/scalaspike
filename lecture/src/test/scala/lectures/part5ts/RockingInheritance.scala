@@ -17,7 +17,7 @@ object RockingInheritance extends App {
     def foreach(f: T => Unit): Unit
   }
 
-  def processStream[T](stream: GenericStream[T] with Writer[T] with Closeable): Unit = {
+  def processStream[T](stream: GenericStream[T] & Writer[T] & Closeable): Unit = {
     stream.foreach(println)
     stream.close(0)
   }

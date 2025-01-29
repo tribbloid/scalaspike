@@ -8,7 +8,7 @@ object UnqualifiedTypeTag {
 
   trait HasUniverse {
 
-    val universe: Universe with Singleton
+    val universe: Universe & Singleton
 
     def uType: RuntimeUniverse.TypeTag[universe.type] = implicitly
   }

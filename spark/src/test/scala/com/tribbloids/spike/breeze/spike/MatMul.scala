@@ -4,7 +4,7 @@ import org.scalatest.funspec.AnyFunSpec
 
 class MatMul extends AnyFunSpec {
 
-  import breeze.linalg._
+  import breeze.linalg.*
 
   it("can multiply matrix") {
 

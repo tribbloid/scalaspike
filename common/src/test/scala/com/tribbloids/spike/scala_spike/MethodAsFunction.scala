@@ -4,13 +4,13 @@ import org.scalatest.funspec.AnyFunSpec
 
 object MethodAsFunction {
 
-  import scala.reflect.runtime.universe._
+  import scala.reflect.runtime.universe.*
 
   def m1[T](v: T): String = v.toString
 
   case class C1(v: String)
 
-  val f1: String => C1 = C1
+  val f1: String => C1 = C1.apply
 
   case class C2[T](v: T)
 
@@ -22,7 +22,7 @@ object MethodAsFunction {
 
 class MethodAsFunction extends AnyFunSpec {
 
-  import MethodAsFunction._
+  import MethodAsFunction.*
 
   it("case class companion obj") {
 

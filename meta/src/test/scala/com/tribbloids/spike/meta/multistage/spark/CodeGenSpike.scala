@@ -75,9 +75,9 @@ object CodeGenSpike {
   }
 
   case class MacroV1() extends Staged {
-    import MacroV1._
+    import MacroV1.*
 
-    import scala.reflect.runtime.universe._
+    import scala.reflect.runtime.universe.*
 
     lazy val compiled: () => Int = {
       val code =
@@ -100,14 +100,14 @@ object CodeGenSpike {
 
   object MacroV1 {
 
-    import scala.reflect.runtime.universe._
+    import scala.reflect.runtime.universe.*
     import scala.tools.reflect.ToolBox
 
     val toolBox: ToolBox[universe.type] = runtimeMirror(this.getClass.getClassLoader).mkToolBox()
   }
 
   case class Janino() extends Staged {
-    import Janino._
+    import Janino.*
 
     lazy val compiled: SomeInterface = {
       val compiler = new SimpleCompiler()

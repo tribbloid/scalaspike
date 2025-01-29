@@ -44,7 +44,7 @@ class TypedDatasetDemo extends AnyFunSpec {
   it("from record") { // TODO: doesn't work, not a shapeless Record
 
     import shapeless.record.Record
-    import shapeless.syntax.singleton._
+    import shapeless.syntax.singleton.*
 
     // Define a Record type
     type Person = Record.`'name -> String, 'age -> Int`.T

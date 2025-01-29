@@ -8,7 +8,7 @@ import org.scalatest.funspec.AnyFunSpec
 
 class NestedFieldWithColumn extends AnyFunSpec {
 
-  import NestedFieldWithColumn._
+  import NestedFieldWithColumn.*
 
   implicit val spark: SparkSession = TestHelper.TestSparkSession
 
@@ -16,7 +16,7 @@ class NestedFieldWithColumn extends AnyFunSpec {
 
     it("nested column") {
 
-      import org.apache.spark.sql.functions._
+      import org.apache.spark.sql.functions.*
 
       val rows = Seq(
         Outer1(
@@ -85,7 +85,7 @@ class NestedFieldWithColumn extends AnyFunSpec {
 
       it("spark") {
 
-        import org.apache.spark.sql.functions._
+        import org.apache.spark.sql.functions.*
 
         val ds4 = ds2.dataset.select(
           col("aux1"),

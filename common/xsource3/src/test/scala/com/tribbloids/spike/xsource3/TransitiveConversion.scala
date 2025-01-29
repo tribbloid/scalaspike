@@ -1,7 +1,6 @@
 package com.tribbloids.spike.xsource3
 
 object TransitiveConversion {
-  import scala.language.implicitConversions
 
   trait Conversion[A, B] extends (A => B)
 

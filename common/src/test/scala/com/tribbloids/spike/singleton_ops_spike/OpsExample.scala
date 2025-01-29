@@ -1,16 +1,16 @@
 package com.tribbloids.spike.singleton_ops_spike
 
 import ai.acyclic.prover.commons.testlib.BaseSpec
-import shapeless.{Nat, Witness}
 import shapeless.test.illTyped
-import singleton.ops.{*, +, ==, >, Require, SafeInt}
+import shapeless.{Nat, Witness}
+import singleton.ops.{+, ==, >, Require, SafeInt, *}
 
 class OpsExample extends BaseSpec {
 
-  import singleton.ops.W
-
   class Vec[L] {
-    def doubleSize = new Vec[W.`2`.T * L]
+    type L2 = 2 * L
+
+    def doubleSize = new Vec[L2]
 
     def nSize[N] = new Vec[N * L]
 
@@ -23,7 +23,7 @@ class OpsExample extends BaseSpec {
   object Vec {
     def apply[L]()(
         implicit
-        check: Require[L > W.`0`.T]
+        check: Require[L > 0]
     ): Vec[L] = new Vec[L]()
 
     def dot_*[L1, L2](v1: Vec[L1], v2: Vec[L2])(
@@ -34,9 +34,9 @@ class OpsExample extends BaseSpec {
 
   it("simple example") {
 
-    val v1 = Vec.apply[W.`4`.T + W.`1`.T]().doubleSize
-    val v2 = Vec[W.`10`.T]()
-    Vec[W.`9`.T]()
+    val v1 = Vec.apply[4 + 1]().doubleSize
+    val v2 = Vec[10]()
+    Vec[9]()
 
     Vec.dot_*(v1, v2)
 
@@ -45,19 +45,19 @@ class OpsExample extends BaseSpec {
     }
 
     illTyped {
-      "MyVec[W.`-1`.T]"
+      "MyVec[-1]"
     }
 
-    //    val myVec: MyVec[W.`10`.T] = MyVec[W.`4`.T + W.`1`.T].doubleSize  // implicit cast disabled, too slow for the compiler
+    //    val myVec: MyVec[10] = MyVec[4 + 1].doubleSize  // implicit cast disabled, too slow for the compiler
   }
 
-  it("Witness.Lt[Nat] should be interoperable with Witness.Lt[Int]") {
+  it("Nat should be interoperable with Int singleton") {
 
-    implicitly[Require[Nat._3 == W.`3`.T]]
+    implicitly[Require[Nat._3 == 3]]
 
     val v1 = Vec.apply[Nat._3]()
-    val v2 = Vec.apply[W.`3`.T]()
-    Vec[W.`9`.T]()
+    val v2 = Vec.apply[3]()
+    Vec[9]()
 
     Vec.dot_*(v1, v2)
 
@@ -68,12 +68,12 @@ class OpsExample extends BaseSpec {
 
   it("value can be summoned from result type") {
 
-    type T1 = W.`3`.T
+    type T1 = 3
 
     val v1 = implicitly[Witness.Aux[T1]]
     assert(v1.value == 3)
 
-    type T2 = T1 + W.`4`.T
+    type T2 = T1 + 4
 
     val v2 = implicitly[T2]
     assert(v2.value == 7)
@@ -86,7 +86,7 @@ class OpsExample extends BaseSpec {
     it("1") {
       type Big = Nat._3
 
-      type Small = Witness.`3`.T
+      type Small = 3
 
       type R = Require[Big == Small]
 
@@ -99,10 +99,10 @@ class OpsExample extends BaseSpec {
 
       type Big = nat.N
 
-      type Small = Witness.`3`.T
+      type Small = 3
 
-      type Sum = Witness.`6`.T
-      type NotSum = Witness.`7`.T
+      type Sum = 6
+      type NotSum = 7
 
       implicitly[Require[Big + Small == Sum]]
 
@@ -117,10 +117,10 @@ class OpsExample extends BaseSpec {
 
       type Big = nat.N
 
-      type Small = Witness.`3`.T
+      type Small = 3
 
-      type Sum = Witness.`103`.T
-      type NotSum = Witness.`105`.T
+      type Sum = 103
+      type NotSum = 105
 
       implicitly[Require[Big + Small == Sum]]
 

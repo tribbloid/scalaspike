@@ -7,7 +7,7 @@ import org.apache.spark.BarrierTaskContext
 
 import org.apache.spark.util.AccumulatorV2
 
-import scala.collection.mutable.{Map => MMap}
+import scala.collection.mutable.Map as MMap
 
 /**
   * Ring Allreduce Divide and Conquer
@@ -33,7 +33,7 @@ object RingAllReduceDC {
     override def value: Map[Int, Double] = _mmap.toMap.withDefaultValue(0)
 
     override def copy(): AccumulatorV2[(Int, Double), Map[Int, Double]] =
-      new MapAccumulator(MMap[Int, Double](value.toSeq: _*).withDefaultValue(0))
+      new MapAccumulator(MMap[Int, Double](value.toSeq *).withDefaultValue(0))
 
     override def isZero: Boolean = _mmap.isEmpty
 

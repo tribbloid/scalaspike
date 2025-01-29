@@ -45,7 +45,7 @@ object PimpMyLibrary extends App {
 
   1 to 10
 
-  import scala.concurrent.duration._
+  import scala.concurrent.duration.*
   3.seconds
 
   // compiler doesn't do multiple implicit searches.

@@ -17,13 +17,13 @@ object CaseCopyAndEquality {
     }
   }
 
-  case class XX private[CaseCopyAndEquality] (val id: UUID = UUID.randomUUID())(val value: String)
+  case class XX(val id: UUID = UUID.randomUUID())(val value: String)
 
 }
 
 class CaseCopyAndEquality extends BaseSpec {
 
-  import CaseCopyAndEquality._
+  import CaseCopyAndEquality.*
 
   it("copy should not change equality") {
 

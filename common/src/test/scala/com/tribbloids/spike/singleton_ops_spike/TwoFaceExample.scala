@@ -42,7 +42,7 @@ class TwoFaceExample extends BaseSpec {
 
     val v2 = {
 
-      4: TwoFace.Int[_]
+      4: TwoFace.Int[?]
 
       //      NarrowView[TwoFace.Int[_]]().cast(4)
 
@@ -67,7 +67,7 @@ class TwoFaceExample extends BaseSpec {
     print_@(TypeViz.infer(v1))
     assert(!v1.isLiteral)
 
-    val v2 = Random.nextInt(6): TwoFaceAny.Int[_]
+    val v2 = Random.nextInt(6): TwoFaceAny.Int[?]
 
     print_@(TypeViz.infer(v2))
     assert(!v2.isLiteral)

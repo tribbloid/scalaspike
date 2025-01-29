@@ -1,29 +1,29 @@
 package com.tribbloids.spike.scala_spike.FBound_SelfType
 
-import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.BeforeAndAfterAll
+import org.scalatest.funspec.AnyFunSpec
 
-import scala.reflect._
+import scala.reflect.*
 
 class FBoundPolymorphism_2 extends AnyFunSpec with BeforeAndAfterAll {
 
   trait FBound[+T <: FBound[T]] {
 
-    val ctg: ClassTag[_ <: T]
+    val ctg: ClassTag[? <: T]
 
     def respond: List[T]
   }
 
   class FBoundImpl2(val s: String) extends FBound[FBoundImpl2] {
 
-    override val ctg: ClassTag[_ <: FBoundImpl2] = classTag[FBoundImpl2]
+    override val ctg: ClassTag[? <: FBoundImpl2] = classTag[FBoundImpl2]
 
     override def respond: List[FBoundImpl2] = List()
   }
 
   class FBoundSubImpl2(override val s: String) extends FBoundImpl2(s) {
 
-    override val ctg: ClassTag[_ <: FBoundSubImpl2] = classTag[FBoundSubImpl2]
+    override val ctg: ClassTag[? <: FBoundSubImpl2] = classTag[FBoundSubImpl2]
 
     override def respond: List[FBoundSubImpl2] =
       List(new FBoundSubImpl2(this.s + "b"))

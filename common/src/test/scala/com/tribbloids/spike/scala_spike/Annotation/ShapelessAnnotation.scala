@@ -8,7 +8,7 @@ import shapeless.{Annotation, Annotations, HList, HNil, LabelledGeneric}
 
 class ShapelessAnnotation extends BaseSpec {
 
-  import Static._
+  import Static.*
   import org.scalatest.matchers.should.Matchers.convertToAnyShouldWrapper
 
   it("singular") {

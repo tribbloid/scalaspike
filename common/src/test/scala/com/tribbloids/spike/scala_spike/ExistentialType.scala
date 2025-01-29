@@ -1,6 +1,6 @@
 package com.tribbloids.spike.scala_spike
 
-import ExistentialType._
+import com.tribbloids.spike.scala_spike.ExistentialType.*
 
 /**
   * Created by peng on 31/03/16.

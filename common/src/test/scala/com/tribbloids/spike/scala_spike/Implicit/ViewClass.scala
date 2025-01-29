@@ -21,7 +21,7 @@ class ViewClass extends BaseSpec {
 
     implicit class Thing3[TT](v: TT)(
         implicit
-        bound: TT => Thing2[_]
+        bound: TT => Thing2[?]
     ) {
 
       def print3(): Unit = v.print2()

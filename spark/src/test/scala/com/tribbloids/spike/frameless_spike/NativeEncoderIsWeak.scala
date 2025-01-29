@@ -8,10 +8,10 @@ import java.util.Date
 
 class NativeEncoderIsWeak extends AnyFunSpec {
 
-  import NativeEncoderIsWeak._
+  import NativeEncoderIsWeak.*
 
   implicit val spark: SparkSession = TestHelper.TestSparkSession
-  import spark.implicits._
+  import spark.implicits.*
 
   it("native") {
 
@@ -23,7 +23,7 @@ class NativeEncoderIsWeak extends AnyFunSpec {
   it("frameless") {
 
     import frameless.TypedDataset
-    import frameless.syntax._
+    import frameless.syntax.*
 
 //    def now = new java.util.GregorianCalendar()
     def now = new Date()

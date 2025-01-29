@@ -7,9 +7,9 @@ import shapeless.ops.record.Values
 
 class RecordSuite extends BaseSpec {
 
-  import shapeless._
-  import record._
-  import syntax.singleton._
+  import shapeless.*
+  import record.*
+  import syntax.singleton.*
 
   describe("name ->> singleton") {
 

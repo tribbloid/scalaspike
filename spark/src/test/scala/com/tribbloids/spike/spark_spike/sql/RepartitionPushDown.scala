@@ -5,7 +5,7 @@ import org.scalatest.funspec.AnyFunSpec
 
 class RepartitionPushDown extends AnyFunSpec {
 
-  import TestHelper.TestSQL.implicits._
+  import TestHelper.TestSQL.implicits.*
 
   it("repartitioning twice can be squashed") {
 

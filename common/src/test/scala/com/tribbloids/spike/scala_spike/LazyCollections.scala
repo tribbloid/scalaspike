@@ -4,7 +4,7 @@ import org.scalatest.funspec.AnyFunSpec
 
 class LazyCollections extends AnyFunSpec {
 
-  import LazyCollections._
+  import LazyCollections.*
 
   val base: Seq[Int] = 1 to 10
 
@@ -15,7 +15,7 @@ class LazyCollections extends AnyFunSpec {
     it(s"$name is ${test.typeOfExecution}") {}
   }
 
-  def render(vs: IterableOnce[_]): Unit = {
+  def render(vs: IterableOnce[?]): Unit = {
     vs.foreach(_ => ())
   }
 

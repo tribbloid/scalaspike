@@ -1,14 +1,14 @@
 package com.tribbloids.spike.scala_spike.Reflection
 
-import ai.acyclic.prover.commons.testlib.BaseSpec
 import ai.acyclic.prover.commons.refl.Reflection.Runtime.{TypeTag, WeakTypeTag}
+import ai.acyclic.prover.commons.testlib.BaseSpec
 import shapeless.Witness
 
 import scala.reflect.ClassTag
 
 class InferTypeTag extends BaseSpec {
 
-  import InferTypeTag._
+  import InferTypeTag.*
 
   type U2 = (Int, String)
 

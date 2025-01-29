@@ -53,7 +53,7 @@ object OrganizingImplicits extends App {
     implicit val ageOrdering: Ordering[Person] = Ordering.fromLessThan((a, b) => a.age < b.age)
   }
 
-  import AgeOrdering._
+  import AgeOrdering.*
   println(persons.sorted)
 
   /*

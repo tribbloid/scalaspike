@@ -5,7 +5,7 @@ import org.scalatest.funspec.AnyFunSpec
 
 class TypeResolving extends AnyFunSpec {
 
-  import com.tribbloids.spike.scala_spike.Reflection.TypeResolving._
+  import com.tribbloids.spike.scala_spike.Reflection.TypeResolving.*
 
   val example = new Example
 

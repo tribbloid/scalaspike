@@ -1,13 +1,13 @@
 package lectures.part4implicits
 
-import java.{util => ju}
+import java.util as ju
 
 /**
   * Created by Daniel.
   */
 object ScalaJavaConversions extends App {
 
-  import collection.JavaConverters._
+  import collection.JavaConverters.*
 
   val javaSet: ju.Set[Int] = new ju.HashSet[Int]()
   (1 to 5).foreach(javaSet.add)
@@ -24,7 +24,7 @@ object ScalaJavaConversions extends App {
 
    */
 
-  import collection.mutable._
+  import collection.mutable.*
   val numbersBuffer = ArrayBuffer[Int](1, 2, 3)
   val juNumbersBuffer = numbersBuffer.asJava
 

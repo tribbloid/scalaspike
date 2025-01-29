@@ -8,7 +8,7 @@ import org.scalatest.funspec.AnyFunSpec
 
 class Example extends AnyFunSpec {
 
-  import shapeless.{Witness => W}
+  import shapeless.Witness as W
 
   describe("simple") {
 

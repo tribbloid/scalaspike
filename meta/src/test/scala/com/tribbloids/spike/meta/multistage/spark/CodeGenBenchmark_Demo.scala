@@ -9,7 +9,7 @@ object CodeGenBenchmark_Demo {
   val n = 10000
 
   def quasiquotes(): Unit = {
-    import scala.reflect.runtime.universe._
+    import scala.reflect.runtime.universe.*
     import scala.tools.reflect.ToolBox
 
     val toolBox = runtimeMirror(this.getClass.getClassLoader).mkToolBox()
@@ -26,7 +26,7 @@ object CodeGenBenchmark_Demo {
       sum += toolBox.eval(code).asInstanceOf[() => Int].apply()
       val p1 = System.nanoTime()
       if (i < 10 || i % 1000 == 0) {
-        println(s"$i: p1 - p0 = ${(p1 - p0)}ns")
+        println(s"$i: p1 - p0 = ${p1 - p0}ns")
       }
     }
     println(sum)

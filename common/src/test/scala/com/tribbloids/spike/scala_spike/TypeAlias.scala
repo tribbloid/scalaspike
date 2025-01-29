@@ -4,7 +4,7 @@ import ai.acyclic.prover.commons.testlib.BaseSpec
 import ai.acyclic.prover.commons.viz.TypeViz
 
 class TypeAlias extends BaseSpec {
-  import TypeAlias._
+  import TypeAlias.*
 
   it("example") {
 

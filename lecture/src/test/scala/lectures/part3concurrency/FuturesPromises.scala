@@ -1,8 +1,8 @@
 package lectures.part3concurrency
 
+import scala.concurrent.duration.*
 import scala.concurrent.{Await, Future, Promise}
 import scala.util.{Failure, Random, Success, Try}
-import scala.concurrent.duration._
 
 // important for futures
 import scala.concurrent.ExecutionContext.Implicits.global

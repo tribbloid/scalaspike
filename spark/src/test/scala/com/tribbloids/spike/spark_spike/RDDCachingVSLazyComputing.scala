@@ -7,8 +7,8 @@ import org.scalatest.funspec.AnyFunSpec
 
 class RDDCachingVSLazyComputing extends AnyFunSpec {
 
-  import RDDCachingVSLazyComputing._
-  import org.apache.spark.storage.StorageLevel._
+  import RDDCachingVSLazyComputing.*
+  import org.apache.spark.storage.StorageLevel.*
 
   val methods = Seq(
 //    MEMORY_ONLY,

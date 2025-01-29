@@ -5,8 +5,8 @@ import org.scalatest.funspec.AnyFunSpec
 
 class SerializeUnlift extends AnyFunSpec {
 
-  import ai.acyclic.prover.commons.spark.TestHelper._
-  import SerializeUnlift._
+  import SerializeUnlift.*
+  import ai.acyclic.prover.commons.spark.TestHelper.*
 
   val sc: SparkContext = TestSC
 
@@ -28,7 +28,7 @@ object SerializeUnlift {
 
   case class VAsUnlift(v: String) {
 
-    val unlift: PartialFunction[Any, String] = Function.unlift { _: Any =>
+    val unlift: PartialFunction[Any, String] = Function.unlift { (_: Any) =>
       Some(v)
     }
 

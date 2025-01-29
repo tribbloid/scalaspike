@@ -3,7 +3,7 @@ package com.tribbloids.spike.scala_spike.nullsafe
 import org.scalatest.funsuite.AnyFunSuite
 
 class UOptionTest extends AnyFunSuite {
-  import UOption._
+  import UOption.*
 
   test("caveats ==") {
     assert(USome(5) == 5)

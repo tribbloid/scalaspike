@@ -5,7 +5,7 @@ import shapeless.Witness
 
 class SingletonConstraintSpike extends BaseSpec {
 
-  import SingletonConstraintSpike._
+  import SingletonConstraintSpike.*
 
   it("1") {
 

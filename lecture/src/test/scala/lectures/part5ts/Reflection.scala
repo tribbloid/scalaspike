@@ -12,7 +12,7 @@ object Reflection extends App {
   }
 
   // 0 - import
-  import scala.reflect.runtime.{universe => ru}
+  import scala.reflect.runtime.universe as ru
 
   // 1 - MIRROR
   val m = ru.runtimeMirror(getClass.getClassLoader)
@@ -60,7 +60,7 @@ object Reflection extends App {
   // TypeTags
 
   // 0 - import
-  import ru._
+  import ru.*
 
   // 1 - creating a type tag "manually"
   val ttag = typeTag[Person]

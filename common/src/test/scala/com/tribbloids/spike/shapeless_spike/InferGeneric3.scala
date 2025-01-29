@@ -5,7 +5,7 @@ import shapeless.Generic
 object InferGeneric3 {
 
   trait Codec {
-    def ev: Generic[_]
+    def ev: Generic[?]
   }
 
   case class Impl() {}

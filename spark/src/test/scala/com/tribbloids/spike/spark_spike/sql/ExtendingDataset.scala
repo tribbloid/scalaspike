@@ -2,19 +2,19 @@ package com.tribbloids.spike.spark_spike.sql
 
 import ai.acyclic.prover.commons.spark.TestHelper
 import com.tribbloids.spike.spark_spike.sql.DatasetCaching.DSWithAccumulator
-import org.apache.spark.sql.{_SQLHelper, Dataset, SparkSession}
+import org.apache.spark.sql.{Dataset, SparkSession, _SQLHelper}
 import org.apache.spark.storage.StorageLevel
 import org.scalatest.funspec.AnyFunSpec
 
 class ExtendingDataset extends AnyFunSpec {
-  import ExtendingDataset._
+  import ExtendingDataset.*
 
   val spark: SparkSession = TestHelper.TestSparkSession
 
   it("can also cache temp view") {
 
     val fixture = DSWithAccumulator(spark)
-    import fixture._
+    import fixture.*
 
     val dsExt = Ext(ds)
 

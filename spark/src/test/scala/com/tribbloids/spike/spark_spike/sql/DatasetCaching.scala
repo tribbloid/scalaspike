@@ -14,7 +14,7 @@ class DatasetCaching extends AnyFunSpec {
   it("can eliminate double execution of derivative internalRDD") {
 
     val fixture = DSWithAccumulator(spark)
-    import fixture._
+    import fixture.*
 
     ds.persist()
 
@@ -39,7 +39,7 @@ class DatasetCaching extends AnyFunSpec {
   it("can also cache temp view") {
 
     val fixture = DSWithAccumulator(spark)
-    import fixture._
+    import fixture.*
 
     ds.createOrReplaceTempView("tt")
 
@@ -57,7 +57,7 @@ object DatasetCaching {
 
   case class DSWithAccumulator(spark: SparkSession) {
 
-    import spark.implicits._
+    import spark.implicits.*
 
     val acc = new LongAccumulator
     spark.sparkContext.register(acc)

@@ -1,9 +1,9 @@
 package com.tribbloids.spike.scala_spike.FBound_SelfType
 
-import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.BeforeAndAfterAll
+import org.scalatest.funspec.AnyFunSpec
 
-import scala.reflect._
+import scala.reflect.*
 
 /**
   * Created by peng on 05/03/16.

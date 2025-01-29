@@ -17,7 +17,7 @@ class InterruptSyncIO extends AnyFunSpec {
 
   it("cancelling") {
 
-    import scala.concurrent.duration._
+    import scala.concurrent.duration.*
     implicit val ioRuntime: IORuntime = cats.effect.unsafe.IORuntime.builder().build()
 
     val base: IO[Unit] = IO {

@@ -8,7 +8,7 @@ import scala.util.Random
 
 class WriteStreamBigData extends AnyFunSpec with EmbeddedKafkaFixture {
 
-  import TestHelper.TestSQL.implicits._
+  import TestHelper.TestSQL.implicits.*
 
   lazy val bigDS: Dataset[String] = {
 
