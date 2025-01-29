@@ -3,7 +3,7 @@ package com.tribbloids.spike.singleton_ops_spike
 import ai.acyclic.prover.commons.testlib.BaseSpec
 import shapeless.test.illTyped
 import shapeless.{Nat, Witness}
-import singleton.ops.{+, ==, >, Require, SafeInt, *}
+import singleton.ops.*
 
 class OpsExample extends BaseSpec {
 

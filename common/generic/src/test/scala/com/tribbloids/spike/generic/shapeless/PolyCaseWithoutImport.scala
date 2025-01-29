@@ -1,4 +1,4 @@
-package com.tribbloids.spike.xsource3.shapeless
+package com.tribbloids.spike.generic.shapeless
 
 object PolyCaseWithoutImport {
 

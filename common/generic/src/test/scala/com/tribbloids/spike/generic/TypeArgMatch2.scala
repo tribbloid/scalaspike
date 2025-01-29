@@ -1,6 +1,6 @@
-package com.tribbloids.spike.xsource3
+package com.tribbloids.spike.generic
 
-import com.tribbloids.spike.xsource3.Summoner.summon
+import com.tribbloids.spike.generic.Summoner.summon
 
 object TypeArgMatch2 {
 

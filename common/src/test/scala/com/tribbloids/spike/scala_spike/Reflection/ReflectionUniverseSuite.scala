@@ -1,7 +1,7 @@
 package com.tribbloids.spike.scala_spike.Reflection
 
 import ai.acyclic.prover.commons.debug.print_@
-import ai.acyclic.prover.commons.refl.Reflection.Runtime.{TypeTag, universe}
+import ai.acyclic.prover.commons.refl.Reflection.Runtime.{universe, TypeTag}
 import ai.acyclic.prover.commons.testlib.BaseSpec
 
 class ReflectionUniverseSuite extends BaseSpec {

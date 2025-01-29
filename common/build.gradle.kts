@@ -13,7 +13,8 @@ dependencies {
     api(("com.chuusai:shapeless_${vs.scala.binaryV}:2.3.9"))
     api("eu.timepit:singleton-ops_${vs.scala.binaryV}:0.5.2")
 
-    api("io.circe:circe-generic-extras_${vs.scala.binaryV}:0.14.4")
+    val circeVersion = "0.14.4"
+
 
     implementation("eu.timepit:refined_${vs.scala.binaryV}:0.11.3")
 

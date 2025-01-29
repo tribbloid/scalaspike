@@ -9,7 +9,7 @@ include(":prover-commons:spark")
 
 include(
     ":common",
-    ":common:xsource3",
+    ":common:generic",
     ":lecture",
     ":cats3",
 //    ":cats2",
