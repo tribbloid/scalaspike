@@ -13,7 +13,7 @@ trait Imp0 {
       path: Path = Path.of("http://google.com")
   )
 
-  implicit val pathCodec: Codec[AnyRef] = ??? // fallback to jackson here
+  implicit lazy val pojoCodec: Codec[AnyRef] = ??? // fallback to jackson here
 }
 
 object CirceFallbackExample extends Imp0 {
