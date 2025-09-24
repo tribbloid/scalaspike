@@ -17,7 +17,7 @@ plugins {
 
 subprojects {
 
-    val vs = versions()
+//    val vs = versions()
 
 //    dependencies {
 //
