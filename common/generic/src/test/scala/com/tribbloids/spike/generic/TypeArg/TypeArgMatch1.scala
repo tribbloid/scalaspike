@@ -1,4 +1,4 @@
-package com.tribbloids.spike.generic
+package com.tribbloids.spike.generic.TypeArg
 
 object TypeArgMatch1 {
 
@@ -40,6 +40,6 @@ object TypeArgMatch1 {
       sniffer.apply(v)
     }
 
-//    println(read(2))
+    println(read(2))
   }
 }

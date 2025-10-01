@@ -26,4 +26,6 @@ object Summoner {
       //      val foo1: Foo.Foo1 = foo // fail to compile
     }
   }
+
+//  val a: String = 1
 }

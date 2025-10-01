@@ -1,4 +1,7 @@
-package com.tribbloids.spike.generic.circe
+package com.tribbloids.spike.meta.multistage.circe
+
+import io.circe.Encoder
+import io.circe.generic.semiauto.deriveEncoder
 
 object RecursiveCaseClassDerivation {
 

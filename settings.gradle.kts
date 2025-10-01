@@ -16,7 +16,7 @@ include(
     ":kyo",
     ":scraper",
     ":spark",
-    ":meta"
+    ":serde"
 )
 
 

@@ -1,23 +1,21 @@
-package com.tribbloids.spike.scala_spike
+package com.tribbloids.spike.generic.TypeArg
 
 import org.scalatest.funspec.AnyFunSpec
 
-class ExtractingTypeArg extends AnyFunSpec {}
+class TypeArgImplicitExtractor extends AnyFunSpec {}
 
-object ExtractingTypeArg {
-
-  import com.tribbloids.spike.Summoner.*
+object TypeArgImplicitExtractor {
 
   trait Vec[+T <: AnyRef]
 
-  trait ArgOf[V <: Vec[_]] {
+  trait ArgOf[V <: Vec[?]] {
 
     type TT
   }
 
   object Case1 {
 
-    implicit def impl1[V <: Vec[_], T0 <: AnyRef](
+    implicit def impl1[V <: Vec[?], T0 <: AnyRef](
         implicit
         ev: V <:< Vec[T0]
     ): ArgOf[V] { type TT = T0 } =
@@ -32,7 +30,7 @@ object ExtractingTypeArg {
 
     trait StringVec extends Vec[String]
 
-    val strEx = summon[ArgOf[Vec[String]]]
+//    val strEx = summon[ArgOf[Vec[String]]]
     //  val strEx = summon[ArgOf[StringVec]]
     //  implicitly[intEx.TT =:= Int] // disabled temporarily for not explaining type reduction
 
@@ -44,9 +42,9 @@ object ExtractingTypeArg {
 
     object ExtractingTypeArg {
 
-      def apply[V <: Vec[_]](
+      def apply[V <: Vec[?]](
           implicit
-          ev: ArgOf[_ >: V]
+          ev: ArgOf[? >: V]
       ): ev.type = ev
 
       implicit def impl1[T <: AnyRef]: ArgOf[Vec[T]] { type TT = T } =
@@ -61,7 +59,7 @@ object ExtractingTypeArg {
       val x: String = ??? : strEx1.TT
       val y: String = ??? : strEx2.TT
 
-      summon[ArgOf[_ >: StringVec]]
+//      summon[ArgOf[? >: StringVec]]
     }
   }
 }

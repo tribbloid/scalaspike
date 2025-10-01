@@ -1,4 +1,4 @@
-package com.tribbloids.spike.generic
+package com.tribbloids.spike.generic.TypeArg
 
 import com.tribbloids.spike.generic.Summoner.summon
 

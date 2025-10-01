@@ -1,4 +1,4 @@
-package com.tribbloids.spike.generic.circe
+package com.tribbloids.spike.meta.circe
 
 import org.scalatest.funspec.AnyFunSpec
 

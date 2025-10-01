@@ -5,6 +5,6 @@ FWDIR="$(
   pwd
 )"
 
-${FWDIR}/gradlew wrapper --gradle-version=8.12.1
+${FWDIR}/gradlew wrapper
 
 ${FWDIR}/gradlew dependencyUpdates --warning-mode all "$@"

@@ -10,7 +10,6 @@ dependencies {
     api(project(":prover-commons:meta2"))
     testFixturesApi(testFixtures(project(":prover-commons:meta2")))
 
-    api(("com.chuusai:shapeless_${vs.scala.binaryV}:2.3.9"))
     api("eu.timepit:singleton-ops_${vs.scala.binaryV}:0.5.2")
 
     val circeVersion = "0.14.4"

@@ -1,4 +1,4 @@
-package com.tribbloids.spike.generic.jsoniter
+package com.tribbloids.spike.meta.jsoniter
 
 import ai.acyclic.prover.commons.debug.print_@
 import org.scalatest.funspec.AnyFunSpec
