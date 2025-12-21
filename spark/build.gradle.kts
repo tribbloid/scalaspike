@@ -18,7 +18,7 @@ dependencies {
     testImplementation("org.apache.spark:spark-yarn_${vs.scala.binaryV}:${vs.spark.v}")
 
 //    implementation("org.apache.spark:spark-sql-kafka-0-10_${vs.scala.binaryV}:${vs.spark.v}")
-    implementation("io.github.embeddedkafka:embedded-kafka-streams_${vs.scala.binaryV}:3.9.0")
+    implementation("io.github.embeddedkafka:embedded-kafka-streams_${vs.scala.binaryV}:4.1.0")
 
 //    implementation("uk.co.gresearch.spark:spark-extension_2.13:2.12.0-3.5")
 }
