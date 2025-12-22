@@ -9,7 +9,7 @@ trait EmbeddedKafkaFixture extends Suite with BeforeAndAfterAll {
   val userDefinedConfig: EmbeddedKafkaConfig = {
 
     val brokerProperties = Map("message.max.bytes" -> "1000000000")
-    EmbeddedKafkaConfig(kafkaPort = 9093, zooKeeperPort = 2181, brokerProperties)
+    EmbeddedKafkaConfig(kafkaPort = 9093, customBrokerProperties = brokerProperties)
   }
 
   override def beforeAll(): Unit = {

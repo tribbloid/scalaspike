@@ -2,7 +2,7 @@ package com.tribbloids.spike.spark_spike.sql
 
 import ai.acyclic.prover.commons.spark.TestHelper
 import com.tribbloids.spike.spark_spike.sql.DatasetCaching.DSWithAccumulator
-import org.apache.spark.sql.{_SQLHelper, Dataset, SparkSession}
+import org.apache.spark.sql.{Dataset, SparkSession, classic}
 import org.apache.spark.storage.StorageLevel
 import org.scalatest.funspec.AnyFunSpec
 
@@ -34,10 +34,10 @@ object ExtendingDataset {
 
   case class Ext[T](
       self: Dataset[T]
-  ) extends Dataset[T](
-        self.sparkSession,
+  ) extends classic.Dataset[T](
+        self.sparkSession.sqlContext,
         self.queryExecution.logical,
-        _SQLHelper.getEncoder(self)
+        self.encoder
       ) {}
 
 }
