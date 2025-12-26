@@ -1,8 +1,5 @@
 package com.tribbloids.spike.meta.multistage.circe
 
-import io.circe.Encoder
-import io.circe.generic.semiauto.deriveEncoder
-
 object RecursiveCaseClassDerivation {
 
   /* If Encoder[Foo] is not defined, compilation fails with

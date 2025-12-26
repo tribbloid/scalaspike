@@ -3,15 +3,10 @@ package com.tribbloids.spike.meta.circe
 import org.scalatest.funspec.AnyFunSpec
 
 import io.circe.Codec
-import java.nio.file.Path
+
+import com.tribbloids.spike.meta.Fixture.User
 
 trait Imp0 {
-
-  case class User(
-      name: String,
-      age: Int,
-      path: Path = Path.of("http://google.com")
-  )
 
   implicit lazy val pojoCodec: Codec[AnyRef] = ??? // fallback to jackson here
 }

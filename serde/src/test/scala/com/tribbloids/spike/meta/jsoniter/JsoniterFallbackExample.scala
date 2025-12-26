@@ -1,19 +1,11 @@
 package com.tribbloids.spike.meta.jsoniter
 
 import ai.acyclic.prover.commons.debug.print_@
-import org.scalatest.funspec.AnyFunSpec
-import com.github.plokhotnyuk.jsoniter_scala.macros.*
 import com.github.plokhotnyuk.jsoniter_scala.core.*
-
-import java.nio.file.Path
+import com.tribbloids.spike.meta.Fixture.User
+import org.scalatest.funspec.AnyFunSpec
 
 trait Imp0 {
-
-  case class User(
-      name: String,
-      age: Int,
-      path: Path = Path.of("http://google.com")
-  )
 
   implicit def pojoCodec[T <: AnyRef]: JsonValueCodec[T] = {
 

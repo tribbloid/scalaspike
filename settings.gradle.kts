@@ -12,11 +12,13 @@ include(
     ":common:generic",
     ":lecture",
     ":cats3",
+    ":zio",
 //    ":cats2",
     ":kyo",
     ":scraper",
     ":spark",
-    ":serde"
+    ":serde",
+    ":deeplearning"
 )
 
 
