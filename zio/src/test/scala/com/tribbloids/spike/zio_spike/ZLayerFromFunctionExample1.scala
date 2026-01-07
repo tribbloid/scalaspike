@@ -1,11 +1,10 @@
-package zio_spike
+package com.tribbloids.spike.zio_spike
 
 import ai.acyclic.prover.commons.graph.Arrow
 import ai.acyclic.prover.commons.graph.local.Local
 import ai.acyclic.prover.commons.graph.viz.Hierarchy
 import ai.acyclic.prover.commons.testlib.BaseSpec
 import zio.*
-import zio_spike.ZLayerFromFunctionExample1.{l1, l2}
 
 object ZLayerFromFunctionExample1 {
 
@@ -26,7 +25,7 @@ class ZLayerFromFunctionExample1 extends BaseSpec {
   it("l1 >>> l2") {
 
     val l1ThenL2: ZLayer[Int, Nothing, Int] =
-      l1 >>> l2
+      ZLayerFromFunctionExample1.l1 >>> ZLayerFromFunctionExample1.l2
 
     val provided: ZLayer[Any, Nothing, Int] =
       ZLayer.succeed(123) >>> l1ThenL2
