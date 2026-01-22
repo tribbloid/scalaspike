@@ -18,7 +18,8 @@ include(
     ":scraper",
     ":spark",
     ":serde",
-    ":deeplearning"
+    ":deeplearning",
+    ":chisel"
 )
 
 
