@@ -9,9 +9,9 @@ class DeriveZlayerSpec extends BaseSpec {
   import DeriveZlayerSpec.*
 
   def printOrigin[I, O](layer: ZLayer[I, Any, O])(
-    implicit
-    iTag: TypeTag[I],
-    oTag: Tag[O]
+      implicit
+      iTag: TypeTag[I],
+      oTag: Tag[O]
   ): String = {
     val result = iTag.tpe.toString + " -> " + oTag.tag.toString()
 
