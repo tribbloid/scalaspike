@@ -31,4 +31,5 @@ dependencies {
     implementation("io.github.embeddedkafka:embedded-kafka-streams_${vs.scala.binaryV}:4.1.0")
 
 //    implementation("uk.co.gresearch.spark:spark-extension_2.13:2.12.0-3.5")
+    testImplementation("org.apache.xbean:xbean-asm7-shaded:4.15")
 }
