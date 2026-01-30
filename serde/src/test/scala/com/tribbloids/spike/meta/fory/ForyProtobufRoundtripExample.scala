@@ -11,7 +11,8 @@ import org.scalatest.funspec.AnyFunSpec
 class ForyProtobufRoundtripExample extends AnyFunSpec {
 
   private lazy val fory = {
-    val v = Fory.builder()
+    val v = Fory
+      .builder()
       .withLanguage(Language.JAVA)
       .requireClassRegistration(false)
       .build()
@@ -27,7 +28,8 @@ class ForyProtobufRoundtripExample extends AnyFunSpec {
   private def toProtobuf(value: AnyRef): PbAny = {
     val bytes = fory.serialize(value)
 
-    PbAny.newBuilder()
+    PbAny
+      .newBuilder()
       .setTypeUrl(s"fory/${value.getClass.getName}")
       .setValue(ByteString.copyFrom(bytes))
       .build()

@@ -43,4 +43,3 @@ class DroneResourceDiscoveryPlugin extends ResourceDiscoveryPlugin with Logging 
     }
   }
 }
-

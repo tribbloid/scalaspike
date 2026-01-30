@@ -2,5 +2,5 @@ package com.tribbloids
 
 package object spike {
 
-  //val a: String = 1
+  // val a: String = 1
 }

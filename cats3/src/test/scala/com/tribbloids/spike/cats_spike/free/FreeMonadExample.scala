@@ -1,7 +1,7 @@
 package com.tribbloids.spike.cats_spike.free
 
 import cats.free.Free
-import cats.{Id, ~>}
+import cats.{~>, Id}
 import cats.free.Free.liftF
 
 object FreeMonadExample {
@@ -15,7 +15,6 @@ object FreeMonadExample {
 
   // 2. Create Free type and smart constructors
   type Expr[A] = Free[ExprA, A]
-
 
   def const(v: Int): Expr[Int] = liftF[ExprA, Int](Const(v))
   def add(left: Int, right: Int): Expr[Int] = liftF[ExprA, Int](Add(left, right))

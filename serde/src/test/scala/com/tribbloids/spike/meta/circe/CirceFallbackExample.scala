@@ -4,8 +4,6 @@ import org.scalatest.funspec.AnyFunSpec
 
 import io.circe.Codec
 
-import com.tribbloids.spike.meta.Fixture.User
-
 trait Imp0 {
 
   implicit lazy val pojoCodec: Codec[AnyRef] = ??? // fallback to jackson here

@@ -35,7 +35,7 @@ object GD_RingAllReduce {
     override def value: Map[Int, Double] = _mmap.toMap.withDefaultValue(0)
 
     override def copy(): AccumulatorV2[(Int, Double), Map[Int, Double]] =
-      new MapAccumulator(MMap[Int, Double](value.toSeq *).withDefaultValue(0))
+      new MapAccumulator(MMap[Int, Double](value.toSeq*).withDefaultValue(0))
 
     override def isZero: Boolean = _mmap.isEmpty
 

@@ -33,7 +33,7 @@ object UnapplyAsTuple {
 
     val a: Expr[(Int, Int)] = ???
     a match {
-      case Expr(b, c) => ???
+      case Expr(_, _) => ???
     }
   }
 }

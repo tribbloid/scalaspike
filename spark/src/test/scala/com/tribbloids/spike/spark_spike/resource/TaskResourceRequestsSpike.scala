@@ -12,7 +12,6 @@ class TaskResourceRequestsSpike extends AnyFunSpec {
   }
   it("example") {
 
-
     val spark = TestHelper.TestSparkSession
     val sc = spark.sparkContext
 
@@ -28,11 +27,10 @@ class TaskResourceRequestsSpike extends AnyFunSpec {
     //    The .withResources() call forces a new stage that will only
     //    schedule tasks on executors matching these requirements.
     val heavyResult = data
-      .map(x => x * 2)               // Runs on default resources
-      .withResources(gpuProfile)      // SWITCH: Next operations need the GPU profile
+      .map(x => x * 2) // Runs on default resources
+      .withResources(gpuProfile) // SWITCH: Next operations need the GPU profile
       .map(x => expensiveGpuFunc(x)) // Runs on GPU-equipped executors
       .collect()
-
 
   }
 

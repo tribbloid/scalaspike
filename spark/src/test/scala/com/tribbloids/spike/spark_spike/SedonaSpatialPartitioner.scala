@@ -5,20 +5,19 @@ import org.apache.sedona.core.serde.SedonaKryoRegistrator
 import org.apache.sedona.sql.utils.SedonaSQLRegistrator
 import org.apache.spark.serializer.KryoSerializer
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.{SparkConf, SparkContext}
-import org.locationtech.jts.geom.{Coordinate, Envelope, GeometryFactory, Point}
+import org.apache.spark.SparkConf
+import org.locationtech.jts.geom.{Coordinate, Envelope, GeometryFactory}
 import org.scalatest.funspec.AnyFunSpec
 
 /**
- * Example demonstrating Apache Sedona's spatial partitioner for partitioning Spark RDDs
- * containing spatial data.
- *
- * This example shows:
- * 1. Creating SparkSession with Sedona configuration
- * 2. Creating spatial RDDs from point data
- * 3. Using different spatial partitioning strategies (KDB-Tree, Quad-Tree, R-Tree)
- * 4. Performing spatial joins on partitioned RDDs
- */
+  * Example demonstrating Apache Sedona's spatial partitioner for partitioning Spark RDDs containing spatial data.
+  *
+  * This example shows:
+  *   1. Creating SparkSession with Sedona configuration
+  *   2. Creating spatial RDDs from point data
+  *   3. Using different spatial partitioning strategies (KDB-Tree, Quad-Tree, R-Tree)
+  *   4. Performing spatial joins on partitioned RDDs
+  */
 class SedonaSpatialPartitioner extends AnyFunSpec {
 
   // Create a properly configured SparkSession with Sedona
@@ -27,7 +26,8 @@ class SedonaSpatialPartitioner extends AnyFunSpec {
       .set("spark.serializer", classOf[KryoSerializer].getName)
       .set("spark.kryo.registrator", classOf[SedonaKryoRegistrator].getName)
 
-    val session = SparkSession.builder()
+    val session = SparkSession
+      .builder()
       .config(conf)
       .getOrCreate()
 
@@ -84,24 +84,31 @@ class SedonaSpatialPartitioner extends AnyFunSpec {
       // In production, you would use Sedona's built-in spatial partitioning on SpatialRDDs
 
       // Simple spatial partitioning demonstration using custom partitioner
-      val partitionedRDD = pointRDD.map { point =>
-        val x = point.getX
-        val y = point.getY
-        // Simple grid-based partitioning based on coordinates
-        val partitionId = ((x / 10).toInt * 10 + (y / 10).toInt).abs % 4
-        (partitionId, point)
-      }.partitionBy(new org.apache.spark.Partitioner {
-        def numPartitions: Int = 4
-        def getPartition(key: Any): Int = key.asInstanceOf[Int]
-      }).values
+      val partitionedRDD = pointRDD
+        .map { point =>
+          val x = point.getX
+          val y = point.getY
+          // Simple grid-based partitioning based on coordinates
+          val partitionId = ((x / 10).toInt * 10 + (y / 10).toInt).abs % 4
+          (partitionId, point)
+        }
+        .partitionBy(new org.apache.spark.Partitioner {
+          def numPartitions: Int = 4
+          def getPartition(key: Any): Int = key.asInstanceOf[Int]
+        })
+        .values
 
       println(s"Partitioned RDD partition count: ${partitionedRDD.getNumPartitions}")
       println(s"Points in each partition:")
-      partitionedRDD.mapPartitionsWithIndex { (idx, iter) =>
-        Seq((idx, iter.size)).iterator
-      }.collect().foreach { case (idx, count) =>
-        println(s"  Partition $idx: $count points")
-      }
+      partitionedRDD
+        .mapPartitionsWithIndex { (idx, iter) =>
+          Seq((idx, iter.size)).iterator
+        }
+        .collect()
+        .foreach {
+          case (idx, count) =>
+            println(s"  Partition $idx: $count points")
+        }
 
       // Collect and display results
       val results = partitionedRDD.collect()
@@ -135,13 +142,16 @@ class SedonaSpatialPartitioner extends AnyFunSpec {
 
       partitionCounts.foreach { numPartitions =>
         val repartitioned = pointRDD.repartition(numPartitions)
-        val countByPartition = repartitioned.mapPartitionsWithIndex { (idx, iter) =>
-          Seq((idx, iter.size)).iterator
-        }.collect()
+        val countByPartition = repartitioned
+          .mapPartitionsWithIndex { (idx, iter) =>
+            Seq((idx, iter.size)).iterator
+          }
+          .collect()
 
         println(s"\nRepartitioned to $numPartitions partitions:")
-        countByPartition.foreach { case (idx, count) =>
-          println(s"  Partition $idx: $count points")
+        countByPartition.foreach {
+          case (idx, count) =>
+            println(s"  Partition $idx: $count points")
         }
       }
 
@@ -157,12 +167,21 @@ class SedonaSpatialPartitioner extends AnyFunSpec {
 
       // Create points distributed across different regions
       val points = Seq(
-        (0.0, 0.0), (1.0, 1.0), (2.0, 2.0), // Region 1: bottom-left
-        (10.0, 10.0), (11.0, 11.0), (12.0, 12.0), // Region 2: top-right
-        (0.0, 10.0), (1.0, 11.0), (2.0, 12.0), // Region 3: top-left
-        (10.0, 0.0), (11.0, 1.0), (12.0, 2.0) // Region 4: bottom-right
-      ).map { case (x, y) =>
-        geometryFactory.createPoint(new Coordinate(x, y))
+        (0.0, 0.0),
+        (1.0, 1.0),
+        (2.0, 2.0), // Region 1: bottom-left
+        (10.0, 10.0),
+        (11.0, 11.0),
+        (12.0, 12.0), // Region 2: top-right
+        (0.0, 10.0),
+        (1.0, 11.0),
+        (2.0, 12.0), // Region 3: top-left
+        (10.0, 0.0),
+        (11.0, 1.0),
+        (12.0, 2.0) // Region 4: bottom-right
+      ).map {
+        case (x, y) =>
+          geometryFactory.createPoint(new Coordinate(x, y))
       }
 
       val pointRDD = sc.parallelize(points)
@@ -171,7 +190,9 @@ class SedonaSpatialPartitioner extends AnyFunSpec {
       val queryWindow = new Envelope(0.0, 5.0, 0.0, 5.0)
 
       println(s"\n=== Spatial Range Query ===")
-      println(s"Query window: [${queryWindow.getMinX}, ${queryWindow.getMaxX}] x [${queryWindow.getMinY}, ${queryWindow.getMaxY}]")
+      println(
+        s"Query window: [${queryWindow.getMinX}, ${queryWindow.getMaxX}] x [${queryWindow.getMinY}, ${queryWindow.getMaxY}]"
+      )
 
       // Filter points within the query window
       val filteredPoints = pointRDD.filter { point =>
@@ -185,16 +206,19 @@ class SedonaSpatialPartitioner extends AnyFunSpec {
       }
 
       // Demonstrate partitioning for spatial queries
-      val partitioned = pointRDD.map { point =>
-        // Simple spatial hashing for partitioning
-        val x = point.getX
-        val y = point.getY
-        val partitionKey = ((x / 10).toInt * 10 + (y / 10).toInt).abs
-        (partitionKey, point)
-      }.partitionBy(new org.apache.spark.Partitioner {
-        def numPartitions: Int = 4
-        def getPartition(key: Any): Int = key.asInstanceOf[Int] % 4
-      }).values
+      val partitioned = pointRDD
+        .map { point =>
+          // Simple spatial hashing for partitioning
+          val x = point.getX
+          val y = point.getY
+          val partitionKey = ((x / 10).toInt * 10 + (y / 10).toInt).abs
+          (partitionKey, point)
+        }
+        .partitionBy(new org.apache.spark.Partitioner {
+          def numPartitions: Int = 4
+          def getPartition(key: Any): Int = key.asInstanceOf[Int] % 4
+        })
+        .values
 
       println(s"\nAfter spatial partitioning:")
       println(s"Number of partitions: ${partitioned.getNumPartitions}")
@@ -228,8 +252,7 @@ class SedonaSpatialPartitioner extends AnyFunSpec {
       println("\n=== Sedona SQL Spatial Operations ===")
 
       // Use Sedona's ST_Point to create geometries
-      val spatialDF = sedona.sql(
-        """
+      val spatialDF = sedona.sql("""
           |SELECT name, ST_Point(longitude, latitude) as geometry
           |FROM points
         """.stripMargin)
@@ -237,8 +260,7 @@ class SedonaSpatialPartitioner extends AnyFunSpec {
       spatialDF.show(false)
 
       // Example: Find points within a certain distance
-      val nearbyPoints = sedona.sql(
-        """
+      val nearbyPoints = sedona.sql("""
           |SELECT p1.name, p2.name,
           |  ST_Distance(
           |    ST_Point(p1.longitude, p1.latitude),

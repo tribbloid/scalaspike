@@ -2,7 +2,7 @@ package com.tribbloids.spike.scala_spike
 
 import org.scalatest.funspec.AnyFunSpec
 
-class TraitLinearization extends AnyFunSpec {
+class MultipleInheritanceTraitLinearization extends AnyFunSpec {
 
   describe("Trait Linearization") {
 
